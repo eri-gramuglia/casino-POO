@@ -51,6 +51,10 @@ export class TurningTurn {
         return this._betValue;
     }
     public turning ():void {
+        let aux = this._roulette.getNumRandom();
+        if (aux === this._numSelect){
+            console.log ("WIN PLENO")
+        }else
 
     }
 

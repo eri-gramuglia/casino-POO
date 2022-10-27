@@ -46,10 +46,11 @@ export class Roulette {
     }
     public getNumRandom():number {
         let min: number = Math.ceil(0);
+       // console.log(this._numBlacks.length+this._numWhite.length)
         let max: number = Math.floor(38);
         this._numRandom = Math.floor(Math.random() * (max - min + 1) + min);
         return this._numRandom;
     }
 
-
 }
+
