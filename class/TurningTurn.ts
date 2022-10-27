@@ -54,7 +54,9 @@ export class TurningTurn {
         let aux = this._roulette.getNumRandom();
         if (aux === this._numSelect){
             console.log ("WIN PLENO")
-        }else
+        }else {
+            
+        }
 
     }
 

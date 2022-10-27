@@ -51,6 +51,30 @@ export class Roulette {
         this._numRandom = Math.floor(Math.random() * (max - min + 1) + min);
         return this._numRandom;
     }
-
+    public getColor(p_number: number): string {
+        //let aux: string = " ";
+        console.log (this._numBlacks.length)
+        if (p_number === 0){
+            return "VERDE";
+        }else {
+            for (let i:number = 0; i <= this._numBlacks.length; i++) {
+                if (p_number === this._numBlacks[i]) {
+                    return "NEGRO";
+                }
+            }
+            return "BLANCO";
+        }
+    }
+    
 }
+
+// instance player test and roulette test
+
+let playerOne: Player = new Player (1,"Daniel","Jerez",10000);
+console.log (playerOne);
+let blacks: number[] = new Array (1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37)
+let white: number[] = new Array (2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38)
+    let rouletteOne : Roulette = new Roulette(1,blacks,white,2,500000,playerOne)
+
+console.log (rouletteOne.getColor(0))
 
