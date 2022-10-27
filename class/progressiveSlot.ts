@@ -19,7 +19,7 @@ pRollerNumber:number,pPayLine:number,pJackpot:number){
     this.payLine=newPayLine;
   }
   public setJackpot(newJackpot:number):void{
-    this.jackpot=newJackpot;
+    this.jackpot+newJackpot;
   }
   private progressiveCombination():number{
     let aux=new Array(this.payLine);
@@ -28,7 +28,7 @@ pRollerNumber:number,pPayLine:number,pJackpot:number){
         combination+=aux[i]=this.getReward();
       } return combination;
     }
-    public playprogressiveSlot(pBetValue:number):void{
+    public playprogressiveSlot(pBetValue:number):number{
       let reward=0;
         if(this.verifyBet(pBetValue) && this.checkRollers()){
             reward=this.progressiveCombination()
@@ -39,16 +39,18 @@ pRollerNumber:number,pPayLine:number,pJackpot:number){
               console.log(`Felicidades acertó dos lineas de 7! Ganó ${pBetValue*1000}`);
           } else if(reward===-3){
               console.log(`¡¡¡Felicidades acertó el jackpot!!! Ganó ${this.getJackpot()}`);
+              this.jackpot===0;
           } 
           else if(reward===0){
             console.log(`Suerte para la proxima.`);
+            this.setJackpot(pBetValue);
           } else {
             console.log(`Felicidades ganó ${reward * pBetValue} creditos.`);
-          } 
+          } return reward;
     } 
   } 
 let betValue = [1, 5, 10, 20, 25];
 let tragamoneda: ProgressiveSlot = new ProgressiveSlot(2323,betValue,"Egipcio",15,25,4,5,1000);
 
-tragamoneda.playprogressiveSlot(5);
+tragamoneda.playprogressiveSlot(30);
 

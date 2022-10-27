@@ -11,6 +11,9 @@ export class RollerSlot extends Slot {
   public getWell():number{
     return this.well;
   }
+  public setWeel(newWell:number):void{
+    this.well=newWell;
+  }
   public playRollerSlot(pBetValue:number):number{
     let reward=0;
       if(this.verifyBet(pBetValue) && this.checkRollers()){

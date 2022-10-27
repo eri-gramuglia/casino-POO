@@ -35,7 +35,7 @@ var ProgressiveSlot = /** @class */ (function (_super) {
         this.payLine = newPayLine;
     };
     ProgressiveSlot.prototype.setJackpot = function (newJackpot) {
-        this.jackpot = newJackpot;
+        this.jackpot + newJackpot;
     };
     ProgressiveSlot.prototype.progressiveCombination = function () {
         var aux = new Array(this.payLine);
@@ -58,9 +58,11 @@ var ProgressiveSlot = /** @class */ (function (_super) {
         }
         else if (reward === -3) {
             console.log("\u00A1\u00A1\u00A1Felicidades acert\u00F3 el jackpot!!! Gan\u00F3 ".concat(this.getJackpot()));
+            this.jackpot === 0;
         }
         else if (reward === 0) {
             console.log("Suerte para la proxima.");
+            this.setJackpot(pBetValue);
         }
         else {
             console.log("Felicidades gan\u00F3 ".concat(reward * pBetValue, " creditos."));
@@ -71,4 +73,4 @@ var ProgressiveSlot = /** @class */ (function (_super) {
 exports.ProgressiveSlot = ProgressiveSlot;
 var betValue = [1, 5, 10, 20, 25];
 var tragamoneda = new ProgressiveSlot(2323, betValue, "Egipcio", 15, 25, 4, 5, 1000);
-tragamoneda.playprogressiveSlot(5);
+tragamoneda.playprogressiveSlot(30);
