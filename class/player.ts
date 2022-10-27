@@ -36,3 +36,8 @@ export class Player {
         return this._foundsAvailable;
     }
 }
+
+// instance player Test
+
+let playerOne: Player = new Player (1,"Daniel","Jerez",10000);
+console.log (playerOne);
