@@ -60,13 +60,13 @@ pRollerNumber:number){
         reward=-1;
       }
       if (aux===1){
-        reward=25;
+        reward=10;
       } else if (aux===2){
-        reward=50;
+        reward=25;
       } else if (aux===3){
-        reward=100
+        reward=50;
       } else if (aux>3){
-        reward=200
+        reward=100;
       }
       return reward;
   }

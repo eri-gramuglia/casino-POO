@@ -1,8 +1,6 @@
 "use strict";
 exports.__esModule = true;
 exports.Casino = void 0;
-var reelSlot_1 = require("./reelSlot");
-var progressiveSlot_1 = require("./progressiveSlot");
 var Casino = /** @class */ (function () {
     function Casino(pName, pProgressiveSlotList, pReelSlotList, /*pRoulleteList:Roullete[],pCrapsList:Craps[],*/ pTreasury) {
         this.casinoName = pName;
@@ -81,16 +79,10 @@ var Casino = /** @class */ (function () {
     Casino.prototype.subtractAmount = function (amount) {
         this.treasury -= amount;
     };
+    Casino.prototype.sellCredits = function (amount) {
+        this.subtractAmount(amount);
+        return amount;
+    };
     return Casino;
 }());
 exports.Casino = Casino;
-var progressiveSlotBet = [1, 2, 5, 10, 15];
-var reelSlotBet = [5, 10, 15, 20];
-var reelSlot1 = new reelSlot_1.ReelSlot(212, reelSlotBet, "Animal", 9, 20, 4, 5000);
-var progressiveSlot1 = new progressiveSlot_1.ProgressiveSlot(2323, progressiveSlotBet, "Egipcio", 15, 25, 4, 5, 10000);
-var reelSlotList = [reelSlot1];
-var progressiveSlotList = [progressiveSlot1];
-var newCasino = new Casino('Atlanta', progressiveSlotList, reelSlotList, 500000);
-newCasino.subtractAmount(20000);
-var consulta = newCasino.getTreasury();
-console.log(consulta);

@@ -10,7 +10,4 @@ let progressiveSlot1:ProgressiveSlot=new ProgressiveSlot(2323,progressiveSlotBet
 let reelSlotList:ReelSlot[]=[reelSlot1];
 let progressiveSlotList:ProgressiveSlot[]=[progressiveSlot1];
 
-let newCasino:Casino=new Casino('Atlanta',progressiveSlotList,reelSlotList,500000);
-newCasino.subtractAmount(20000);
-let consulta=newCasino.getTreasury();
-console.log(consulta);
+export let newCasino:Casino=new Casino('Atlanta',progressiveSlotList,reelSlotList,500000);

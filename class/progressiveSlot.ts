@@ -43,7 +43,7 @@ pRollerNumber:number,pPayLine:number,pJackpot:number){
           } 
           else if(reward===0){
             console.log(`Suerte para la proxima.`);
-            this.setJackpot(pBetValue);
+            this.setJackpot(pBetValue * this.payLine);
           } else {
             console.log(`Felicidades ganó ${reward * pBetValue} creditos.`);
           } return reward;

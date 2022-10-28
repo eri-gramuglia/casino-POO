@@ -83,6 +83,10 @@ export class Casino {
     public subtractAmount(amount:number):void{
         this.treasury-=amount;
     }
+    public sellCredits(amount:number):number{
+        this.subtractAmount(amount);
+        return amount;
+    }
 }
 
 

@@ -62,7 +62,7 @@ var ProgressiveSlot = /** @class */ (function (_super) {
         }
         else if (reward === 0) {
             console.log("Suerte para la proxima.");
-            this.setJackpot(pBetValue);
+            this.setJackpot(pBetValue * this.payLine);
         }
         else {
             console.log("Felicidades gan\u00F3 ".concat(reward * pBetValue, " creditos."));
