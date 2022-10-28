@@ -4,8 +4,8 @@ import { Casino } from "./class/casino";
 
 let progressiveSlotBet= [1,2,5,10,15];
 let reelSlotBet = [5,10,15,20];
-let reelSlot1:ReelSlot=new ReelSlot(212,reelSlotBet,"Animal",9,20,4,5000);
-let progressiveSlot1:ProgressiveSlot=new ProgressiveSlot(2323,progressiveSlotBet,"Egipcio",15,25,4,5,10000);
+export let reelSlot1:ReelSlot=new ReelSlot(212,reelSlotBet,"Animal",9,20,4,10000);
+export let progressiveSlot1:ProgressiveSlot=new ProgressiveSlot(2323,progressiveSlotBet,"Egipcio",15,25,4,5,10000);
 
 let reelSlotList:ReelSlot[]=[reelSlot1];
 let progressiveSlotList:ProgressiveSlot[]=[progressiveSlot1];

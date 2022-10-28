@@ -29,23 +29,29 @@ pRollerNumber:number,pPayLine:number,pJackpot:number){
       } return combination;
     }
     public playProgressiveSlot(pBetValue:number):number{
-      let reward=0;
+      let reward:number=0;
+      let aux:number=0
         if(this.verifyBet(pBetValue) && this.checkRollers()){
-            reward=this.progressiveCombination()
+            aux=this.progressiveCombination();
         }
-          if(reward===-1){
+          if(aux===-1){
               console.log(`Felicidades acertó una linea de 7! Ganó ${pBetValue*500}`);
-          } else if(reward===-2){
+              reward=-1;
+          } else if(aux===-2){
               console.log(`Felicidades acertó dos lineas de 7! Ganó ${pBetValue*1000}`);
-          } else if(reward===-3){
+              reward=-2;
+          } else if(aux=-3){
               console.log(`¡¡¡Felicidades acertó el jackpot!!! Ganó ${this.getJackpot()}`);
               this.jackpot===0;
+              reward=-3;
           } 
-          else if(reward===0){
+          else if(aux===0){
             console.log(`Suerte para la proxima.`);
             this.setJackpot(pBetValue * this.payLine);
+            reward=0;
           } else {
-            console.log(`Felicidades ganó ${reward * pBetValue} creditos.`);
+            console.log(`Felicidades ganó ${aux * pBetValue} creditos.`);
+            reward+=aux*pBetValue;
           } return reward;
     } 
   } 

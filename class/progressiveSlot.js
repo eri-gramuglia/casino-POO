@@ -47,25 +47,31 @@ var ProgressiveSlot = /** @class */ (function (_super) {
     };
     ProgressiveSlot.prototype.playProgressiveSlot = function (pBetValue) {
         var reward = 0;
+        var aux = 0;
         if (this.verifyBet(pBetValue) && this.checkRollers()) {
-            reward = this.progressiveCombination();
+            aux = this.progressiveCombination();
         }
-        if (reward === -1) {
+        if (aux === -1) {
             console.log("Felicidades acert\u00F3 una linea de 7! Gan\u00F3 ".concat(pBetValue * 500));
+            reward = -1;
         }
-        else if (reward === -2) {
+        else if (aux === -2) {
             console.log("Felicidades acert\u00F3 dos lineas de 7! Gan\u00F3 ".concat(pBetValue * 1000));
+            reward = -2;
         }
-        else if (reward === -3) {
+        else if (aux = -3) {
             console.log("\u00A1\u00A1\u00A1Felicidades acert\u00F3 el jackpot!!! Gan\u00F3 ".concat(this.getJackpot()));
             this.jackpot === 0;
+            reward = -3;
         }
-        else if (reward === 0) {
+        else if (aux === 0) {
             console.log("Suerte para la proxima.");
             this.setJackpot(pBetValue * this.payLine);
+            reward = 0;
         }
         else {
-            console.log("Felicidades gan\u00F3 ".concat(reward * pBetValue, " creditos."));
+            console.log("Felicidades gan\u00F3 ".concat(aux * pBetValue, " creditos."));
+            reward += aux * pBetValue;
         }
         return reward;
     };

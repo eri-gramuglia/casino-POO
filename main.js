@@ -1,13 +1,13 @@
 "use strict";
 exports.__esModule = true;
-exports.newCasino = void 0;
+exports.newCasino = exports.progressiveSlot1 = exports.reelSlot1 = void 0;
 var progressiveSlot_1 = require("./class/progressiveSlot");
 var reelSlot_1 = require("./class/reelSlot");
 var casino_1 = require("./class/casino");
 var progressiveSlotBet = [1, 2, 5, 10, 15];
 var reelSlotBet = [5, 10, 15, 20];
-var reelSlot1 = new reelSlot_1.ReelSlot(212, reelSlotBet, "Animal", 9, 20, 4, 5000);
-var progressiveSlot1 = new progressiveSlot_1.ProgressiveSlot(2323, progressiveSlotBet, "Egipcio", 15, 25, 4, 5, 10000);
-var reelSlotList = [reelSlot1];
-var progressiveSlotList = [progressiveSlot1];
+exports.reelSlot1 = new reelSlot_1.ReelSlot(212, reelSlotBet, "Animal", 9, 20, 4, 10000);
+exports.progressiveSlot1 = new progressiveSlot_1.ProgressiveSlot(2323, progressiveSlotBet, "Egipcio", 15, 25, 4, 5, 10000);
+var reelSlotList = [exports.reelSlot1];
+var progressiveSlotList = [exports.progressiveSlot1];
 exports.newCasino = new casino_1.Casino('Atlanta', progressiveSlotList, reelSlotList, 500000);

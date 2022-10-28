@@ -32,18 +32,22 @@ var ReelSlot = /** @class */ (function (_super) {
         this.well = newWell;
     };
     ReelSlot.prototype.playReelSlot = function (pBetValue) {
+        var aux = 0;
         var reward = 0;
         if (this.verifyBet(pBetValue) && this.checkRollers()) {
-            reward = this.getReward();
+            aux = this.getReward();
         }
-        if (reward === -1) {
+        if (aux === -1) {
             console.log("Felicidades gano el pozo!!! ".concat(this.well));
+            reward = -1;
         }
-        else if (reward === 0) {
+        else if (aux === 0) {
             console.log("Suerte para la proxima.");
+            reward = 0;
         }
         else {
-            console.log("Felicidades gan\u00F3 ".concat(reward * pBetValue, " creditos."));
+            console.log("Felicidades gan\u00F3 ".concat(aux * pBetValue, " creditos."));
+            reward += aux * pBetValue;
         }
         return reward;
     };
