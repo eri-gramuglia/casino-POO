@@ -63,20 +63,27 @@ export class Roulette {
             return "BLANCO";
         }
     }
-    public getEvenOrOdd (p_number):string {
+    public getEvenOrOdd (p_number:number):string {
         if (p_number%2 === 0){
             return "PAR"
         }else{
             return "IMPAR"
         }
     }
-    public getDozen (p_number):string {
+    public getDozen (p_number:number):string {
         if (p_number <= 12){
             return "1ra Docena";
         }else if (p_number >= 25) {
             return "3ra Docena";
         }else{
             return "2da Docena";
+        }
+    }
+    public getHighOrLow (p_number: number):string{
+        if (p_number >= 19){
+            return "Numero ALTO"
+        } else {
+            return "Numero BAJO"
         }
     }
 }
@@ -102,5 +109,5 @@ console.log (rouletteOne.getEvenOrOdd(28))
 
 console.log (rouletteOne.getNumRandom())
 
-console.log (rouletteOne.getDozen(20))
+console.log (rouletteOne.getHighOrLow(20))
 
