@@ -1,16 +1,18 @@
 import { Player } from "./player"
 export class Roulette {
     private _id: number;
-    private _numBlacks: Array <number>;
-    private _numWhite: Array <number>;
+    private _numRed: Array <number>;
+    private _numBlack: Array <number>;
     private _numRandom: number;
     private _boxFound: number;
     private _player: Player;
 
-    constructor(p_id: number, p_numBlacks: Array<number>, p_numWhite: Array<number>,p_numRandom: number,p_boxFound:number,p_player:Player) {
+    constructor(p_id: number, p_numRed 
+: Array<number>, p_numBlack: Array<number>,p_numRandom: number,p_boxFound:number,p_player:Player) {
         this._id = p_id;
-        this._numBlacks = p_numBlacks;
-        this._numWhite = p_numWhite;
+        this._numRed= p_numRed 
+;
+        this._numBlack = p_numBlack;
         this._numRandom = p_numRandom;
         this._boxFound = p_boxFound;
         this._player = p_player;
@@ -22,17 +24,19 @@ export class Roulette {
     public getId():number {
         return this._id;
     }
-    public setNumBlacks(p_numBlacks:Array<number>):void {
-        this._numBlacks = p_numBlacks;
+    public setNumRed   (p_numRed:Array<number>):void {
+        this._numRed= p_numRed 
+;
     }
-    public getNumBlacks():Array<number> {
-        return this._numBlacks;
+    public getNumRed   ():Array<number> {
+        return this._numRed
+;
     }
-    public setNumWhite(p_numWhite:Array<number>):void {
-        this._numWhite = p_numWhite;
+    public setNumWhite(p_numBlack:Array<number>):void {
+        this._numBlack = p_numBlack;
     }
     public getNumWhite():Array<number> {
-        return this._numWhite;
+        return this._numBlack;
     }
     public setBoxFound(p_boxFound:number):void {
         this._boxFound = p_boxFound;
@@ -45,22 +49,22 @@ export class Roulette {
     }
     public getNumRandom():number {
         let min: number = Math.ceil(0);
-        let max: number = Math.floor(38);
+        let max: number = Math.floor(36);
         this._numRandom = Math.floor(Math.random() * (max - min + 1) + min);
         return this._numRandom;
     }
     public getColor(p_number: number): string {
         //let aux: string = " ";
-        console.log (this._numBlacks.length)
+        //console.log (this._numRed.length)
         if (p_number === 0){
             return "VERDE";
         }else {
-            for (let i:number = 0; i <= this._numBlacks.length; i++) {
-                if (p_number === this._numBlacks[i]) {
-                    return "NEGRO";
+            for (let i:number = 0; i <= this._numRed.length; i++) {
+                if (p_number === this._numRed[i]) {
+                    return "ROJO";
                 }
             }
-            return "BLANCO";
+            return "NEGRO";
         }
     }
     public getEvenOrOdd (p_number:number):string {
@@ -96,9 +100,9 @@ export class Roulette {
 let playerOne: Player = new Player (1,"Daniel","Jerez",10000);
 //console.log (playerOne);
 
-let blacks: number[] = new Array (1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37)
-let white: number[] = new Array (2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38)
-let rouletteOne : Roulette = new Roulette(1,blacks,white,2,500000,playerOne)
+let red: number[] = new Array (1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37)
+let black: number[] = new Array (2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38)
+let rouletteOne : Roulette = new Roulette(1,red,black,2,500000,playerOne)
 
 
 // test Methods

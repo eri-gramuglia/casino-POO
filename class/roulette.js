@@ -40,7 +40,7 @@ var Roulette = /** @class */ (function () {
     };
     Roulette.prototype.getNumRandom = function () {
         var min = Math.ceil(0);
-        var max = Math.floor(38);
+        var max = Math.floor(36);
         this._numRandom = Math.floor(Math.random() * (max - min + 1) + min);
         return this._numRandom;
     };
