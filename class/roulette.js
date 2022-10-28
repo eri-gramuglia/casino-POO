@@ -78,6 +78,14 @@ var Roulette = /** @class */ (function () {
             return "2da Docena";
         }
     };
+    Roulette.prototype.getHighOrLow = function (p_number) {
+        if (p_number >= 19) {
+            return "Numero ALTO";
+        }
+        else {
+            return "Numero BAJO";
+        }
+    };
     return Roulette;
 }());
 exports.Roulette = Roulette;
@@ -91,4 +99,4 @@ var rouletteOne = new Roulette(1, blacks, white, 2, 500000, playerOne);
 console.log(rouletteOne.getColor(1));
 console.log(rouletteOne.getEvenOrOdd(28));
 console.log(rouletteOne.getNumRandom());
-console.log(rouletteOne.getDozen(20));
+console.log(rouletteOne.getHighOrLow(20));
