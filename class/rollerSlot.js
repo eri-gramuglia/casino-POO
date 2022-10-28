@@ -28,6 +28,9 @@ var RollerSlot = /** @class */ (function (_super) {
     RollerSlot.prototype.getWell = function () {
         return this.well;
     };
+    RollerSlot.prototype.setWeel = function (newWell) {
+        this.well = newWell;
+    };
     RollerSlot.prototype.playRollerSlot = function (pBetValue) {
         var reward = 0;
         if (this.verifyBet(pBetValue) && this.checkRollers()) {
@@ -47,6 +50,6 @@ var RollerSlot = /** @class */ (function (_super) {
     return RollerSlot;
 }(slot_1.Slot));
 exports.RollerSlot = RollerSlot;
-var BetValue = [5, 10, 15, 20];
-var newRoller = new RollerSlot(212, BetValue, "Animal", 9, 20, 4, 5000);
-newRoller.playRollerSlot(10);
+var betValue = [5, 10, 15, 20];
+var rollerSlot = new RollerSlot(212, betValue, "Animal", 9, 20, 4, 5000);
+rollerSlot.playRollerSlot(10);

@@ -30,7 +30,7 @@ export class RollerSlot extends Slot {
   } 
 } 
 
-let BetValue = [5,10,15,20];
-let newRoller: RollerSlot = new RollerSlot(212,BetValue,"Animal",9,20,4,5000);
+let betValue = [5,10,15,20];
+let rollerSlot: RollerSlot = new RollerSlot(212,betValue,"Animal",9,20,4,5000);
 
-newRoller.playRollerSlot(10)
+rollerSlot.playRollerSlot(10)

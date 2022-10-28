@@ -67,10 +67,11 @@ var ProgressiveSlot = /** @class */ (function (_super) {
         else {
             console.log("Felicidades gan\u00F3 ".concat(reward * pBetValue, " creditos."));
         }
+        return reward;
     };
     return ProgressiveSlot;
 }(slot_1.Slot));
 exports.ProgressiveSlot = ProgressiveSlot;
 var betValue = [1, 5, 10, 20, 25];
-var tragamoneda = new ProgressiveSlot(2323, betValue, "Egipcio", 15, 25, 4, 5, 1000);
-tragamoneda.playprogressiveSlot(30);
+var progressiveSlot = new ProgressiveSlot(2323, betValue, "Egipcio", 15, 25, 4, 5, 10000);
+progressiveSlot.playprogressiveSlot(5);

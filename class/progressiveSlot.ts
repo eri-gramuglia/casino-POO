@@ -28,7 +28,7 @@ pRollerNumber:number,pPayLine:number,pJackpot:number){
         combination+=aux[i]=this.getReward();
       } return combination;
     }
-    public playprogressiveSlot(pBetValue:number):number{
+    public playProgressiveSlot(pBetValue:number):number{
       let reward=0;
         if(this.verifyBet(pBetValue) && this.checkRollers()){
             reward=this.progressiveCombination()
@@ -49,8 +49,8 @@ pRollerNumber:number,pPayLine:number,pJackpot:number){
           } return reward;
     } 
   } 
-let betValue = [1, 5, 10, 20, 25];
-let tragamoneda: ProgressiveSlot = new ProgressiveSlot(2323,betValue,"Egipcio",15,25,4,5,1000);
+let betValue = [1,2,5,10,15];
+let progressiveSlot: ProgressiveSlot = new ProgressiveSlot(2323,betValue,"Egipcio",15,25,4,5,10000);
 
-tragamoneda.playprogressiveSlot(30);
+progressiveSlot.playProgressiveSlot(5);
 

@@ -15,7 +15,7 @@ pRollerNumber:number){
     this.winProbability=pWinProbability;
     this.rollerNumber=pRollerNumber;
   }
-  protected getId():number{
+  public getId():number{
     return this.id;
   }
   protected getBetValue():number[]{
