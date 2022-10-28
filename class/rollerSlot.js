@@ -20,66 +20,36 @@ var slot_1 = require("./slot");
 var RollerSlot = /** @class */ (function (_super) {
     __extends(RollerSlot, _super);
     function RollerSlot(pId, pBetValue, pTheme, pSymbolsNumber, pWinProbability, pRollerNumber, pWell) {
-        var _this = _super.call(this, pId, pBetValue, pTheme, pSymbolsNumber, pWinProbability) || this;
+        var _this = _super.call(this, pId, pBetValue, pTheme, pSymbolsNumber, pWinProbability, pRollerNumber) || this;
         _this.rollerNumber = pRollerNumber;
         _this.well = pWell;
         return _this;
     }
-    RollerSlot.prototype.getRollerNumber = function () {
-        return this.rollerNumber;
-    };
     RollerSlot.prototype.getWell = function () {
         return this.well;
     };
-    RollerSlot.prototype.generateRandomNumber = function () {
-        var numbers = new Array(this.rollerNumber);
-        for (var i = 0; i < this.rollerNumber; i++) {
-            numbers[i] = Math.floor(Math.random() * this.getSymbolsNumber() + 1) * this.getWinProbability();
-        }
-        return numbers;
+    RollerSlot.prototype.setWeel = function (newWell) {
+        this.well = newWell;
     };
-    RollerSlot.prototype.getCombination = function () {
-        var randomNumber = this.generateRandomNumber();
-        var combination = 0;
-        for (var i = 0; i < randomNumber.length; i++) {
-            if (randomNumber[i] === 7 && randomNumber.every(function (e) { return randomNumber[0] === e; })) {
-                combination = 7;
-            }
-            else if (i + 1 < randomNumber.length && randomNumber.slice(i + 1).indexOf(randomNumber[i]) !== -1) {
-                combination += 1;
-            }
-        }
-        console.log(randomNumber);
-        return combination;
-    };
-    RollerSlot.prototype.getReward = function (pBetValue) {
+    RollerSlot.prototype.playRollerSlot = function (pBetValue) {
         var reward = 0;
-        var aux = this.getCombination();
-        if (aux === 1) {
-            reward = pBetValue * 25;
-            console.log("Felicidades gan\u00F3 ".concat(reward, " creditos."));
+        if (this.verifyBet(pBetValue) && this.checkRollers()) {
+            reward = this.getReward();
         }
-        else if (aux === 2) {
-            reward = pBetValue * 50;
-            console.log("Felicidades gan\u00F3 ".concat(reward, " creditos."));
+        if (reward === -1) {
+            console.log("Felicidades gano el pozo!!! ".concat(this.well));
         }
-        else if (aux === 3) {
-            reward = pBetValue * 100;
-            console.log("Felicidades gan\u00F3 ".concat(reward, " creditos."));
+        else if (reward === 0) {
+            console.log("Suerte para la proxima.");
         }
-        else if (aux > 3) {
-            reward = pBetValue * 200;
-            console.log("Felicidades gan\u00F3 ".concat(reward, " creditos."));
-        }
-        else if (aux == 7) {
-            reward = this.well;
-            console.log("\u00A1Felicidades gano el pozo! ".concat(this.well));
+        else {
+            console.log("Felicidades gan\u00F3 ".concat(reward * pBetValue, " creditos."));
         }
         return reward;
     };
     return RollerSlot;
 }(slot_1.Slot));
 exports.RollerSlot = RollerSlot;
-var BetValue = [1, 2, 3, 4];
-var newRoller = new RollerSlot(212, BetValue, 'Animal', 9, 25, 3, 5000);
-newRoller.getReward(2);
+var betValue = [5, 10, 15, 20];
+var rollerSlot = new RollerSlot(212, betValue, "Animal", 9, 20, 4, 5000);
+rollerSlot.playRollerSlot(10);
