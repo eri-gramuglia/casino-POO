@@ -34,7 +34,6 @@ export class Roulette {
     public getNumWhite():Array<number> {
         return this._numWhite;
     }
-
     public setBoxFound(p_boxFound:number):void {
         this._boxFound = p_boxFound;
     }
@@ -46,7 +45,6 @@ export class Roulette {
     }
     public getNumRandom():number {
         let min: number = Math.ceil(0);
-       // console.log(this._numBlacks.length+this._numWhite.length)
         let max: number = Math.floor(38);
         this._numRandom = Math.floor(Math.random() * (max - min + 1) + min);
         return this._numRandom;
@@ -65,16 +63,44 @@ export class Roulette {
             return "BLANCO";
         }
     }
-    
+    public getEvenOrOdd (p_number):string {
+        if (p_number%2 === 0){
+            return "PAR"
+        }else{
+            return "IMPAR"
+        }
+    }
+    public getDozen (p_number):string {
+        if (p_number <= 12){
+            return "1ra Docena";
+        }else if (p_number >= 25) {
+            return "3ra Docena";
+        }else{
+            return "2da Docena";
+        }
+    }
 }
+
+
+
 
 // instance player test and roulette test
 
 let playerOne: Player = new Player (1,"Daniel","Jerez",10000);
-console.log (playerOne);
+//console.log (playerOne);
+
 let blacks: number[] = new Array (1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37)
 let white: number[] = new Array (2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38)
-    let rouletteOne : Roulette = new Roulette(1,blacks,white,2,500000,playerOne)
+let rouletteOne : Roulette = new Roulette(1,blacks,white,2,500000,playerOne)
 
-console.log (rouletteOne.getColor(0))
+
+// test Methods
+
+console.log (rouletteOne.getColor(1))
+
+console.log (rouletteOne.getEvenOrOdd(28))
+
+console.log (rouletteOne.getNumRandom())
+
+console.log (rouletteOne.getDozen(20))
 
