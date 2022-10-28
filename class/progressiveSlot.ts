@@ -40,11 +40,17 @@ pRollerNumber:number,pPayLine:number,pJackpot:number){
           } else if(aux===-2){
               console.log(`Felicidades acertó dos lineas de 7! Ganó ${pBetValue*1000}`);
               reward=-2;
-          } else if(aux=-3){
-              console.log(`¡¡¡Felicidades acertó el jackpot!!! Ganó ${this.getJackpot()}`);
-              this.jackpot===0;
-              reward=-3;
-          } 
+          } else if(aux===-3){
+            console.log(`Felicidades acertó tres lineas de 7! Ganó ${pBetValue*2000}`);
+            reward=-3;
+          } else if(aux===-4){
+            console.log(`Felicidades acertó cuatro lineas de 7! Ganó ${pBetValue*3000}`);
+            reward=-4;
+          } else if(aux===-5){
+            console.log(`¡¡¡Felicidades acertó el jackpot!!! Ganó ${this.getJackpot()}`);
+            this.jackpot===0;
+            reward=-5;
+          }
           else if(aux===0){
             console.log(`Suerte para la proxima.`);
             this.setJackpot(pBetValue * this.payLine);

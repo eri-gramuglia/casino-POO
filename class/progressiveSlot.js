@@ -59,10 +59,18 @@ var ProgressiveSlot = /** @class */ (function (_super) {
             console.log("Felicidades acert\u00F3 dos lineas de 7! Gan\u00F3 ".concat(pBetValue * 1000));
             reward = -2;
         }
-        else if (aux = -3) {
+        else if (aux === -3) {
+            console.log("Felicidades acert\u00F3 tres lineas de 7! Gan\u00F3 ".concat(pBetValue * 2000));
+            reward = -3;
+        }
+        else if (aux === -4) {
+            console.log("Felicidades acert\u00F3 cuatro lineas de 7! Gan\u00F3 ".concat(pBetValue * 3000));
+            reward = -4;
+        }
+        else if (aux === -5) {
             console.log("\u00A1\u00A1\u00A1Felicidades acert\u00F3 el jackpot!!! Gan\u00F3 ".concat(this.getJackpot()));
             this.jackpot === 0;
-            reward = -3;
+            reward = -5;
         }
         else if (aux === 0) {
             console.log("Suerte para la proxima.");
