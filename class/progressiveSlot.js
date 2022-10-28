@@ -45,7 +45,7 @@ var ProgressiveSlot = /** @class */ (function (_super) {
         }
         return combination;
     };
-    ProgressiveSlot.prototype.playprogressiveSlot = function (pBetValue) {
+    ProgressiveSlot.prototype.playProgressiveSlot = function (pBetValue) {
         var reward = 0;
         if (this.verifyBet(pBetValue) && this.checkRollers()) {
             reward = this.progressiveCombination();
@@ -72,6 +72,3 @@ var ProgressiveSlot = /** @class */ (function (_super) {
     return ProgressiveSlot;
 }(slot_1.Slot));
 exports.ProgressiveSlot = ProgressiveSlot;
-var betValue = [1, 5, 10, 20, 25];
-var progressiveSlot = new ProgressiveSlot(2323, betValue, "Egipcio", 15, 25, 4, 5, 10000);
-progressiveSlot.playprogressiveSlot(5);

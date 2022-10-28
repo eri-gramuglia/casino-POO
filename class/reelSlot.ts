@@ -1,9 +1,9 @@
 import { Slot } from "./slot";
 
-export class RollerSlot extends Slot {
+export class ReelSlot extends Slot {
   private well: number;
 
-  public constructor(pId:number,pBetValue:number[],pTheme: string,pSymbolsNumber:number,pWinProbability:number,pRollerNumber:number,pWell:number){
+  public constructor(pId:number,pBetValue:number[],pTheme:string,pSymbolsNumber:number,pWinProbability:number,pRollerNumber:number,pWell:number){
     super(pId,pBetValue,pTheme,pSymbolsNumber,pWinProbability,pRollerNumber);
     this.rollerNumber=pRollerNumber;
     this.well=pWell;
@@ -14,7 +14,7 @@ export class RollerSlot extends Slot {
   public setWeel(newWell:number):void{
     this.well=newWell;
   }
-  public playRollerSlot(pBetValue:number):number{
+  public playReelSlot(pBetValue:number):number{
     let reward=0;
       if(this.verifyBet(pBetValue) && this.checkRollers()){
           reward=this.getReward();
@@ -30,7 +30,4 @@ export class RollerSlot extends Slot {
   } 
 } 
 
-let betValue = [5,10,15,20];
-let rollerSlot: RollerSlot = new RollerSlot(212,betValue,"Animal",9,20,4,5000);
 
-rollerSlot.playRollerSlot(10)

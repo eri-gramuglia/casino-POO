@@ -49,8 +49,5 @@ pRollerNumber:number,pPayLine:number,pJackpot:number){
           } return reward;
     } 
   } 
-let betValue = [1,2,5,10,15];
-let progressiveSlot: ProgressiveSlot = new ProgressiveSlot(2323,betValue,"Egipcio",15,25,4,5,10000);
 
-progressiveSlot.playProgressiveSlot(5);
 

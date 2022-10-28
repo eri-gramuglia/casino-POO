@@ -1,18 +1,17 @@
+import { ReelSlot } from './reelSlot';
 import { ProgressiveSlot } from "./progressiveSlot";
-import { RollerSlot } from "./rollerSlot";
-
 export class Casino {
     private casinoName:string;
     private progressiveSlotList:ProgressiveSlot[];
-    private rollerSlotList:RollerSlot[];
+    private reelSlotList:ReelSlot[];
     //private roulleteList:Roullete[];
     //private crapsList:Craps[];
     private treasury:number;
 
-    public constructor(pName:string,pProgressiveSlotList:ProgressiveSlot[],pRollerSlotList:RollerSlot[],/*pRoulleteList:Roullete[],pCrapsList:Craps[],*/pTreasury:number){
+    public constructor(pName:string,pProgressiveSlotList:ProgressiveSlot[],pReelSlotList:ReelSlot[],/*pRoulleteList:Roullete[],pCrapsList:Craps[],*/pTreasury:number){
         this.casinoName=pName;
         this.progressiveSlotList=pProgressiveSlotList;
-        this.rollerSlotList=pRollerSlotList;
+        this.reelSlotList=pReelSlotList;
         this.treasury=pTreasury;
         //this.roulleteList=pRoulleteList;
         //this.crapsList=pCrapsList;
@@ -36,10 +35,10 @@ export class Casino {
                     throw Error(`No existe esta maquina en el casino`);
                 } 
     }
-    public getRollerSlot(id:number):boolean{
+    public getReelSlot(id:number):boolean{
         let aux=false;
-            for(let i=0;i<this.rollerSlotList.length;i++){
-                if(id===this.rollerSlotList[i].getId()){
+            for(let i=0;i<this.reelSlotList.length;i++){
+                if(id===this.reelSlotList[i].getId()){
                     aux=true;
                 } 
             } if(aux){
@@ -85,3 +84,19 @@ export class Casino {
         this.treasury-=amount;
     }
 }
+let progressiveSlotBet= [1,2,5,10,15];
+let reelSlotBet = [5,10,15,20];
+let reelSlot1:ReelSlot=new ReelSlot(212,reelSlotBet,"Animal",9,20,4,5000);
+let progressiveSlot1:ProgressiveSlot=new ProgressiveSlot(2323,progressiveSlotBet,"Egipcio",15,25,4,5,10000);
+
+let reelSlotList:ReelSlot[]=[reelSlot1];
+let progressiveSlotList:ProgressiveSlot[]=[progressiveSlot1];
+
+let newCasino:Casino=new Casino('Atlanta',progressiveSlotList,reelSlotList,500000);
+newCasino.subtractAmount(20000);
+let consulta=newCasino.getTreasury();
+console.log(consulta);
+
+
+
+
