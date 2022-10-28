@@ -45,7 +45,7 @@ export class Roulette {
     }
     public getNumRandom():number {
         let min: number = Math.ceil(0);
-        let max: number = Math.floor(38);
+        let max: number = Math.floor(36);
         this._numRandom = Math.floor(Math.random() * (max - min + 1) + min);
         return this._numRandom;
     }
