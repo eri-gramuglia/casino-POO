@@ -33,17 +33,17 @@ class Craps {
         let suma:number;
         suma = pDado1 + pDado2;
         if ((suma=7) !&& (suma=11)){
-             this.sumarDinero; // el jugador ganó
+             this.sumarCredito; // el jugador ganó
         } else if ((suma=2)!&&(suma=3)!&& (suma=12)){
-              this.restarDinero;// el jugador perdió
+              this.restarCredito;// el jugador perdió
         } else{
             console.log(` Ud. vuelve a tirar el dado!`); //el jugador vuelve a tirar hasta ganar o perder
         }   
     }
-    public restarDinero(pcredito:number){
+    public restarCredito(pcredito:number){
         pcredito=this.credito + 10;
     }
-    public sumarDinero(pCredito:number){
+    public sumarCredito(pCredito:number){
         pCredito=this.credito - 10;
     }
 }
