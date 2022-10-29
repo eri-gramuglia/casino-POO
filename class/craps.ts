@@ -3,15 +3,11 @@ class craps {
     dado1:number;
     dado2:number;
     credito:number;
-    apuestaJugador:number;
-    cuentaSaldo:number;
-    
-    constructor(pDado1:number, pDado2:number, pCredito:number,pApuestaJugador:number, pCuentaSaldo:number){
+
+    constructor(pDado1:number, pDado2:number, pCredito:number){
         this.dado1=pDado1;
         this.dado2=pDado2;
         this.credito=pCredito;
-        this.apuestaJugador=pApuestaJugador;
-        this.cuentaSaldo=pCuentaSaldo;
     }
     public getNumRandomDado1():number {
         let min: number = Math.ceil(1);
@@ -25,5 +21,30 @@ class craps {
         this.dado2 = Math.floor(Math.random() * (max - min + 1) + min);
         return this.dado2;
     }
-    
+    public getCredito(){
+        return this.credito;
+    }
+    public setCredito(pCredito:number):void{
+        this.credito = pCredito;
+    }
+    public comprobarResultado(){
+        let pDado1 = this.dado1;
+        let pDado2 = this.dado2;
+        let suma:number;
+        suma = pDado1 + pDado2;
+        if ((suma=7) !&& (suma=11)){
+             this.sumarDinero; // el jugador ganó
+        } else if ((suma=2)!&&(suma=3)!&& (suma=12)){
+              this.restarDinero;// el jugador perdió
+        } else{
+            console.log(` Ud. vuelve a tirar el dado!`); //el jugador vuelve a tirar hasta ganar o perder
+        }   
+    }
+    public restarDinero(pcredito:number){
+        pcredito=this.credito + 10;
+    }
+    public sumarDinero(pCredito:number){
+        pCredito=this.credito - 10;
+    }
 }
+    
