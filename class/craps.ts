@@ -28,8 +28,8 @@ class Craps {
         this.credito = pCredito;
     }
     public comprobarResultado(){
-        let pDado1 = this.dado1;
-        let pDado2 = this.dado2;
+        let pDado1 = this.getNumRandomDado1();
+        let pDado2 = this.getNumRandomDado2();
         let suma:number;
         suma = pDado1 + pDado2;
         if ((suma=7) !&& (suma=11)){
