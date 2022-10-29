@@ -1,5 +1,5 @@
 
-class craps {
+class Craps {
     dado1:number;
     dado2:number;
     credito:number;
@@ -47,4 +47,3 @@ class craps {
         pCredito=this.credito - 10;
     }
 }
-    
