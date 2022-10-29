@@ -1,5 +1,6 @@
-Bienvenido al casino Atlanta, un lugar diseñado para su diversión y entretenimiento. 
-- Juegue responsablemente, si tiene problemas de juegos contacte a un profesional -
+     BIENVENIDO AL CASINO - ATLANTA -, UN LUGAR PENSADO PARA SU DIVERSION Y ENTRETENIMIENTO.
+
+     *JUEGUE CON RESPONSABILIDAD, SI TIENE PROBLEMAS CON EL JUEGO CONTACTE A UN PROFESIONAL*
 \
 
                                 --TRAGAMONEDAS TRADICIONAL --
@@ -14,3 +15,4 @@ Los valores de apuestas son de 5 , 10 , 15 , 20 creditos.
 -Este juego similar al tragamonedas tradicional, aumenta las probabilidades de ganar, aumentando las lineas de juegos. Con combinaciones horizontales que van desde 1 linea hasta 5 lineas. Aunque importante en caso de perder, el monto perdido es el apostado, multiplicado por cada linea. Mismo en caso de ganar se multiplican las ganancias por cada linea acertada. Este cuenta con un jackpot progresivo (eso quiere decir que el pozo aumenta con cada jugada realizada, no es fijo como el tradicional), el cual se puede obtener con una combinacion de 7 en las 5 lineas.
 Asi mismo disminuyendo las lineas y obteniendo 7 en todas las combinaciones tambien se puede acceder a premios por debajo del jackpot.
 -Con apuestas de 1 , 2 , 5 , 10 , 15 resulta mas accesible sus jugadas.
+\

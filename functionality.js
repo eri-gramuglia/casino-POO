@@ -12,7 +12,7 @@ function welcome() {
     main();
 }
 function main() {
-    console.log('1: MENU');
+    console.log('Ingrese 1 y oprima ENTER para acceder al menú del casino.');
     var option = readline.questionInt();
     switch (option) {
         case 1:
@@ -23,7 +23,7 @@ function main() {
     }
 }
 function games() {
-    console.log('Elija una opción:');
+    console.log('Para acceder a un juego ingrese un numero y oprima ENTER.');
     console.log('1: TRAGAMONEDAS TRADICIONAL');
     console.log('2: TRAGAMONEDAS PROGRESIVO');
     console.log('3: RULETA');
@@ -38,16 +38,18 @@ function callGame(option) {
             main();
             break;
         case 1:
+            console.log('Elija una opción y oprima ENTER');
             console.log('1: JUGAR');
-            console.log('2: LEER REGLAS');
+            console.log('2: LEER INFORMACION DEL JUEGO');
             console.log('0: Volver al menú anterior');
             var reelOption = readline.questionInt();
             reelSlot(reelOption);
             break;
         case 2:
+            console.log('Elija una opción y oprima ENTER');
             console.log('1: JUGAR');
             console.log('2: ELEGIR LINEAS');
-            console.log('3: LEER REGLAS');
+            console.log('3: LEER INFORMACION DEL JUEGO');
             console.log('0: Volver al menú anterior');
             var progressiveOption = readline.questionInt();
             progressiveSlot(progressiveOption);
@@ -67,7 +69,7 @@ function reelSlot(option) {
         case 2:
             var text = clasificationText[1].toString();
             console.log(text);
-            console.log("1: Volver atras:");
+            console.log("Ingrese 1 para volver al men\u00FA anterior:");
             var backMenu = readline.questionInt();
             callGame(backMenu);
             break;
@@ -102,6 +104,7 @@ function replayReel(times, value) {
     }
 }
 function subMenuReel() {
+    console.log('Elija una opción y oprima ENTER');
     console.log('1: JUGAR OTRA VEZ');
     console.log('2: REPETIR JUGADAS');
     console.log('3: COBRAR Y SALIR');
@@ -138,7 +141,7 @@ function progressiveSlot(option) {
         case 3:
             var text = clasificationText[2].toString();
             console.log(text);
-            console.log("1: Volver atras:");
+            console.log("2: Volver al men\u00FA anterior:");
             var backMenu = readline.questionInt();
             callGame(backMenu);
             break;
@@ -151,7 +154,7 @@ function playProgressive(value) {
     }
     else if (newFounds === 0) {
         main_1.newCasino.addAmount(value);
-        founds -= value;
+        founds -= value * main_1.progressiveSlot1.getPayLine();
     }
     else if (newFounds === -1) {
         console.log("Felicidades acert\u00F3 una linea de 7! Gan\u00F3 ".concat(value * 500, "."));
@@ -191,6 +194,7 @@ function setSlotLines(lines) {
     main_1.progressiveSlot1.setPayLine(lines);
 }
 function subMenuProgressive() {
+    console.log('Elija una opción y oprima ENTER');
     console.log('1: JUGAR OTRA VEZ');
     console.log('2: CAMBIAR LINEAS');
     console.log('3: REPETIR JUGADAS');
