@@ -37,16 +37,20 @@ var ReelSlot = /** @class */ (function (_super) {
         if (this.verifyBet(pBetValue) && this.checkRollers()) {
             aux = this.getReward();
         }
-        if (aux === -1) {
-            console.log("Felicidades gano el pozo!!! ".concat(this.well));
-            reward = -1;
+        if (aux === -7) {
+            console.log("Felicidades gan\u00F3 el pozo!!! ".concat(this.well, "."));
+            reward = this.getWell();
+        }
+        else if (aux === -1) {
+            console.log("Felicidades acert\u00F3 una linea! Gan\u00F3 ".concat(pBetValue * 500, "."));
+            reward = pBetValue * 500;
         }
         else if (aux === 0) {
-            console.log("Suerte para la proxima.");
-            reward = 0;
+            console.log("Suerte para la pr\u00F3xima.");
+            reward -= pBetValue;
         }
         else {
-            console.log("Felicidades gan\u00F3 ".concat(aux * pBetValue, " creditos."));
+            console.log("Felicidades gan\u00F3 ".concat(aux * pBetValue, " cr\u00E9ditos."));
             reward += aux * pBetValue;
         }
         return reward;

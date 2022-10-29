@@ -1,3 +1,5 @@
+import { isGeneratorFunction } from "util/types";
+
 export class Slot {
   protected id: number;
   protected betValue: number[];
@@ -33,6 +35,23 @@ pRollerNumber:number){
   protected getRollerNumber():number{
     return this.rollerNumber;
   }
+  protected setRollerNumber(pNumber:number):void{
+    this.rollerNumber=pNumber;
+  }
+  private setSymbolsNumber(pNumber:number):void{
+    this.symbolsNumber=pNumber;
+  }
+  public setWinProbability(percent:number):void{
+    if(percent===50){
+    this.setSymbolsNumber(15);
+    } else if(percent===75){
+    this.setSymbolsNumber(9);
+    } else if(percent===100){
+    this.setSymbolsNumber(7);
+    } else {
+      this.setSymbolsNumber(25);
+    }
+  }
   protected generateRandomNumber():number[]{
     let numbers: number[] = new Array(this.rollerNumber);
     for (let i: number = 0; i < this.rollerNumber; i++) {
@@ -44,31 +63,37 @@ pRollerNumber:number){
     let randomNumber:number[]=this.generateRandomNumber();
     let combination:number=0;
       for (let i:number=0;i<randomNumber.length;i++) {
-        if (randomNumber[i]===7 && randomNumber.every((e) => randomNumber[0] === e)) {
-          combination = 7;
+        if (randomNumber.every((e) => randomNumber[0] === e)) {
+            if(randomNumber[i]===7){
+              combination = 7;
+            } else {
+              combination=-1;
+            }
         } else if (i+1<randomNumber.length && randomNumber.slice(i + 1).indexOf(randomNumber[i])!== -1) {
           combination += 1;
         }
       }
       console.log(randomNumber);
+      console.log(`Acertó ${combination} combinaciones.`);
     return combination;
   }
-  public getReward():number{
-    let reward:number=0;
-    let aux=this.getCombination();
+  protected getReward():number{
+    let price:number=0;
+    let aux:number=this.getCombination();
       if(aux===7){
-        reward=-1;
-      }
-      if (aux===1){
-        reward=10;
-      } else if (aux===2){
-        reward=25;
-      } else if (aux===3){
-        reward=50;
-      } else if (aux>3){
-        reward=100;
-      }
-      return reward;
+        price=-7;
+      } else if(aux===-1){
+        price=-1;
+        } else if (aux===1){
+        price=10;
+        } else if (aux===2){
+        price=25;
+        } else if (aux===3){
+        price=50;
+        } else if (aux>3){
+        price=100;
+        }
+      return price;
   }
   protected checkRollers():boolean{
     let aux=false;
@@ -78,7 +103,7 @@ pRollerNumber:number){
       if(aux===true){
         return true;
       } else {
-        throw new Error("Elija la cantidad de 3 o 5 rodillos");
+        throw new Error("Elija la cantidad de 3 o 5 rodillos.");
     }
   }
   protected verifyBet(pBetValue:number):boolean{
@@ -91,11 +116,8 @@ pRollerNumber:number){
         return true
       }
       else {
-        throw Error(`Ingrese una apuesta valida`);
+        throw Error(`Ingrese una apuesta valida.`);
       }
 }
-  protected setWinProbability(newProbability: number): void {
-    this.winProbability = newProbability;
-  }
 }
 

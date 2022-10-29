@@ -1,6 +1,4 @@
-import { reelSlot1 } from './../main';
 import { Slot } from "./slot";
-
 export class ReelSlot extends Slot {
   private well: number;
 
@@ -17,21 +15,24 @@ export class ReelSlot extends Slot {
   }
   public playReelSlot(pBetValue:number):number{
     let aux:number=0;
-    let reward=0;
+    let reward:number=0;
       if(this.verifyBet(pBetValue) && this.checkRollers()){
           aux=this.getReward();
       }
-        if(aux===-1){
-            console.log(`Felicidades gano el pozo!!! ${this.well}`);
-            reward=-1;
+        if(aux===-7){
+            console.log(`Felicidades ganó el pozo!!! ${this.well}.`);
+            reward=this.getWell();
+        } else if(aux===-1){
+            console.log(`Felicidades acertó una linea! Ganó ${pBetValue*500}.`);
+            reward=pBetValue * 500;
         } else if(aux===0){
-            console.log(`Suerte para la proxima.`);
-            reward=0
+            console.log(`Suerte para la próxima.`);
+            reward-=pBetValue;
         } else {
-          console.log(`Felicidades ganó ${aux * pBetValue} creditos.`);
+          console.log(`Felicidades ganó ${aux * pBetValue} créditos.`);
           reward+=aux * pBetValue;
         } 
-    return reward
+    return reward;
   } 
 } 
 
