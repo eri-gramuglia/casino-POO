@@ -1,6 +1,6 @@
 
 class Craps {
-    credito:number;
+    private credito:number;
 
     constructor(pCredito:number){
        
