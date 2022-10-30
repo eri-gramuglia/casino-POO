@@ -38,19 +38,19 @@ var ReelSlot = /** @class */ (function (_super) {
             aux = this.getReward();
         }
         if (aux === -7) {
-            console.log("Felicidades gan\u00F3 el pozo!!! ".concat(this.well, "."));
+            console.log("\u00A1\u00A1\u00A1 FELICIDADES GANO EL POZO !!! ".concat(this.well, "."));
             reward = this.getWell();
         }
         else if (aux === -1) {
-            console.log("Felicidades acert\u00F3 una linea! Gan\u00F3 ".concat(pBetValue * 500, "."));
-            reward = pBetValue * 500;
+            console.log("* Felicidades acert\u00F3 una linea! Gan\u00F3 ".concat(pBetValue * 50, ". *"));
+            reward = pBetValue * 50;
         }
         else if (aux === 0) {
-            console.log("Suerte para la pr\u00F3xima.");
+            console.log("- Perdi\u00F3 ".concat(pBetValue, " cr\u00E9ditos. -"));
             reward -= pBetValue;
         }
         else {
-            console.log("Felicidades gan\u00F3 ".concat(aux * pBetValue, " cr\u00E9ditos."));
+            console.log("- Gan\u00F3 ".concat(aux * pBetValue, " cr\u00E9ditos. -"));
             reward += aux * pBetValue;
         }
         return reward;

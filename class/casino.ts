@@ -77,15 +77,12 @@ export class Casino {
     public getTreasury():number{
         return this.treasury;
     }
-    public addAmount(amount:number):void{
-        this.treasury+=amount;
-    }
-    public subtractAmount(amount:number):void{
-        this.treasury-=amount;
-    }
-    public sellCredits(amount:number):number{
-        this.subtractAmount(amount);
-        return amount;
+    public setTreasury(amount:number):void{
+        if(amount<=0){
+            this.treasury+=amount;
+        } else {
+            this.treasury-=amount;
+        }
     }
 }
 

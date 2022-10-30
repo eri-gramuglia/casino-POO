@@ -9,8 +9,8 @@ let founds:number=100000;
 let progressiveSlotBet= [1,2,5,10,15];
 let reelSlotBet = [5,10,15,20];
 
-export let reelSlot1:ReelSlot=new ReelSlot(1001,reelSlotBet,"Animal",9,20,3,10000);
-export let progressiveSlot1:ProgressiveSlot=new ProgressiveSlot(2001,progressiveSlotBet,"Egipcio",25,25,5,5,500000);
+let reelSlot1:ReelSlot=new ReelSlot(1001,reelSlotBet,"Animal",9,20,3,10000);
+let progressiveSlot1:ProgressiveSlot=new ProgressiveSlot(2001,progressiveSlotBet,"Egipcio",25,25,5,2,500000);
 
 let reelSlotList:ReelSlot[]=[reelSlot1];
 let progressiveSlotList:ProgressiveSlot[]=[progressiveSlot1];
@@ -23,7 +23,7 @@ function welcome():void{
     main();
 }
 function main():void{
-    console.log('Ingrese 1 y oprima ENTER para acceder al menú del casino.');
+    console.log('Oprima 1 para empezar a jugar.');
     let option:number=readline.questionInt();
     switch(option){
         case 1:
@@ -35,7 +35,7 @@ function main():void{
     }
 }   
 function games():void{
-    console.log('Para acceder a un juego ingrese un numero y oprima ENTER.');
+    console.log('Elija su juego.');
     console.log('1: TRAGAMONEDAS TRADICIONAL');
     console.log('2: TRAGAMONEDAS PROGRESIVO');
     console.log('3: RULETA');
@@ -50,15 +50,15 @@ function callGame(option:number):void{
         main();
         break;
         case 1:
-        console.log('Elija una opción y oprima ENTER');
+        console.log('Elija una opción.');
         console.log('1: JUGAR');
         console.log('2: LEER INFORMACION DEL JUEGO');
         console.log('0: Volver al menú anterior');
         let reelOption:number=readline.questionInt();
-        reelSlot(reelOption);
+        reelSlotMenu(reelOption);
         break; 
         case 2:
-        console.log('Elija una opción y oprima ENTER');
+        console.log('Elija una opción.');
         console.log('1: JUGAR');
         console.log('2: ELEGIR LINEAS');
         console.log('3: LEER INFORMACION DEL JUEGO');
@@ -67,7 +67,7 @@ function callGame(option:number):void{
         progressiveSlot(progressiveOption);
         break;
         case 3:
-        console.log('Elija una opción y oprima ENTER');
+        console.log('Elija una opción.');
         console.log('1: JUGAR');
         console.log('2: LEER INFORMACION DEL JUEGO');
         console.log('0: Volver al menú anterior');
@@ -75,7 +75,7 @@ function callGame(option:number):void{
         roullete(rouleteOption);
         break;
         case 4:
-        console.log('Elija una opción y oprima ENTER');
+        console.log('Elija una opción.');
         console.log('1: JUGAR');
         console.log('2: LEER INFORMACION DEL JUEGO');
         console.log('0: Volver al menú anterior');
@@ -88,64 +88,78 @@ function callGame(option:number):void{
 }
 }
 /* Funcionalidades de tragamonedas tradicional */
-function reelSlot(option:number):void{
-    switch(option){
-        case 0:
-        games();
-        break;
-        case 1:
-        let value:number=readline.questionInt('Ingrese apuesta ( 5 - 10 - 15 - 20 ): ')
-        playReel(value);
-        subMenuReel();
-        break;
-        case 2:
-        let text:string=clasificationText[1].toString();
-        console.log(text);
-        console.log(`Ingrese 1 para volver al menú anterior:`);
-        let backMenu:number=readline.questionInt();
-        callGame(backMenu);
-        break;
+    function reelSlotMenu(option:number):void{
+        switch(option){
+            case 0:
+                games();
+                break;
+            case 1:
+                let value:number=readline.questionInt('Ingrese apuesta ( 5 - 10 - 15 - 20 ): ');
+                playGame(1,value);
+                subMenuReel();
+                break;
+            case 2:
+                let text:string=clasificationText[1].toString();
+                console.log(text);
+                console.log(`Volver al menú anterior:`);
+                readline.questionInt();
+                callGame(1);
+            break;            
+        }
     }
-}
-function playReel(value:number):number{
-    let newFounds=reelSlot1.playReelSlot(value);
-        if(newFounds>0){
+function playGame(game:number,value:number):number{
+    let newFounds=0;
+    switch(game){
+        case 1:
+            newFounds=reelSlot1.playReelSlot(value);
+            break;
+        case 2:
+            newFounds=progressiveSlot1.playProgressiveSlot(value);
+            break;
+        /*case 3:
+            newFounds=roullete1.playRoullete(value);
+            break;
+        case 4:
+            newFounds=craps1.playCraps(value);
+            break;*/
+    }if(newFounds>0){
         founds+=newFounds;
-        newCasino.subtractAmount(value);
+        newCasino.setTreasury(value);
     } else {
-        newCasino.addAmount(value);
+        newCasino.setTreasury(value);
         founds-=value;
     }
     console.log(`Le quedan ${founds} creditos.`);
     return newFounds;
-}         
-function replayReel(times:number,value:number):void{
-    for(let i:number=0;i<times;i++){
-        if(founds>=times*value){
-        playReel(value);
-        } else{
-        throw Error('No tiene fondos para esta apuesta.')
-        }
-    }  
 }
+    function replayGame(game:number,times:number,value:number){
+        for(let i:number=0;i<times;i++){
+            if(founds>=times*value){
+                playGame(game,value);
+            } else {
+                console.log(`No tiene fondos para esta apuesta.`);
+                subMenuReel()
+            }
+        }
+    }
 function subMenuReel():void{
-    console.log('Elija una opción y oprima ENTER');
-    console.log('1: JUGAR OTRA VEZ');
-    console.log('2: REPETIR JUGADAS');
+    console.log('Elija una opción.');
+    console.log('1: JUGAR');
+    console.log('2: MULTIPLICAR JUGADAS');
     console.log('3: COBRAR Y SALIR');
     let gameOption:number=readline.questionInt();
     switch(gameOption){
         case 1:
-        reelSlot(1);
+        reelSlotMenu(1);
         break;
         case 2:
         let times:number=readline.questionInt('Ingrese la cantidad de repeticiones:');
-        let value:number=readline.questionInt('Ingrese apuesta ( 5 - 10 - 15 - 20 ): ')
-        replayReel(times,value);
+        let value:number=readline.questionInt('Ingrese su apuesta ( 5 - 10 - 15 - 20 ): ')
+        replayGame(1,times,value);
         subMenuReel();
         break;
         case 3:
-        console.log(`Se retiró con ${founds} creditos.`);
+        console.log(`Se retiró con ${founds} créditos.`);
         main();
         break;
         default:
@@ -160,14 +174,15 @@ function progressiveSlot(option:number):void{
         games();
         break;
         case 1:
-        let value:number=readline.questionInt('Ingrese apuesta ( 1 - 2 - 5 - 10 - 15 ): ')
-        playProgressive(value);
+        let value:number=readline.questionInt('Ingrese su apuesta ( 1 - 2 - 5 - 10 - 15 ): ')
+        playGame(2,value);
         subMenuProgressive();
         break;
         case 2:
         let lines:number=readline.questionInt('Ingrese cantidad de lineas 1 - 2 - 3 - 4- 5: ')
         setSlotLines(lines);
-        callGame(2);
+        progressiveSlot(1);
+        subMenuProgressive();
         break;
         case 3:
         let text:string=clasificationText[2].toString();
@@ -177,36 +192,15 @@ function progressiveSlot(option:number):void{
         callGame(backMenu);
         break;
     }
-}
-function playProgressive(value:number):number{
-    let newFounds=progressiveSlot1.playProgressiveSlot(value);
-    if(newFounds>0){
-        founds+=newFounds;
-        newCasino.subtractAmount(value * newFounds);
-    } else {
-        founds-=value*progressiveSlot1.getPayLine();
-        newCasino.addAmount(value * founds);
-    }
-    console.log(`Le quedan ${founds} creditos.`);
-    return newFounds;
-}         
-function replayProgressive(times:number,value:number):void{
-    for(let i:number=0;i<times;i++){
-        if(founds>=times*value*progressiveSlot1.getPayLine()){
-        playProgressive(value);
-        } else{
-        throw Error('No tiene fondos para esta apuesta.')
-        }
-    }   console.log(`Le quedan ${founds} creditos.`);
-}
+}   
 function setSlotLines(lines:number):void{
     progressiveSlot1.setPayLine(lines);
 }
 function subMenuProgressive():void{
-    console.log('Elija una opción y oprima ENTER');
-    console.log('1: JUGAR OTRA VEZ');
-    console.log('2: CAMBIAR LINEAS');
-    console.log('3: REPETIR JUGADAS');
+    console.log('Elija una opción.');
+    console.log('1: JUGAR');
+    console.log('2: ELEGIR CANTIDAD DE LINEAS');
+    console.log('3: MULTIPLICAR JUGADAS');
     console.log('4: COBRAR Y SALIR');
     let gameOption:number=readline.questionInt();
     switch(gameOption){
@@ -221,11 +215,10 @@ function subMenuProgressive():void{
         case 3:
         let times:number=readline.questionInt('Ingrese la cantidad de repeticiones:');
         let value:number=readline.questionInt('Ingrese apuesta ( 1 - 2 - 5 - 10 - 15): ')
-        replayProgressive(times,value);
+        replayGame(2,times,value);
         subMenuProgressive();
         case 4:
         console.log(`Se retiró con ${founds} creditos.`);
-        main();
         default:
         console.log(` -- El número ingresado es incorrecto ingrese un número valido ---`);
         subMenuProgressive();
@@ -239,7 +232,7 @@ function roullete(option:number):void{
         break;
         case 1:
         let value:number=readline.questionInt('')
-        playRoullete(value);
+        playGame(3,value);
         subMenuRoullete();
         break;
         /* case 3:
@@ -256,21 +249,6 @@ function roullete(option:number):void{
         break;
     }
 }
-function playRoullete(value:number){
-    console.log(`Le quedan ${founds} creditos.`);
-}         
-function replayRoullete(times:number,value:number):void{
-    for(let i:number=0;i<times;i++){
-        if(founds>=times*value){
-        playRoullete(value);
-        } else{
-        throw Error('No tiene fondos para esta apuesta.')
-        }
-    }   console.log(`Le quedan ${founds} creditos.`);
-}
-/*function setSlotLines(lines:number):void{
-    progressiveSlot1.setPayLine(lines);
-}*/
 function subMenuRoullete():void{
     console.log('Elija una opción y oprima ENTER');
     console.log('1: JUGAR OTRA VEZ');
@@ -290,11 +268,10 @@ function subMenuRoullete():void{
         case 3:
         let times:number=readline.questionInt('Ingrese la cantidad de repeticiones:');
         let value:number=readline.questionInt('Ingrese apuesta ( 1 - 2 - 5 - 10 - 15): ')
-        replayRoullete(times,value);
+        replayGame(3,times,value);
         subMenuRoullete();
         case 4:
         console.log(`Se retiró con ${founds} creditos.`);
-        main();
         default:
         console.log(` -- El número ingresado es incorrecto ingrese un número valido ---`);
         subMenuRoullete();
@@ -308,7 +285,7 @@ function craps(option:number):void{
         break;
         case 1:
         let value:number=readline.questionInt('')
-        playCraps(value);
+        playGame(4,value);
         subMenuCraps();
         break;
         /*case 3:
@@ -325,21 +302,6 @@ function craps(option:number):void{
         break;
     }
 }
-function playCraps(value:number){
-    console.log(`Le quedan ${founds} creditos.`);
-}         
-function replayCraps(times:number,value:number):void{
-    for(let i:number=0;i<times;i++){
-        if(founds>=times*value){
-        playCraps(value);
-        } else{
-        throw Error('No tiene fondos para esta apuesta.')
-        }
-    }   console.log(`Le quedan ${founds} creditos.`);
-}
-/*function setSlotLines(lines:number):void{
-    progressiveSlot1.setPayLine(lines);
-}*/
 function subMenuCraps():void{
     console.log('Elija una opción y oprima ENTER');
     console.log('1: JUGAR OTRA VEZ');
@@ -359,12 +321,11 @@ function subMenuCraps():void{
         case 3:
         let times:number=readline.questionInt('Ingrese la cantidad de repeticiones:');
         let value:number=readline.questionInt('Ingrese apuesta ( 1 - 2 - 5 - 10 - 15): ')
-        replayCraps(times,value);
+        replayGame(4,times,value);
         subMenuCraps();
         case 4:
         console.log(newCasino.getTreasury());
         console.log(`Se retiró con ${founds} creditos.`);
-        main();
         default:
         console.log(` -- El número ingresado es incorrecto ingrese un número valido ---`);
         subMenuCraps();

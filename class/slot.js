@@ -53,6 +53,7 @@ var Slot = /** @class */ (function () {
         for (var i = 0; i < this.rollerNumber; i++) {
             numbers[i] = Math.floor(Math.random() * this.getSymbolsNumber() + 1);
         }
+        console.log(numbers);
         return numbers;
     };
     Slot.prototype.getCombination = function () {
@@ -71,7 +72,6 @@ var Slot = /** @class */ (function () {
                 combination += 1;
             }
         }
-        console.log(randomNumber);
         console.log("Acert\u00F3 ".concat(combination, " combinaciones."));
         return combination;
     };
@@ -85,16 +85,16 @@ var Slot = /** @class */ (function () {
             price = -1;
         }
         else if (aux === 1) {
-            price = 10;
+            price = 5;
         }
         else if (aux === 2) {
-            price = 25;
+            price = 10;
         }
         else if (aux === 3) {
-            price = 50;
+            price = 20;
         }
-        else if (aux > 3) {
-            price = 100;
+        else if (aux === 4) {
+            price = 40;
         }
         return price;
     };

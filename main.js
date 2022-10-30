@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.newCasino = exports.progressiveSlot1 = exports.reelSlot1 = void 0;
+exports.newCasino = void 0;
 var progressiveSlot_1 = require("./class/progressiveSlot");
 var reelSlot_1 = require("./class/reelSlot");
 var casino_1 = require("./class/casino");
@@ -11,10 +11,10 @@ var clasificationText = information.split('\\');
 var founds = 100000;
 var progressiveSlotBet = [1, 2, 5, 10, 15];
 var reelSlotBet = [5, 10, 15, 20];
-exports.reelSlot1 = new reelSlot_1.ReelSlot(1001, reelSlotBet, "Animal", 9, 20, 3, 10000);
-exports.progressiveSlot1 = new progressiveSlot_1.ProgressiveSlot(2001, progressiveSlotBet, "Egipcio", 25, 25, 5, 5, 500000);
-var reelSlotList = [exports.reelSlot1];
-var progressiveSlotList = [exports.progressiveSlot1];
+var reelSlot1 = new reelSlot_1.ReelSlot(1001, reelSlotBet, "Animal", 9, 20, 3, 10000);
+var progressiveSlot1 = new progressiveSlot_1.ProgressiveSlot(2001, progressiveSlotBet, "Egipcio", 25, 25, 5, 2, 500000);
+var reelSlotList = [reelSlot1];
+var progressiveSlotList = [progressiveSlot1];
 exports.newCasino = new casino_1.Casino('Atlanta', progressiveSlotList, reelSlotList, 500000);
 function welcome() {
     var text = clasificationText[0].toString();
@@ -22,7 +22,7 @@ function welcome() {
     main();
 }
 function main() {
-    console.log('Ingrese 1 y oprima ENTER para acceder al menú del casino.');
+    console.log('Oprima 1 para empezar a jugar.');
     var option = readline.questionInt();
     switch (option) {
         case 1:
@@ -34,7 +34,7 @@ function main() {
     }
 }
 function games() {
-    console.log('Para acceder a un juego ingrese un numero y oprima ENTER.');
+    console.log('Elija su juego.');
     console.log('1: TRAGAMONEDAS TRADICIONAL');
     console.log('2: TRAGAMONEDAS PROGRESIVO');
     console.log('3: RULETA');
@@ -49,15 +49,15 @@ function callGame(option) {
             main();
             break;
         case 1:
-            console.log('Elija una opción y oprima ENTER');
+            console.log('Elija una opción.');
             console.log('1: JUGAR');
             console.log('2: LEER INFORMACION DEL JUEGO');
             console.log('0: Volver al menú anterior');
             var reelOption = readline.questionInt();
-            reelSlot(reelOption);
+            reelSlotMenu(reelOption);
             break;
         case 2:
-            console.log('Elija una opción y oprima ENTER');
+            console.log('Elija una opción.');
             console.log('1: JUGAR');
             console.log('2: ELEGIR LINEAS');
             console.log('3: LEER INFORMACION DEL JUEGO');
@@ -66,7 +66,7 @@ function callGame(option) {
             progressiveSlot(progressiveOption);
             break;
         case 3:
-            console.log('Elija una opción y oprima ENTER');
+            console.log('Elija una opción.');
             console.log('1: JUGAR');
             console.log('2: LEER INFORMACION DEL JUEGO');
             console.log('0: Volver al menú anterior');
@@ -74,7 +74,7 @@ function callGame(option) {
             roullete(rouleteOption);
             break;
         case 4:
-            console.log('Elija una opción y oprima ENTER');
+            console.log('Elija una opción.');
             console.log('1: JUGAR');
             console.log('2: LEER INFORMACION DEL JUEGO');
             console.log('0: Volver al menú anterior');
@@ -87,66 +87,81 @@ function callGame(option) {
     }
 }
 /* Funcionalidades de tragamonedas tradicional */
-function reelSlot(option) {
+function reelSlotMenu(option) {
     switch (option) {
         case 0:
             games();
             break;
         case 1:
             var value = readline.questionInt('Ingrese apuesta ( 5 - 10 - 15 - 20 ): ');
-            playReel(value);
+            playGame(1, value);
             subMenuReel();
             break;
         case 2:
             var text = clasificationText[1].toString();
             console.log(text);
-            console.log("Ingrese 1 para volver al men\u00FA anterior:");
-            var backMenu = readline.questionInt();
-            callGame(backMenu);
+            console.log("Volver al men\u00FA anterior:");
+            readline.questionInt();
+            callGame(1);
             break;
     }
 }
-function playReel(value) {
-    var newFounds = exports.reelSlot1.playReelSlot(value);
+function playGame(game, value) {
+    var newFounds = 0;
+    switch (game) {
+        case 1:
+            newFounds = reelSlot1.playReelSlot(value);
+            break;
+        case 2:
+            newFounds = progressiveSlot1.playProgressiveSlot(value);
+            break;
+        /*case 3:
+            newFounds=roullete1.playRoullete(value);
+            break;
+        case 4:
+            newFounds=craps1.playCraps(value);
+            break;*/
+    }
     if (newFounds > 0) {
         founds += newFounds;
-        exports.newCasino.subtractAmount(value);
+        exports.newCasino.setTreasury(value);
     }
     else {
-        exports.newCasino.addAmount(value);
+        exports.newCasino.setTreasury(value);
         founds -= value;
     }
     console.log("Le quedan ".concat(founds, " creditos."));
     return newFounds;
 }
-function replayReel(times, value) {
+function replayGame(game, times, value) {
     for (var i = 0; i < times; i++) {
         if (founds >= times * value) {
-            playReel(value);
+            playGame(game, value);
         }
         else {
-            throw Error('No tiene fondos para esta apuesta.');
+            console.log("No tiene fondos para esta apuesta.");
+            subMenuReel();
         }
     }
 }
 function subMenuReel() {
-    console.log('Elija una opción y oprima ENTER');
-    console.log('1: JUGAR OTRA VEZ');
-    console.log('2: REPETIR JUGADAS');
+    console.log('Elija una opción.');
+    console.log('1: JUGAR');
+    console.log('2: MULTIPLICAR JUGADAS');
     console.log('3: COBRAR Y SALIR');
     var gameOption = readline.questionInt();
     switch (gameOption) {
         case 1:
-            reelSlot(1);
+            reelSlotMenu(1);
             break;
         case 2:
             var times = readline.questionInt('Ingrese la cantidad de repeticiones:');
-            var value = readline.questionInt('Ingrese apuesta ( 5 - 10 - 15 - 20 ): ');
-            replayReel(times, value);
+            var value = readline.questionInt('Ingrese su apuesta ( 5 - 10 - 15 - 20 ): ');
+            replayGame(1, times, value);
             subMenuReel();
             break;
         case 3:
-            console.log("Se retir\u00F3 con ".concat(founds, " creditos."));
+            console.log("Se retir\u00F3 con ".concat(founds, " cr\u00E9ditos."));
             main();
             break;
         default:
@@ -161,14 +176,15 @@ function progressiveSlot(option) {
             games();
             break;
         case 1:
-            var value = readline.questionInt('Ingrese apuesta ( 1 - 2 - 5 - 10 - 15 ): ');
-            playProgressive(value);
+            var value = readline.questionInt('Ingrese su apuesta ( 1 - 2 - 5 - 10 - 15 ): ');
+            playGame(2, value);
             subMenuProgressive();
             break;
         case 2:
             var lines = readline.questionInt('Ingrese cantidad de lineas 1 - 2 - 3 - 4- 5: ');
             setSlotLines(lines);
-            callGame(2);
+            progressiveSlot(1);
+            subMenuProgressive();
             break;
         case 3:
             var text = clasificationText[2].toString();
@@ -179,38 +195,14 @@ function progressiveSlot(option) {
             break;
     }
 }
-function playProgressive(value) {
-    var newFounds = exports.progressiveSlot1.playProgressiveSlot(value);
-    if (newFounds > 0) {
-        founds += newFounds;
-        exports.newCasino.subtractAmount(value * newFounds);
-    }
-    else {
-        founds -= value * exports.progressiveSlot1.getPayLine();
-        exports.newCasino.addAmount(value * founds);
-    }
-    console.log("Le quedan ".concat(founds, " creditos."));
-    return newFounds;
-}
-function replayProgressive(times, value) {
-    for (var i = 0; i < times; i++) {
-        if (founds >= times * value * exports.progressiveSlot1.getPayLine()) {
-            playProgressive(value);
-        }
-        else {
-            throw Error('No tiene fondos para esta apuesta.');
-        }
-    }
-    console.log("Le quedan ".concat(founds, " creditos."));
-}
 function setSlotLines(lines) {
-    exports.progressiveSlot1.setPayLine(lines);
+    progressiveSlot1.setPayLine(lines);
 }
 function subMenuProgressive() {
-    console.log('Elija una opción y oprima ENTER');
-    console.log('1: JUGAR OTRA VEZ');
-    console.log('2: CAMBIAR LINEAS');
-    console.log('3: REPETIR JUGADAS');
+    console.log('Elija una opción.');
+    console.log('1: JUGAR');
+    console.log('2: ELEGIR CANTIDAD DE LINEAS');
+    console.log('3: MULTIPLICAR JUGADAS');
     console.log('4: COBRAR Y SALIR');
     var gameOption = readline.questionInt();
     switch (gameOption) {
@@ -225,7 +217,7 @@ function subMenuProgressive() {
         case 3:
             var times = readline.questionInt('Ingrese la cantidad de repeticiones:');
             var value = readline.questionInt('Ingrese apuesta ( 1 - 2 - 5 - 10 - 15): ');
-            replayProgressive(times, value);
+            replayGame(2, times, value);
             subMenuProgressive();
         case 4:
             console.log("Se retir\u00F3 con ".concat(founds, " creditos."));
@@ -243,7 +235,7 @@ function roullete(option) {
             break;
         case 1:
             var value = readline.questionInt('');
-            playRoullete(value);
+            playGame(3, value);
             subMenuRoullete();
             break;
         /* case 3:
@@ -259,20 +251,6 @@ function roullete(option) {
             callGame(backMenu);
             break;
     }
-}
-function playRoullete(value) {
-    console.log("Le quedan ".concat(founds, " creditos."));
-}
-function replayRoullete(times, value) {
-    for (var i = 0; i < times; i++) {
-        if (founds >= times * value) {
-            playRoullete(value);
-        }
-        else {
-            throw Error('No tiene fondos para esta apuesta.');
-        }
-    }
-    console.log("Le quedan ".concat(founds, " creditos."));
 }
 /*function setSlotLines(lines:number):void{
     progressiveSlot1.setPayLine(lines);
@@ -296,7 +274,7 @@ function subMenuRoullete() {
         case 3:
             var times = readline.questionInt('Ingrese la cantidad de repeticiones:');
             var value = readline.questionInt('Ingrese apuesta ( 1 - 2 - 5 - 10 - 15): ');
-            replayRoullete(times, value);
+            replayGame(3, times, value);
             subMenuRoullete();
         case 4:
             console.log("Se retir\u00F3 con ".concat(founds, " creditos."));
@@ -314,7 +292,7 @@ function craps(option) {
             break;
         case 1:
             var value = readline.questionInt('');
-            playCraps(value);
+            playGame(4, value);
             subMenuCraps();
             break;
         /*case 3:
@@ -330,20 +308,6 @@ function craps(option) {
             callGame(backMenu);
             break;
     }
-}
-function playCraps(value) {
-    console.log("Le quedan ".concat(founds, " creditos."));
-}
-function replayCraps(times, value) {
-    for (var i = 0; i < times; i++) {
-        if (founds >= times * value) {
-            playCraps(value);
-        }
-        else {
-            throw Error('No tiene fondos para esta apuesta.');
-        }
-    }
-    console.log("Le quedan ".concat(founds, " creditos."));
 }
 /*function setSlotLines(lines:number):void{
     progressiveSlot1.setPayLine(lines);
@@ -367,7 +331,7 @@ function subMenuCraps() {
         case 3:
             var times = readline.questionInt('Ingrese la cantidad de repeticiones:');
             var value = readline.questionInt('Ingrese apuesta ( 1 - 2 - 5 - 10 - 15): ');
-            replayCraps(times, value);
+            replayGame(4, times, value);
             subMenuCraps();
         case 4:
             console.log(exports.newCasino.getTreasury());

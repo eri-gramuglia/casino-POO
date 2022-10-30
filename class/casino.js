@@ -73,15 +73,13 @@ var Casino = /** @class */ (function () {
     Casino.prototype.getTreasury = function () {
         return this.treasury;
     };
-    Casino.prototype.addAmount = function (amount) {
-        this.treasury += amount;
-    };
-    Casino.prototype.subtractAmount = function (amount) {
-        this.treasury -= amount;
-    };
-    Casino.prototype.sellCredits = function (amount) {
-        this.subtractAmount(amount);
-        return amount;
+    Casino.prototype.setTreasury = function (amount) {
+        if (amount <= 0) {
+            this.treasury += amount;
+        }
+        else {
+            this.treasury -= amount;
+        }
     };
     return Casino;
 }());

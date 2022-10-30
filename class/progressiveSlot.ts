@@ -1,4 +1,3 @@
-import { progressiveSlot1 } from './../main';
 import { Slot } from "./slot";
 export class ProgressiveSlot extends Slot {
   private payLine: number;
@@ -20,63 +19,42 @@ pRollerNumber:number,pPayLine:number,pJackpot:number){
     this.payLine=newPayLine;
   }
   public setJackpot(newJackpot:number):void{
-    this.jackpot+newJackpot;
+    this.jackpot+=newJackpot;
   }
-  private progressiveCombination():number{
-    let aux=new Array(this.payLine);
-    let combination=0;
+  private progressiveCombination():number[]{
+    let aux:number[]=new Array(this.payLine);
+    let combination:number[]=[];
       for(let i:number=0;i<aux.length;i++){
-        combination+=aux[i]=this.getReward();
+        combination.push(aux[i]=this.getReward());
       } 
-      console.log(combination);
       return combination;
     }
-    public playProgressiveSlot(pBetValue:number):number{
-      let reward:number=0;
-      let aux:number=0
-        if(this.verifyBet(pBetValue) && this.checkRollers()){
-            aux=this.progressiveCombination();
-        }
-          if(aux===-7){
-              console.log(`Felicidades acertó una linea de 7! Ganó ${pBetValue*1000}.`);
-              reward=pBetValue * 1000;
-          } else if(aux===-14){
-              console.log(`Felicidades acertó dos lineas de 7! Ganó ${pBetValue*2000}.`);
-              reward=pBetValue * 2000;
-          } else if(aux===-21){
-            console.log(`Felicidades acertó tres lineas de 7! Ganó ${pBetValue*3000}.`);
-            reward=pBetValue * 3000;
-          } else if(aux===-28){
-            console.log(`Felicidades acertó cuatro lineas de 7! Ganó ${pBetValue*4000}.`);
-            reward=pBetValue * 4000;
-          } else if(aux===-35){
-            console.log(`¡¡¡Felicidades acertó el jackpot!!! Ganó ${this.getJackpot()}.`);
-            reward=this.getJackpot()
-            this.setJackpot(0);
-            reward=-5; 
-          } else if(aux===-1){
-            console.log(`Felicidades acertó una linea! Ganó ${pBetValue*500}.`);
-            reward=pBetValue * 500;
-          } else if(aux===-2){
-            console.log(`Felicidades acertó dos lineas! Ganó ${pBetValue*1000}.`);
-            reward=pBetValue * 1000;
-          } else if(aux===-3){
-            console.log(`Felicidades acertó tres lineas! Ganó ${pBetValue*2000}.`);
-            reward=pBetValue * 2000;
-          } else if(aux===-4){
-            console.log(`Felicidades acertó cuatro lineas! Ganó ${pBetValue*3000}.`);
-            reward=pBetValue * 3000;
-          } else if(aux===-5){
-            console.log(`Felicidades acertó cuatro lineas! Ganó ${pBetValue*4000}.`);
-            reward=pBetValue * 4000;
-          } else if(aux===0){
-            console.log(`Suerte para la proxima.`);
-            this.setJackpot(pBetValue * this.payLine);
-            reward-pBetValue * this.payLine;
+  public playProgressiveSlot(pBetValue:number):number{
+    let reward:number=0;
+    let aux:number[]=this.progressiveCombination();
+      if(this.verifyBet(pBetValue) && this.checkRollers()){
+        for(let i:number=0;i<aux.length;i++){
+          if(aux[i]===-7){
+            console.log(`* Felicidades acertó una linea de 7 en la linea ${[i+1]}! Ganó ${pBetValue*500}. *`);
+            reward+=pBetValue * 500;
+          } else if(aux[i]===-1){
+            console.log(`* Felicidades acertó una linea en la linea ${[i+1]}! Ganó ${pBetValue*100}. * `);
+            reward+=pBetValue * 100;
+          } else if(aux[i]===0){
+            console.log(`- Perdió ${pBetValue} créditos en la linea ${[i+1]}. -`);
+            this.setJackpot(pBetValue);
+            reward-=pBetValue;
           } else {
-            console.log(`Felicidades ganó ${aux * pBetValue} créditos.`);
-            reward+= aux * pBetValue;
-          } return reward;
-    } 
-  } 
-
+            console.log(`- Ganó ${aux[i] * pBetValue} créditos en la linea ${[i+1]}. -`);
+            reward+= aux[i] * pBetValue;
+          } 
+        }
+      }
+      if(reward===-35){
+        console.log(`***¡¡¡FELICIDADES GANO EL JACKPOT!!!**** ${this.getJackpot()}`);
+        reward=this.getJackpot();
+        this.setJackpot(0);
+      }
+        return reward;
+    }
+  }

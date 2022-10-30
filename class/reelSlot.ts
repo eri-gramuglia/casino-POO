@@ -17,19 +17,19 @@ export class ReelSlot extends Slot {
     let aux:number=0;
     let reward:number=0;
       if(this.verifyBet(pBetValue) && this.checkRollers()){
-          aux=this.getReward();
+        aux=this.getReward();
       }
         if(aux===-7){
-            console.log(`Felicidades ganó el pozo!!! ${this.well}.`);
-            reward=this.getWell();
+          console.log(`¡¡¡ FELICIDADES GANO EL POZO !!! ${this.well}.`);
+          reward=this.getWell();
         } else if(aux===-1){
-            console.log(`Felicidades acertó una linea! Ganó ${pBetValue*500}.`);
-            reward=pBetValue * 500;
+          console.log(`* Felicidades acertó una linea! Ganó ${pBetValue*50}. *`);
+          reward=pBetValue * 50;
         } else if(aux===0){
-            console.log(`Suerte para la próxima.`);
-            reward-=pBetValue;
+          console.log(`- Perdió ${pBetValue} créditos. -`);
+          reward-=pBetValue;
         } else {
-          console.log(`Felicidades ganó ${aux * pBetValue} créditos.`);
+          console.log(`- Ganó ${aux * pBetValue} créditos. -`);
           reward+=aux * pBetValue;
         } 
     return reward;
