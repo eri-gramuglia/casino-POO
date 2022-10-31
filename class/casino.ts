@@ -1,19 +1,20 @@
 import { ReelSlot } from './reelSlot';
 import { ProgressiveSlot } from "./progressiveSlot";
+import { Roulette } from './roulette';
 export class Casino {
     private casinoName:string;
     private progressiveSlotList:ProgressiveSlot[];
     private reelSlotList:ReelSlot[];
-    //private roulleteList:Roullete[];
+    private rouletteList:Roulette[];
     //private crapsList:Craps[];
     private treasury:number;
 
-    public constructor(pName:string,pProgressiveSlotList:ProgressiveSlot[],pReelSlotList:ReelSlot[],/*pRoulleteList:Roullete[],pCrapsList:Craps[],*/pTreasury:number){
+    public constructor(pName:string,pProgressiveSlotList:ProgressiveSlot[],pReelSlotList:ReelSlot[],pRouletteList:Roulette[],/*,pCrapsList:Craps[],*/pTreasury:number){
         this.casinoName=pName;
         this.progressiveSlotList=pProgressiveSlotList;
         this.reelSlotList=pReelSlotList;
         this.treasury=pTreasury;
-        //this.roulleteList=pRoulleteList;
+        this.rouletteList=pRouletteList;
         //this.crapsList=pCrapsList;
     }
     public getCasinoName():string{
@@ -48,10 +49,10 @@ export class Casino {
                     throw Error(`No existe esta maquina en el casino`);
                 } 
     }
-    /*public getRoullete(id:number):boolean{
+    public getRoulette(id:number):boolean{
         let aux=false;
-            for(let i=0;i<this.roulleteList.length;i++){
-                if(id===this.roullete[i].getId()){
+            for(let i=0;i<this.rouletteList.length;i++){
+                if(id===this.rouletteList[i].getId()){
                     aux=true;
                 } 
             } if(aux){
@@ -61,7 +62,8 @@ export class Casino {
                     throw Error(`No existe esta maquina en el casino`);
                 } 
     }
-    public getCraps(id:number):boolean{
+    
+    /*public getCraps(id:number):boolean{
         let aux=false;
             for(let i=0;i<this.crapsList.length;i++){
                 if(id===this.crapsList[i].getId()){
