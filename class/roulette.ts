@@ -5,17 +5,17 @@ export class Roulette {
     private _numBlack: Array <number>;
     private _numRandom: number;
     private _boxFound: number;
-    private _player: Player;
+ //   private _player: Player;
 
     constructor(p_id: number, p_numRed 
-: Array<number>, p_numBlack: Array<number>,p_numRandom: number,p_boxFound:number,p_player:Player) {
+: Array<number>, p_numBlack: Array<number>,p_numRandom: number,p_boxFound:number) {
         this._id = p_id;
         this._numRed= p_numRed 
 ;
         this._numBlack = p_numBlack;
         this._numRandom = p_numRandom;
         this._boxFound = p_boxFound;
-        this._player = p_player;
+ //       this._player = p_player;
     }
 
     public setId(p_id:number):void {
@@ -93,7 +93,7 @@ export class Roulette {
 }
 
 
-
+/* 
 
 // instance player test and roulette test
 
@@ -113,5 +113,5 @@ console.log (rouletteOne.getEvenOrOdd(28))
 
 console.log (rouletteOne.getNumRandom())
 
-console.log (rouletteOne.getHighOrLow(20))
+console.log (rouletteOne.getHighOrLow(20)) */
 
