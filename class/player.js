@@ -36,5 +36,5 @@ var Player = /** @class */ (function () {
 }());
 exports.Player = Player;
 // instance player Test
-var playerOne = new Player(1, "Daniel", "Jerez", 10000);
-console.log(playerOne);
+/* let playerOne: Player = new Player (1,"Daniel","Jerez",10000);
+console.log (playerOne); */ 
