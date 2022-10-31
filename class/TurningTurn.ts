@@ -120,12 +120,7 @@ export class TurningTurn {
                     }
                 }
         }
-
-
-
-
     }
-
 }
 
 // instance Roulette and player for test method
