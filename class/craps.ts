@@ -26,10 +26,10 @@ export class Craps {
     
         if ((suma=7) !&& (suma=11)){
              this.sumarCredito; // el jugador ganó
-             console.log("El resultado es: ", "Primer Dado: ",pDado1," ","Segundo Dado: ", pDado2);
+                console.log("El resultado es: ", "Primer Dado: ",pDado1," ","Segundo Dado: ", pDado2);
         } else if ((suma=2)!&&(suma=3)!&& (suma=12)){
-              this.restarCredito;// el jugador perdió
-              console.log("El resultado es: ", "Primer Dado: ",pDado1," ","Segundo Dado: ", pDado2);
+                this.restarCredito;// el jugador perdió
+                console.log("El resultado es: ", "Primer Dado: ",pDado1," ","Segundo Dado: ", pDado2);
         } else{
             console.log("El resultado es: ", "Primer Dado: ",pDado1," ","Segundo Dado: ", pDado2);
             console.log(` Ud. vuelve a tirar el dado!`); //el jugador vuelve a tirar hasta ganar o perder
