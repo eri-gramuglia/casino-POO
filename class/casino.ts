@@ -1,18 +1,17 @@
+import { ReelSlot } from './reelSlot';
 import { ProgressiveSlot } from "./progressiveSlot";
-import { RollerSlot } from "./rollerSlot";
-
 export class Casino {
     private casinoName:string;
     private progressiveSlotList:ProgressiveSlot[];
-    private rollerSlotList:RollerSlot[];
+    private reelSlotList:ReelSlot[];
     //private roulleteList:Roullete[];
     //private crapsList:Craps[];
     private treasury:number;
 
-    public constructor(pName:string,pProgressiveSlotList:ProgressiveSlot[],pRollerSlotList:RollerSlot[],/*pRoulleteList:Roullete[],pCrapsList:Craps[],*/pTreasury:number){
+    public constructor(pName:string,pProgressiveSlotList:ProgressiveSlot[],pReelSlotList:ReelSlot[],/*pRoulleteList:Roullete[],pCrapsList:Craps[],*/pTreasury:number){
         this.casinoName=pName;
         this.progressiveSlotList=pProgressiveSlotList;
-        this.rollerSlotList=pRollerSlotList;
+        this.reelSlotList=pReelSlotList;
         this.treasury=pTreasury;
         //this.roulleteList=pRoulleteList;
         //this.crapsList=pCrapsList;
@@ -36,10 +35,10 @@ export class Casino {
                     throw Error(`No existe esta maquina en el casino`);
                 } 
     }
-    public getRollerSlot(id:number):boolean{
+    public getReelSlot(id:number):boolean{
         let aux=false;
-            for(let i=0;i<this.rollerSlotList.length;i++){
-                if(id===this.rollerSlotList[i].getId()){
+            for(let i=0;i<this.reelSlotList.length;i++){
+                if(id===this.reelSlotList[i].getId()){
                     aux=true;
                 } 
             } if(aux){
@@ -78,10 +77,15 @@ export class Casino {
     public getTreasury():number{
         return this.treasury;
     }
-    public addAmount(amount:number):void{
-        this.treasury+=amount;
-    }
-    public subtractAmount(amount:number):void{
-        this.treasury-=amount;
+    public setTreasury(amount:number):void{
+        if(amount<=0){
+            this.treasury+=amount;
+        } else {
+            this.treasury-=amount;
+        }
     }
 }
+
+
+
+

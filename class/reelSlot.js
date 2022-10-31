@@ -15,41 +15,46 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-exports.RollerSlot = void 0;
+exports.ReelSlot = void 0;
 var slot_1 = require("./slot");
-var RollerSlot = /** @class */ (function (_super) {
-    __extends(RollerSlot, _super);
-    function RollerSlot(pId, pBetValue, pTheme, pSymbolsNumber, pWinProbability, pRollerNumber, pWell) {
+var ReelSlot = /** @class */ (function (_super) {
+    __extends(ReelSlot, _super);
+    function ReelSlot(pId, pBetValue, pTheme, pSymbolsNumber, pWinProbability, pRollerNumber, pWell) {
         var _this = _super.call(this, pId, pBetValue, pTheme, pSymbolsNumber, pWinProbability, pRollerNumber) || this;
         _this.rollerNumber = pRollerNumber;
         _this.well = pWell;
         return _this;
     }
-    RollerSlot.prototype.getWell = function () {
+    ReelSlot.prototype.getWell = function () {
         return this.well;
     };
-    RollerSlot.prototype.setWeel = function (newWell) {
+    ReelSlot.prototype.setWeel = function (newWell) {
         this.well = newWell;
     };
-    RollerSlot.prototype.playRollerSlot = function (pBetValue) {
+    ReelSlot.prototype.playReelSlot = function (pBetValue) {
+        var aux = 0;
         var reward = 0;
         if (this.verifyBet(pBetValue) && this.checkRollers()) {
-            reward = this.getReward();
+            aux = this.getReward();
         }
-        if (reward === -1) {
-            console.log("Felicidades gano el pozo!!! ".concat(this.well));
+        if (aux === -7) {
+            console.log("\u00A1\u00A1\u00A1 FELICIDADES GANO EL POZO !!! ".concat(this.well, "."));
+            reward = this.getWell();
         }
-        else if (reward === 0) {
-            console.log("Suerte para la proxima.");
+        else if (aux === -1) {
+            console.log("* Felicidades acert\u00F3 una linea! Gan\u00F3 ".concat(pBetValue * 50, ". *"));
+            reward = pBetValue * 50;
+        }
+        else if (aux === 0) {
+            console.log("- Perdi\u00F3 ".concat(pBetValue, " cr\u00E9ditos. -"));
+            reward -= pBetValue;
         }
         else {
-            console.log("Felicidades gan\u00F3 ".concat(reward * pBetValue, " creditos."));
+            console.log("- Gan\u00F3 ".concat(aux * pBetValue, " cr\u00E9ditos. -"));
+            reward += aux * pBetValue;
         }
         return reward;
     };
-    return RollerSlot;
+    return ReelSlot;
 }(slot_1.Slot));
-exports.RollerSlot = RollerSlot;
-var betValue = [5, 10, 15, 20];
-var rollerSlot = new RollerSlot(212, betValue, "Animal", 9, 20, 4, 5000);
-rollerSlot.playRollerSlot(10);
+exports.ReelSlot = ReelSlot;

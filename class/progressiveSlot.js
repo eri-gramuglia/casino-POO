@@ -35,43 +35,47 @@ var ProgressiveSlot = /** @class */ (function (_super) {
         this.payLine = newPayLine;
     };
     ProgressiveSlot.prototype.setJackpot = function (newJackpot) {
-        this.jackpot + newJackpot;
+        this.jackpot += newJackpot;
     };
     ProgressiveSlot.prototype.progressiveCombination = function () {
         var aux = new Array(this.payLine);
-        var combination = 0;
+        var combination = [];
         for (var i = 0; i < aux.length; i++) {
-            combination += aux[i] = this.getReward();
+            combination.push(aux[i] = this.getReward());
         }
         return combination;
     };
-    ProgressiveSlot.prototype.playprogressiveSlot = function (pBetValue) {
+    ProgressiveSlot.prototype.playProgressiveSlot = function (pBetValue) {
         var reward = 0;
+        var aux = this.progressiveCombination();
         if (this.verifyBet(pBetValue) && this.checkRollers()) {
-            reward = this.progressiveCombination();
+            for (var i = 0; i < aux.length; i++) {
+                if (aux[i] === -7) {
+                    console.log("* Felicidades acert\u00F3 una linea de 7 en la linea ".concat([i + 1], "! Gan\u00F3 ").concat(pBetValue * 500, ". *"));
+                    reward += pBetValue * 500;
+                }
+                else if (aux[i] === -1) {
+                    console.log("* Felicidades acert\u00F3 una linea en la linea ".concat([i + 1], "! Gan\u00F3 ").concat(pBetValue * 100, ". * "));
+                    reward += pBetValue * 100;
+                }
+                else if (aux[i] === 0) {
+                    console.log("- Perdi\u00F3 ".concat(pBetValue, " cr\u00E9ditos en la linea ").concat([i + 1], ". -"));
+                    this.setJackpot(pBetValue);
+                    reward -= pBetValue;
+                }
+                else {
+                    console.log("- Gan\u00F3 ".concat(aux[i] * pBetValue, " cr\u00E9ditos en la linea ").concat([i + 1], ". -"));
+                    reward += aux[i] * pBetValue;
+                }
+            }
         }
-        if (reward === -1) {
-            console.log("Felicidades acert\u00F3 una linea de 7! Gan\u00F3 ".concat(pBetValue * 500));
-        }
-        else if (reward === -2) {
-            console.log("Felicidades acert\u00F3 dos lineas de 7! Gan\u00F3 ".concat(pBetValue * 1000));
-        }
-        else if (reward === -3) {
-            console.log("\u00A1\u00A1\u00A1Felicidades acert\u00F3 el jackpot!!! Gan\u00F3 ".concat(this.getJackpot()));
-            this.jackpot === 0;
-        }
-        else if (reward === 0) {
-            console.log("Suerte para la proxima.");
-            this.setJackpot(pBetValue);
-        }
-        else {
-            console.log("Felicidades gan\u00F3 ".concat(reward * pBetValue, " creditos."));
+        if (reward === -35) {
+            console.log("***\u00A1\u00A1\u00A1FELICIDADES GANO EL JACKPOT!!!**** ".concat(this.getJackpot()));
+            reward = this.getJackpot();
+            this.setJackpot(0);
         }
         return reward;
     };
     return ProgressiveSlot;
 }(slot_1.Slot));
 exports.ProgressiveSlot = ProgressiveSlot;
-var betValue = [1, 5, 10, 20, 25];
-var progressiveSlot = new ProgressiveSlot(2323, betValue, "Egipcio", 15, 25, 4, 5, 10000);
-progressiveSlot.playprogressiveSlot(5);
