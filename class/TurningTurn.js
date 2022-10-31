@@ -87,7 +87,7 @@ var TurningTurn = /** @class */ (function () {
                 console.log("WINS PLENO");
                 console.log("----------------------------------------------------------------");
                 this._player.setFoundsAvailable(this._player.getFoundsAvailable() + (this.getBetValue() * 35));
-                this._roulette.setBoxFound(this._roulette.getBoxFound() - this.getBetValue());
+                this._roulette.setBoxFound(this._roulette.getBoxFound() - (this.getBetValue() * 35));
             }
             else {
                 console.log("Lost PLENO");
