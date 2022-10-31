@@ -79,6 +79,7 @@ var TurningTurn = /** @class */ (function () {
         if (aux === 0) {
             console.log("THE HOUSE WINS");
             this._player.setFoundsAvailable(this._player.getFoundsAvailable() - this.getBetValue());
+            this._roulette.setBoxFound(this._roulette.getBoxFound() + this.getBetValue());
         }
         else if (this._numSelect != -1) {
             if (aux === this._numSelect) {
@@ -86,6 +87,7 @@ var TurningTurn = /** @class */ (function () {
                 console.log("WINS PLENO");
                 console.log("----------------------------------------------------------------");
                 this._player.setFoundsAvailable(this._player.getFoundsAvailable() + (this.getBetValue() * 35));
+                this._roulette.setBoxFound(this._roulette.getBoxFound() - this.getBetValue());
             }
             else {
                 console.log("Lost PLENO");
@@ -96,6 +98,7 @@ var TurningTurn = /** @class */ (function () {
                     console.log("WINS Color: ".concat(this._colorSelect));
                     console.log("----------------------------------------------------------------");
                     this._player.setFoundsAvailable(this._player.getFoundsAvailable() + (this.getBetValue() * 1));
+                    this._roulette.setBoxFound(this._roulette.getBoxFound() - this.getBetValue());
                 }
             }
             if (this._evenOroddSelect != " ") {
@@ -104,6 +107,7 @@ var TurningTurn = /** @class */ (function () {
                     console.log("WINS ".concat(this._evenOroddSelect));
                     console.log("----------------------------------------------------------------");
                     this._player.setFoundsAvailable(this._player.getFoundsAvailable() + (this.getBetValue() * 1));
+                    this._roulette.setBoxFound(this._roulette.getBoxFound() - this.getBetValue());
                 }
             }
             if (this._dozenSelect != " ") {
@@ -112,6 +116,7 @@ var TurningTurn = /** @class */ (function () {
                     console.log("WINS ".concat(this._dozenSelect));
                     console.log("----------------------------------------------------------------");
                     this._player.setFoundsAvailable(this._player.getFoundsAvailable() + (this.getBetValue() * 2));
+                    this._roulette.setBoxFound(this._roulette.getBoxFound() - this.getBetValue());
                 }
             }
             if (this._highOrLowSelect != " ") {
@@ -120,6 +125,7 @@ var TurningTurn = /** @class */ (function () {
                     console.log("WINS ".concat(this._highOrLowSelect));
                     console.log("----------------------------------------------------------------");
                     this._player.setFoundsAvailable(this._player.getFoundsAvailable() + (this.getBetValue() * 1));
+                    this._roulette.setBoxFound(this._roulette.getBoxFound() - this.getBetValue());
                 }
             }
         }
@@ -134,4 +140,6 @@ var black = new Array(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32
 var rouletteOne = new roulette_1.Roulette(1, red, black, 2, 500000);
 // instance TurningTurn
 var TurningTurnOne = new TurningTurn(1, rouletteOne, playerOne, 100, 25, "ROJO", "PAR", "1ra Docena", "Numero BAJO");
-TurningTurnOne.turning();
+var TurningTurnTwo = new TurningTurn(1, rouletteOne, playerOne, 1000, 1, "ROJO", "IMPAR", "2da Docena", "Numero ALTO");
+//TurningTurnOne.turning()
+TurningTurnTwo.turning();

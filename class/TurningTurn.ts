@@ -139,5 +139,9 @@ let rouletteOne : Roulette = new Roulette(1,red,black,2,500000)
 // instance TurningTurn
 
 let TurningTurnOne : TurningTurn = new TurningTurn(1,rouletteOne,playerOne,100,25,"ROJO","PAR","1ra Docena","Numero BAJO")
+let TurningTurnTwo : TurningTurn = new TurningTurn(1,rouletteOne,playerOne,1000,1,"ROJO","IMPAR","2da Docena","Numero ALTO")
 
-TurningTurnOne.turning()
+
+//TurningTurnOne.turning()
+
+TurningTurnTwo.turning();
