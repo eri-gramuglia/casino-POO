@@ -7,8 +7,7 @@ export class Roulette {
     private _boxFound: number;
  //   private _player: Player;
 
-    constructor(p_id: number, p_numRed 
-: Array<number>, p_numBlack: Array<number>,p_numRandom: number,p_boxFound:number) {
+    constructor(p_id: number, p_numRed: Array<number>, p_numBlack: Array<number>,p_numRandom: number,p_boxFound:number) {
         this._id = p_id;
         this._numRed= p_numRed 
 ;
@@ -44,9 +43,9 @@ export class Roulette {
     public getBoxFound():number {
         return this._boxFound;
     }
-    public setPlayersList(p_player: Player):void {
-        this._player = p_player;
-    }
+  //  public setPlayersList(p_player: Player):void {
+  //       this._player = p_player;
+  //  }
     public getNumRandom():number {
         let min: number = Math.ceil(0);
         let max: number = Math.floor(36);

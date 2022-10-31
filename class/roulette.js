@@ -2,13 +2,14 @@
 exports.__esModule = true;
 exports.Roulette = void 0;
 var Roulette = /** @class */ (function () {
-    function Roulette(p_id, p_numRed, p_numBlack, p_numRandom, p_boxFound, p_player) {
+    //   private _player: Player;
+    function Roulette(p_id, p_numRed, p_numBlack, p_numRandom, p_boxFound) {
         this._id = p_id;
         this._numRed = p_numRed;
         this._numBlack = p_numBlack;
         this._numRandom = p_numRandom;
         this._boxFound = p_boxFound;
-        this._player = p_player;
+        //       this._player = p_player;
     }
     Roulette.prototype.setId = function (p_id) {
         this._id = p_id;
@@ -34,9 +35,9 @@ var Roulette = /** @class */ (function () {
     Roulette.prototype.getBoxFound = function () {
         return this._boxFound;
     };
-    Roulette.prototype.setPlayersList = function (p_player) {
-        this._player = p_player;
-    };
+    //  public setPlayersList(p_player: Player):void {
+    //       this._player = p_player;
+    //  }
     Roulette.prototype.getNumRandom = function () {
         var min = Math.ceil(0);
         var max = Math.floor(36);
