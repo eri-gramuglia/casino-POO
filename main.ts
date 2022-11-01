@@ -23,7 +23,7 @@ let progressiveSlot1:ProgressiveSlot=new ProgressiveSlot(2001,progressiveSlotBet
 
 
 
-let rouletteList:Roulette[]=[rouletteOne]
+let rouletteList:Roulette[]=[rouletteOne];
 let reelSlotList:ReelSlot[]=[reelSlot1];
 let progressiveSlotList:ProgressiveSlot[]=[progressiveSlot1];
 let newCasino:Casino=new Casino('Atlanta',progressiveSlotList,reelSlotList,rouletteList,500000);
