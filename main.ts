@@ -1,11 +1,14 @@
 import { ProgressiveSlot } from "./class/progressiveSlot";
 import { ReelSlot } from "./class/reelSlot";
 import { Casino } from "./class/casino";
+import { Player } from "./class/player";
+
 import * as fs from 'fs';
 let readline=require('readline-sync');
 let information:string=fs.readFileSync('./files.txt/info.txt','utf-8');
 let clasificationText:string[]=information.split('\\');
-let founds:number=100000;
+
+let player1:Player=new Player(36322614,'Juan','Rodriguez',15000);
 let progressiveSlotBet= [1,2,5,10,15];
 let reelSlotBet = [5,10,15,20];
 
@@ -16,7 +19,7 @@ let reelSlotList:ReelSlot[]=[reelSlot1];
 let progressiveSlotList:ProgressiveSlot[]=[progressiveSlot1];
 let newCasino:Casino=new Casino('Atlanta',progressiveSlotList,reelSlotList,500000);
 //Informacion del casino
-function welcome():void{
+export function welcome():void{
     gameInformation(0);
     main();
 }
@@ -110,7 +113,7 @@ function subMenuReel():void{
             subMenuReel();
             break;
         case 3:
-            console.log(`Se retiró con ${founds} créditos.`);
+            console.log(`Se retiró con ${player1.getFoundsAvailable()} créditos.`);
             main();
             break;
         default:
@@ -156,7 +159,7 @@ function subMenuProgressiveSlot():void{
                 subMenuProgressiveSlot();
                 break;
             case 3:
-                console.log(`Se retiró con ${founds} creditos.`);
+                console.log(`Se retiró con ${player1.getFoundsAvailable()} creditos.`);
                 main();
                 break;
             default:
@@ -173,6 +176,7 @@ function rouletteMenu(option:number):void{
         case 1:
             let value:number=readline.questionInt('')
             playGame(3,value);
+            subMenuRoulette();
             break;
         case 2:
             gameInformation(3);
@@ -193,7 +197,7 @@ function subMenuRoulette():void{
                 }
                 break;
             case 3:
-                console.log(`Se retiró con ${founds} creditos.`);
+                console.log(`Se retiró con ${player1.getFoundsAvailable()} creditos.`);
                 break;
             default:
                 console.log(` -- El número ingresado es incorrecto ingrese un número valido ---`);
@@ -226,41 +230,40 @@ function subMenuCraps():void{
             crapsMenu(1);
             break;
         case 2:
-            console.log(`Se retiró con ${founds} creditos.`);
+            console.log(`Se retiró con ${player1.getFoundsAvailable()} créditos.`);
             break;
         default:
             console.log(` -- El número ingresado es incorrecto ingrese un número valido ---`);
             subMenuCraps();
     }
 } 
-function playGame(game:number,value:number):number{
-    let newFounds=0;
-    switch(game){
-        case 1:
-            newFounds=reelSlot1.playReelSlot(value);
-            break;
-        case 2:
-            newFounds=progressiveSlot1.playProgressiveSlot(value);
-            break;
-        /*case 3:
-            newFounds=roulette1.playRoulette(value);
-            break;
-        case 4:
-            newFounds=craps1.playCraps(value);
+function playGame(game:number,value:number):void{
+    let newFounds:number=0;
+        if(player1.getFoundsAvailable()>=value){
+            switch(game){
+                case 1:
+                    newFounds=reelSlot1.playReelSlot(value);
+                    break;
+                case 2:
+                    newFounds=progressiveSlot1.playProgressiveSlot(value);
+                    break;
+                /*case 3:
+                    newFounds=roulette1.playRoulette(value);
+                    break;
+                case 4:
+                    newFounds=craps1.playCraps(value);
             break;*/
-    }if(newFounds>0){
-        founds+=newFounds;
-        newCasino.setTreasury(value);
-    } else {
-        newCasino.setTreasury(value);
-        founds-=value;
-    }
-    console.log(`Le quedan ${founds} creditos.`);
-    return newFounds;
+            }
+        } else {
+        console.log(`No tiene fondos para esta apuesta`);
+        }
+    player1.setFoundsAvailable(newFounds);
+    newCasino.setTreasury(newFounds);
+    console.log(`Le quedan ${player1.getFoundsAvailable()} créditos.`);
 }
 function replayGame(game:number,times:number,value:number):void{
         for(let i:number=0;i<times;i++){
-            if(founds>=times*value){
+            if(player1.getFoundsAvailable()>=times*value){
                 playGame(game,value);
             } else {
                 console.log(`No tiene fondos para esta apuesta.`);
