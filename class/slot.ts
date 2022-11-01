@@ -40,13 +40,17 @@ pRollerNumber:number){
     this.symbolsNumber=pNumber;
   }
   public setWinProbability(percent:number):void{
-    if(percent===50){
-      this.setSymbolsNumber(15);
-    } else if(percent===75){
-      this.setSymbolsNumber(9);
-    } else if(percent===100){
-      this.setSymbolsNumber(7);
-    } else {
+    switch(percent){
+      case 50:
+        this.setSymbolsNumber(15);
+        break;
+      case 75:
+        this.setSymbolsNumber(9);
+        break;
+      case 100:
+        this.setSymbolsNumber(7);
+        break;
+      default:
       this.setSymbolsNumber(25);
     }
   }
@@ -78,18 +82,24 @@ pRollerNumber:number){
   protected getReward():number{
     let price:number=0;
     let aux:number=this.getCombination();
-      if(aux===7){
-        price=-7;
-      } else if(aux===-1){
-        price=-1;
-      } else if (aux===1){
-        price=5;
-      } else if (aux===2){
-        price=10;
-      } else if (aux===3){
-        price=20;
-      } else if (aux===4){
-        price=40;
+      switch(aux){
+        case -7:
+          price=-7;
+          break;
+        case-1:
+          price=-1;
+          break;
+        case 1:
+          price=5;
+          break;
+        case 2:
+          price=10;
+        case 3:
+          price=20;
+          break;
+        case 4:
+          price=40;
+          break;
       }
     return price;
   }

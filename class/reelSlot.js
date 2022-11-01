@@ -37,21 +37,22 @@ var ReelSlot = /** @class */ (function (_super) {
         if (this.verifyBet(pBetValue) && this.checkRollers()) {
             aux = this.getReward();
         }
-        if (aux === -7) {
-            console.log("\u00A1\u00A1\u00A1 FELICIDADES GANO EL POZO !!! ".concat(this.well, "."));
-            reward = this.getWell();
-        }
-        else if (aux === -1) {
-            console.log("* Felicidades acert\u00F3 una linea! Gan\u00F3 ".concat(pBetValue * 50, ". *"));
-            reward = pBetValue * 50;
-        }
-        else if (aux === 0) {
-            console.log("- Perdi\u00F3 ".concat(pBetValue, " cr\u00E9ditos. -"));
-            reward -= pBetValue;
-        }
-        else {
-            console.log("- Gan\u00F3 ".concat(aux * pBetValue, " cr\u00E9ditos. -"));
-            reward += aux * pBetValue;
+        switch (aux) {
+            case -7:
+                console.log("\u00A1\u00A1\u00A1 FELICIDADES GANO EL POZO !!! ".concat(this.well, "."));
+                reward = this.getWell();
+                break;
+            case 1:
+                console.log("* Felicidades acert\u00F3 una linea! Gan\u00F3 ".concat(pBetValue * 50, ". *"));
+                reward = pBetValue * 50;
+                break;
+            case 0:
+                console.log("- Perdi\u00F3 ".concat(pBetValue, " cr\u00E9ditos. -"));
+                reward -= pBetValue;
+                break;
+            default:
+                console.log("- Gan\u00F3 ".concat(aux * pBetValue, " cr\u00E9ditos. -"));
+                reward += aux * pBetValue;
         }
         return reward;
     };
