@@ -50,22 +50,23 @@ var ProgressiveSlot = /** @class */ (function (_super) {
         var aux = this.progressiveCombination();
         if (this.verifyBet(pBetValue) && this.checkRollers()) {
             for (var i = 0; i < aux.length; i++) {
-                if (aux[i] === -7) {
-                    console.log("* Felicidades acert\u00F3 una linea de 7 en la linea ".concat([i + 1], "! Gan\u00F3 ").concat(pBetValue * 500, ". *"));
-                    reward += pBetValue * 500;
-                }
-                else if (aux[i] === -1) {
-                    console.log("* Felicidades acert\u00F3 una linea en la linea ".concat([i + 1], "! Gan\u00F3 ").concat(pBetValue * 100, ". * "));
-                    reward += pBetValue * 100;
-                }
-                else if (aux[i] === 0) {
-                    console.log("- Perdi\u00F3 ".concat(pBetValue, " cr\u00E9ditos en la linea ").concat([i + 1], ". -"));
-                    this.setJackpot(pBetValue);
-                    reward -= pBetValue;
-                }
-                else {
-                    console.log("- Gan\u00F3 ".concat(aux[i] * pBetValue, " cr\u00E9ditos en la linea ").concat([i + 1], ". -"));
-                    reward += aux[i] * pBetValue;
+                switch (aux[i]) {
+                    case -7:
+                        console.log("* Felicidades acert\u00F3 una linea de 7 en la linea ".concat([i + 1], "! Gan\u00F3 ").concat(pBetValue * 500, ". *"));
+                        reward += pBetValue * 500;
+                        break;
+                    case -1:
+                        console.log("* Felicidades acert\u00F3 una linea en la linea ".concat([i + 1], "! Gan\u00F3 ").concat(pBetValue * 100, ". * "));
+                        reward += pBetValue * 100;
+                        break;
+                    case 0:
+                        console.log("- Perdi\u00F3 ".concat(pBetValue, " cr\u00E9ditos en la linea ").concat([i + 1], ". -"));
+                        this.setJackpot(pBetValue);
+                        reward -= pBetValue;
+                        break;
+                    default:
+                        console.log("- Gan\u00F3 ".concat(aux[i] * pBetValue, " cr\u00E9ditos en la linea ").concat([i + 1], ". -"));
+                        reward += aux[i] * pBetValue;
                 }
             }
         }
