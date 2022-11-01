@@ -5,11 +5,11 @@ export class Casino {
     private casinoName:string;
     private progressiveSlotList:ProgressiveSlot[];
     private reelSlotList:ReelSlot[];
-    //private roulleteList:Roullete[];
+    private rouletteList:Roulette[];
     //private crapsList:Craps[];
     private treasury:number;
 
-    public constructor(pName:string,pProgressiveSlotList:ProgressiveSlot[],pReelSlotList:ReelSlot[],/*pRoulleteList:Roullete[],pCrapsList:Craps[],*/pTreasury:number){
+    public constructor(pName:string,pProgressiveSlotList:ProgressiveSlot[],pReelSlotList:ReelSlot[],pRoulleteList:Roulette[],/*pCrapsList:Craps[],*/pTreasury:number){
         this.casinoName=pName;
         this.progressiveSlotList=pProgressiveSlotList;
         this.reelSlotList=pReelSlotList;
@@ -50,10 +50,10 @@ export class Casino {
                     throw Error(`No existe esta maquina en el casino`);
                 } 
     }
-    /*public getRoullete(id:number):boolean{
+    public getRoullete(id:number):boolean{
         let aux=false;
-            for(let i=0;i<this.roulleteList.length;i++){
-                if(id===this.roullete[i].getId()){
+            for(let i=0;i<this.rouletteList.length;i++){
+                if(id===this.rouletteList[i].getId()){
                     aux=true;
                 } 
             } if(aux){
