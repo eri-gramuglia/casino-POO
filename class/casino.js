@@ -2,12 +2,12 @@
 exports.__esModule = true;
 exports.Casino = void 0;
 var Casino = /** @class */ (function () {
-    function Casino(pName, pProgressiveSlotList, pReelSlotList, /*pRoulleteList:Roullete[],pCrapsList:Craps[],*/ pTreasury) {
+    function Casino(pName, pProgressiveSlotList, pReelSlotList, /*pRouletteList:Roulette[],pCrapsList:Craps[],*/ pTreasury) {
         this.casinoName = pName;
         this.progressiveSlotList = pProgressiveSlotList;
         this.reelSlotList = pReelSlotList;
         this.treasury = pTreasury;
-        //this.roulleteList=pRoulleteList;
+        //this.rouletteList=pRouletteList;
         //this.crapsList=pCrapsList;
     }
     Casino.prototype.getCasinoName = function () {
@@ -44,10 +44,10 @@ var Casino = /** @class */ (function () {
             throw Error("No existe esta maquina en el casino");
         }
     };
-    /*public getRoullete(id:number):boolean{
+    /*public getRoulette(id:number):boolean{
         let aux=false;
-            for(let i=0;i<this.roulleteList.length;i++){
-                if(id===this.roullete[i].getId()){
+            for(let i=0;i<this.rouletteList.length;i++){
+                if(id===this.roulette[i].getId()){
                     aux=true;
                 }
             } if(aux){
@@ -74,7 +74,7 @@ var Casino = /** @class */ (function () {
         return this.treasury;
     };
     Casino.prototype.setTreasury = function (amount) {
-        if (amount <= 0) {
+        if (amount < 0) {
             this.treasury += amount;
         }
         else {

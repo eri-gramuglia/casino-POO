@@ -78,7 +78,7 @@ export class Casino {
         return this.treasury;
     }
     public setTreasury(amount:number):void{
-        if(amount<=0){
+        if(amount<0){
             this.treasury+=amount;
         } else {
             this.treasury-=amount;

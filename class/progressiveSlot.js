@@ -17,6 +17,7 @@ var __extends = (this && this.__extends) || (function () {
 exports.__esModule = true;
 exports.ProgressiveSlot = void 0;
 var slot_1 = require("./slot");
+var fs = require('fs');
 var ProgressiveSlot = /** @class */ (function (_super) {
     __extends(ProgressiveSlot, _super);
     function ProgressiveSlot(pId, pBetValue, pTheme, pSymbolsNumber, pWinProbability, pRollerNumber, pPayLine, pJackpot) {

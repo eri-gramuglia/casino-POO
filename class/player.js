@@ -27,7 +27,12 @@ var Player = /** @class */ (function () {
         return this._lastName;
     };
     Player.prototype.setFoundsAvailable = function (p_foundsAvailable) {
-        this._foundsAvailable = p_foundsAvailable;
+        if (p_foundsAvailable < 0) {
+            this._foundsAvailable += p_foundsAvailable;
+        }
+        else {
+            this._foundsAvailable -= p_foundsAvailable;
+        }
     };
     Player.prototype.getFoundsAvailable = function () {
         return this._foundsAvailable;
@@ -37,4 +42,4 @@ var Player = /** @class */ (function () {
 exports.Player = Player;
 // instance player Test
 /* let playerOne: Player = new Player (1,"Daniel","Jerez",10000);
-console.log (playerOne); */ 
+console.log (playerOne); */
