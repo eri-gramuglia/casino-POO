@@ -34,17 +34,21 @@ pRollerNumber:number,pPayLine:number,pJackpot:number){
     let aux:number[]=this.progressiveCombination();
       if(this.verifyBet(pBetValue) && this.checkRollers()){
         for(let i:number=0;i<aux.length;i++){
-          if(aux[i]===-7){
-            console.log(`* Felicidades acertó una linea de 7 en la linea ${[i+1]}! Ganó ${pBetValue*500}. *`);
-            reward+=pBetValue * 500;
-          } else if(aux[i]===-1){
-            console.log(`* Felicidades acertó una linea en la linea ${[i+1]}! Ganó ${pBetValue*100}. * `);
-            reward+=pBetValue * 100;
-          } else if(aux[i]===0){
-            console.log(`- Perdió ${pBetValue} créditos en la linea ${[i+1]}. -`);
-            this.setJackpot(pBetValue);
-            reward-=pBetValue;
-          } else {
+          switch(aux[i]){
+            case -7:
+              console.log(`* Felicidades acertó una linea de 7 en la linea ${[i+1]}! Ganó ${pBetValue*500}. *`);
+              reward+=pBetValue * 500;
+              break;
+            case -1:
+              console.log(`* Felicidades acertó una linea en la linea ${[i+1]}! Ganó ${pBetValue*100}. * `);
+              reward+=pBetValue * 100;
+              break;
+            case 0:
+              console.log(`- Perdió ${pBetValue} créditos en la linea ${[i+1]}. -`);
+              this.setJackpot(pBetValue);
+              reward-=pBetValue;
+              break;
+            default:
             console.log(`- Ganó ${aux[i] * pBetValue} créditos en la linea ${[i+1]}. -`);
             reward+= aux[i] * pBetValue;
           } 
