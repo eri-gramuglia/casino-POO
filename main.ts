@@ -1,6 +1,8 @@
 import { ProgressiveSlot } from "./class/progressiveSlot";
 import { ReelSlot } from "./class/reelSlot";
+import { Roulette } from "./class/roulette";
 import { Casino } from "./class/casino";
+import { Player } from "./class/player";
 import * as fs from 'fs';
 let readline=require('readline-sync');
 let information:string=fs.readFileSync('./files.txt/info.txt','utf-8');
@@ -8,17 +10,23 @@ let clasificationText:string[]=information.split('\\');
 let founds:number=100000;
 let progressiveSlotBet= [1,2,5,10,15];
 let reelSlotBet = [5,10,15,20];
+// paño de rulleta
+let numberRed: number[] = new Array (1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35)
 
+// instancio player
+let playerOne: Player = new Player (1,"Daniel","Jerez",10000);
+// instacio ruleta
+let rouletteOne : Roulette = new Roulette(1,numberRed,0)
 
 let reelSlot1:ReelSlot=new ReelSlot(1001,reelSlotBet,"Animal",9,20,3,10000);
 let progressiveSlot1:ProgressiveSlot=new ProgressiveSlot(2001,progressiveSlotBet,"Egipcio",25,25,5,2,500000);
 
 
 
-
+let rouletteList:Roulette[]=[rouletteOne]
 let reelSlotList:ReelSlot[]=[reelSlot1];
 let progressiveSlotList:ProgressiveSlot[]=[progressiveSlot1];
-let newCasino:Casino=new Casino('Atlanta',progressiveSlotList,reelSlotList,500000);
+let newCasino:Casino=new Casino('Atlanta',progressiveSlotList,reelSlotList,rouletteList,500000);
 //Informacion del casino
 function welcome():void{
     gameInformation(0);

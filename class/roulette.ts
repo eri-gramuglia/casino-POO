@@ -2,15 +2,15 @@ import { Player } from "./player"
 export class Roulette {
     private _id: number;
     private _numRed: Array <number>;
-    private _numBlack: Array <number>;
+ //   private _numBlack: Array <number>;
     private _numRandom: number;
  //   private _boxFound: number;
  //   private _player: Player;
 
-    constructor(p_id: number, p_numRed: Array<number>, p_numBlack: Array<number>,p_numRandom: number,/*p_boxFound:number*/) {
+    constructor(p_id: number, p_numRed: Array<number>, /*p_numBlack: Array<number>,*/p_numRandom: number,/*p_boxFound:number*/) {
         this._id = p_id;
         this._numRed= p_numRed;
-        this._numBlack = p_numBlack;
+        //this._numBlack = p_numBlack;
         this._numRandom = p_numRandom;
 //        this._boxFound = p_boxFound;
 //        this._player = p_player;
@@ -30,12 +30,12 @@ export class Roulette {
         return this._numRed
 ;
     }
-    public setNumWhite(p_numBlack:Array<number>):void {
+/*     public setNumWhite(p_numBlack:Array<number>):void {
         this._numBlack = p_numBlack;
     }
     public getNumWhite():Array<number> {
         return this._numBlack;
-    }
+    } */
 /*    public setBoxFound(p_boxFound:number):void {
         this._boxFound = p_boxFound;
     }
