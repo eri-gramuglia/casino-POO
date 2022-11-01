@@ -1,13 +1,15 @@
 "use strict";
 exports.__esModule = true;
+exports.welcome = void 0;
 var progressiveSlot_1 = require("./class/progressiveSlot");
 var reelSlot_1 = require("./class/reelSlot");
 var casino_1 = require("./class/casino");
+var player_1 = require("./class/player");
 var fs = require("fs");
 var readline = require('readline-sync');
 var information = fs.readFileSync('./files.txt/info.txt', 'utf-8');
 var clasificationText = information.split('\\');
-var founds = 100000;
+var player1 = new player_1.Player(36322614, 'Juan', 'Rodriguez', 15000);
 var progressiveSlotBet = [1, 2, 5, 10, 15];
 var reelSlotBet = [5, 10, 15, 20];
 var reelSlot1 = new reelSlot_1.ReelSlot(1001, reelSlotBet, "Animal", 9, 20, 3, 10000);
@@ -20,6 +22,7 @@ function welcome() {
     gameInformation(0);
     main();
 }
+exports.welcome = welcome;
 // Funcion de inicio para el menu del casino
 function main() {
     console.log('Oprima 1 para empezar a jugar.');
@@ -63,7 +66,7 @@ function callGame(option) {
         case 3:
             gameOptions();
             var rouleteOption = readline.questionInt();
-            roulleteMenu(rouleteOption);
+            rouletteMenu(rouleteOption);
             break;
         case 4:
             gameOptions();
@@ -110,7 +113,7 @@ function subMenuReel() {
             subMenuReel();
             break;
         case 3:
-            console.log("Se retir\u00F3 con ".concat(founds, " cr\u00E9ditos."));
+            console.log("Se retir\u00F3 con ".concat(player1.getFoundsAvailable(), " cr\u00E9ditos."));
             main();
             break;
         default:
@@ -129,7 +132,7 @@ function progressiveSlotMenu(option) {
             var value = readline.questionInt('Ingrese su apuesta ( 1 - 2 - 5 - 10 - 15 ): ');
             setSlotLines(lines);
             playGame(2, value);
-            subMenuProgressive();
+            subMenuProgressiveSlot();
             break;
         case 2:
             gameInformation(2);
@@ -140,7 +143,7 @@ function progressiveSlotMenu(option) {
 function setSlotLines(lines) {
     progressiveSlot1.setPayLine(lines);
 }
-function subMenuProgressive() {
+function subMenuProgressiveSlot() {
     console.log('1: JUGAR \n2: MULTIPLICAR JUGADAS \n3: COBRAR Y SALIR');
     var gameOption = readline.questionInt();
     switch (gameOption) {
@@ -153,19 +156,19 @@ function subMenuProgressive() {
             var value = readline.questionInt('Ingrese apuesta ( 1 - 2 - 5 - 10 - 15): ');
             replayGame(2, times, value);
             setSlotLines(lines);
-            subMenuProgressive();
+            subMenuProgressiveSlot();
             break;
         case 3:
-            console.log("Se retir\u00F3 con ".concat(founds, " creditos."));
+            console.log("Se retir\u00F3 con ".concat(player1.getFoundsAvailable(), " creditos."));
             main();
             break;
         default:
             console.log(" -- El n\u00FAmero ingresado es incorrecto ingrese un n\u00FAmero valido ---");
-            subMenuProgressive();
+            subMenuProgressiveSlot();
     }
 }
 /* Funcionalidades de ruleta */
-function roulleteMenu(option) {
+function rouletteMenu(option) {
     switch (option) {
         case 0:
             games();
@@ -173,6 +176,7 @@ function roulleteMenu(option) {
         case 1:
             var value = readline.questionInt('');
             playGame(3, value);
+            subMenuRoulette();
             break;
         case 2:
             gameInformation(3);
@@ -180,7 +184,7 @@ function roulleteMenu(option) {
             break;
     }
 }
-function subMenuRoullete() {
+function subMenuRoulette() {
     console.log('1: JUGAR \n2: REPETIR JUGADAS \n3: COBRAR Y SALIR');
     var gameOption = readline.questionInt();
     switch (gameOption) {
@@ -193,7 +197,7 @@ function subMenuRoullete() {
             }
             break;
         case 3:
-            console.log("Se retir\u00F3 con ".concat(founds, " creditos."));
+            console.log("Se retir\u00F3 con ".concat(player1.getFoundsAvailable(), " creditos."));
             break;
         default:
             console.log(" -- El n\u00FAmero ingresado es incorrecto ingrese un n\u00FAmero valido ---");
@@ -226,7 +230,7 @@ function subMenuCraps() {
             crapsMenu(1);
             break;
         case 2:
-            console.log("Se retir\u00F3 con ".concat(founds, " creditos."));
+            console.log("Se retir\u00F3 con ".concat(player1.getFoundsAvailable(), " cr\u00E9ditos."));
             break;
         default:
             console.log(" -- El n\u00FAmero ingresado es incorrecto ingrese un n\u00FAmero valido ---");
@@ -235,34 +239,32 @@ function subMenuCraps() {
 }
 function playGame(game, value) {
     var newFounds = 0;
-    switch (game) {
-        case 1:
-            newFounds = reelSlot1.playReelSlot(value);
-            break;
-        case 2:
-            newFounds = progressiveSlot1.playProgressiveSlot(value);
-            break;
-        /*case 3:
-            newFounds=roullete1.playRoullete(value);
-            break;
-        case 4:
-            newFounds=craps1.playCraps(value);
-            break;*/
-    }
-    if (newFounds > 0) {
-        founds += newFounds;
-        newCasino.setTreasury(value);
+    if (player1.getFoundsAvailable() >= value) {
+        switch (game) {
+            case 1:
+                newFounds = reelSlot1.playReelSlot(value);
+                break;
+            case 2:
+                newFounds = progressiveSlot1.playProgressiveSlot(value);
+                break;
+            /*case 3:
+                newFounds=roulette1.playRoulette(value);
+                break;
+            case 4:
+                newFounds=craps1.playCraps(value);
+        break;*/
+        }
     }
     else {
-        newCasino.setTreasury(value);
-        founds -= value;
+        console.log("No tiene fondos para esta apuesta");
     }
-    console.log("Le quedan ".concat(founds, " creditos."));
-    return newFounds;
+    player1.setFoundsAvailable(newFounds);
+    newCasino.setTreasury(newFounds);
+    console.log("Le quedan ".concat(player1.getFoundsAvailable(), " cr\u00E9ditos."));
 }
 function replayGame(game, times, value) {
     for (var i = 0; i < times; i++) {
-        if (founds >= times * value) {
+        if (player1.getFoundsAvailable() >= times * value) {
             playGame(game, value);
         }
         else {
