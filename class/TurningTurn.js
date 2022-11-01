@@ -81,16 +81,20 @@ var TurningTurn = /** @class */ (function () {
             this._player.setFoundsAvailable(this._player.getFoundsAvailable() - this.getBetValue());
             this._roulette.setBoxFound(this._roulette.getBoxFound() + this.getBetValue());
         }
-        else if (this._numSelect != -1) {
-            if (aux === this._numSelect) {
-                console.log("----------------------------------------------------------------");
-                console.log("WINS PLENO");
-                console.log("----------------------------------------------------------------");
-                this._player.setFoundsAvailable(this._player.getFoundsAvailable() + (this.getBetValue() * 35));
-                this._roulette.setBoxFound(this._roulette.getBoxFound() - (this.getBetValue() * 35));
-            }
-            else {
-                console.log("Lost PLENO");
+        else {
+            if (this._numSelect != -1) {
+                if (aux === this._numSelect) {
+                    console.log("----------------------------------------------------------------");
+                    console.log("WINS PLENO");
+                    console.log("----------------------------------------------------------------");
+                    this._player.setFoundsAvailable(this._player.getFoundsAvailable() + (this.getBetValue() * 35));
+                    this._roulette.setBoxFound(this._roulette.getBoxFound() - (this.getBetValue() * 35));
+                }
+                else {
+                    console.log("Lost PLENO");
+                    this._player.setFoundsAvailable(this._player.getFoundsAvailable() - (this.getBetValue()));
+                    this._roulette.setBoxFound(this._roulette.getBoxFound() + (this.getBetValue()));
+                }
             }
             if (this._colorSelect != " ") {
                 if (this._colorSelect === this._roulette.getColor(aux)) {
@@ -99,6 +103,11 @@ var TurningTurn = /** @class */ (function () {
                     console.log("----------------------------------------------------------------");
                     this._player.setFoundsAvailable(this._player.getFoundsAvailable() + (this.getBetValue() * 1));
                     this._roulette.setBoxFound(this._roulette.getBoxFound() - this.getBetValue());
+                }
+                else {
+                    console.log("Lost en Color");
+                    this._player.setFoundsAvailable(this._player.getFoundsAvailable() - (this.getBetValue()));
+                    this._roulette.setBoxFound(this._roulette.getBoxFound() + (this.getBetValue()));
                 }
             }
             if (this._evenOroddSelect != " ") {
@@ -109,6 +118,11 @@ var TurningTurn = /** @class */ (function () {
                     this._player.setFoundsAvailable(this._player.getFoundsAvailable() + (this.getBetValue() * 1));
                     this._roulette.setBoxFound(this._roulette.getBoxFound() - this.getBetValue());
                 }
+                else {
+                    console.log("Lost en Par o IMPAR");
+                    this._player.setFoundsAvailable(this._player.getFoundsAvailable() - (this.getBetValue()));
+                    this._roulette.setBoxFound(this._roulette.getBoxFound() + (this.getBetValue()));
+                }
             }
             if (this._dozenSelect != " ") {
                 if (this._dozenSelect === this._roulette.getDozen(aux)) {
@@ -118,6 +132,11 @@ var TurningTurn = /** @class */ (function () {
                     this._player.setFoundsAvailable(this._player.getFoundsAvailable() + (this.getBetValue() * 2));
                     this._roulette.setBoxFound(this._roulette.getBoxFound() - this.getBetValue());
                 }
+                else {
+                    console.log("Lost en Docena");
+                    this._player.setFoundsAvailable(this._player.getFoundsAvailable() - (this.getBetValue()));
+                    this._roulette.setBoxFound(this._roulette.getBoxFound() + (this.getBetValue()));
+                }
             }
             if (this._highOrLowSelect != " ") {
                 if (this._highOrLowSelect === this._roulette.getHighOrLow(aux)) {
@@ -126,6 +145,11 @@ var TurningTurn = /** @class */ (function () {
                     console.log("----------------------------------------------------------------");
                     this._player.setFoundsAvailable(this._player.getFoundsAvailable() + (this.getBetValue() * 1));
                     this._roulette.setBoxFound(this._roulette.getBoxFound() - this.getBetValue());
+                }
+                else {
+                    console.log("Lost en Alto o BAJO");
+                    this._player.setFoundsAvailable(this._player.getFoundsAvailable() - (this.getBetValue()));
+                    this._roulette.setBoxFound(this._roulette.getBoxFound() + (this.getBetValue()));
                 }
             }
         }
@@ -140,6 +164,6 @@ var black = new Array(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32
 var rouletteOne = new roulette_1.Roulette(1, red, black, 2, 500000);
 // instance TurningTurn
 var TurningTurnOne = new TurningTurn(1, rouletteOne, playerOne, 100, 25, "ROJO", "PAR", "1ra Docena", "Numero BAJO");
-var TurningTurnTwo = new TurningTurn(1, rouletteOne, playerOne, 1000, 1, "ROJO", "IMPAR", "2da Docena", "Numero ALTO");
+var TurningTurnTwo = new TurningTurn(1, rouletteOne, playerOne, 1000, undefined, "ROJO", "IMPAR", "2da Docena", "Numero ALTO");
 //TurningTurnOne.turning()
 TurningTurnTwo.turning();
