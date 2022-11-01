@@ -16,6 +16,7 @@ export class Casino {
         this.treasury=pTreasury;
         //this.roulleteList=pRoulleteList;
         //this.crapsList=pCrapsList;
+        
     }
     public getCasinoName():string{
         return this.casinoName;
