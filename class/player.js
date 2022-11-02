@@ -2,17 +2,17 @@
 exports.__esModule = true;
 exports.Player = void 0;
 var Player = /** @class */ (function () {
-    function Player(p_id, p_name, p_lastName, p_foundsAvailable) {
-        this._id = p_id;
+    function Player(p_age, p_name, p_lastName, p_foundsAvailable) {
+        this._age = p_age;
         this._name = p_name;
         this._lastName = p_lastName;
         this._foundsAvailable = p_foundsAvailable;
     }
-    Player.prototype.setId = function (p_id) {
-        this._id = p_id;
+    Player.prototype.setAge = function (p_age) {
+        this._age = p_age;
     };
-    Player.prototype.getId = function () {
-        return this._id;
+    Player.prototype.getAge = function () {
+        return this._age;
     };
     Player.prototype.setName = function (p_name) {
         this._name = p_name;
