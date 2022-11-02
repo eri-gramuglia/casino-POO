@@ -37,6 +37,19 @@ var ProgressiveSlot = /** @class */ (function (_super) {
     ProgressiveSlot.prototype.setJackpot = function (newJackpot) {
         this.jackpot += newJackpot;
     };
+    ProgressiveSlot.prototype.verifyLines = function (lines) {
+        var aux = false;
+        if (0 < lines && lines <= 5) {
+            aux = true;
+        }
+        if (aux) {
+            return true;
+        }
+        else {
+            console.log("Ingrese un n\u00FAmero de lineas v\u00E1lido");
+            return false;
+        }
+    };
     ProgressiveSlot.prototype.progressiveCombination = function () {
         var aux = new Array(this.payLine);
         var combination = [];

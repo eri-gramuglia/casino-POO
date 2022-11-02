@@ -23,6 +23,17 @@ pRollerNumber:number,pPayLine:number,pJackpot:number){
   public setJackpot(newJackpot:number):void{
     this.jackpot+=newJackpot;
   }
+  public verifyLines(lines:number):boolean{
+    let aux=false;
+    if(0 < lines && lines <= 5){
+      aux=true;
+    } if(aux){
+      return true;
+    } else {
+      console.log(`Ingrese un número de lineas válido`);
+      return false;
+    }
+  }
   private progressiveCombination():number[]{
     let aux:number[]=new Array(this.payLine);
     let combination:number[]=[];

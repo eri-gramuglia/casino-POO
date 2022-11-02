@@ -108,23 +108,25 @@ pRollerNumber:number){
       if(this.getRollerNumber()>2 && this.getRollerNumber()<=5){
         aux=true;
       }
-      if(aux===true){
+      if(aux){
         return true;
       } else {
-        throw new Error("Elija la cantidad de 3 o 5 rodillos.");
+        console.log("Elija la cantidad de 3 o 5 rodillos.");
+        return false;
     }
   }
-  protected verifyBet(pBetValue:number):boolean{
+  public verifyBet(pBetValue:number):boolean{
     let aux=false;
       for(let i:number=0;i<this.getBetValue().length;i++){
         if(pBetValue===this.getBetValue()[i]){
           aux=true;
         } 
-      }if(aux===true){
-        return true
+      }if(aux){
+        return true;
       }
       else {
-        throw Error(`Ingrese una apuesta valida.`);
+        console.log(`Ingrese una apuesta valida.`);
+        return false;
       }
   } 
 }
