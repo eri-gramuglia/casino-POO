@@ -17,14 +17,6 @@ var progressiveSlot1 = new progressiveSlot_1.ProgressiveSlot(2001, progressiveSl
 var reelSlotList = [reelSlot1];
 var progressiveSlotList = [progressiveSlot1];
 var newCasino = new casino_1.Casino('Atlanta', progressiveSlotList, reelSlotList, 500000);
-function newPlayer() {
-    var name = readline.question("Ingrese su nombre: ");
-    var surname = readline.question("Ingrese su apellido: ");
-    var id = readline.question("Ingrese su numero de identidad para verificar su edad: ");
-    var founds = readline.question("Ingrese sus los fondos que desea utilizar:");
-    player1 = new player_1.Player(id, name, surname, founds);
-    console.log(player1);
-}
 //Informacion del casino
 function welcome() {
     gameInformation(0);
@@ -33,6 +25,15 @@ function welcome() {
     main();
 }
 exports.welcome = welcome;
+// Funcion para carga de jugador
+function newPlayer() {
+    var name = readline.question("Ingrese su nombre: ");
+    var surname = readline.question("Ingrese su apellido: ");
+    var id = readline.question("Ingrese su numero de identidad para verificar su edad: ");
+    var founds = readline.questionInt("Ingrese sus los fondos que desea utilizar:");
+    player1 = new player_1.Player(id, name, surname, founds);
+    console.log(player1);
+}
 // Funcion de inicio para el menu del casino
 function main() {
     console.log('Oprima 1 para empezar a jugar.');
@@ -288,4 +289,3 @@ function gameInformation(index) {
     var text = clasificationText[index].toString();
     console.log(text);
 }
-welcome();

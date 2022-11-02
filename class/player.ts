@@ -30,11 +30,7 @@ export class Player {
         return this._lastName;
     }
     public setFoundsAvailable(p_foundsAvailable: number): void {
-        if(p_foundsAvailable<0){
-            this._foundsAvailable+=p_foundsAvailable;
-        } else {
-            this._foundsAvailable-=p_foundsAvailable;
-        }
+        this._foundsAvailable+=p_foundsAvailable;
     }
     public getFoundsAvailable(): number {
         return this._foundsAvailable;

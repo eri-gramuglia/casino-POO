@@ -27,12 +27,7 @@ var Player = /** @class */ (function () {
         return this._lastName;
     };
     Player.prototype.setFoundsAvailable = function (p_foundsAvailable) {
-        if (p_foundsAvailable < 0) {
-            this._foundsAvailable += p_foundsAvailable;
-        }
-        else {
-            this._foundsAvailable -= p_foundsAvailable;
-        }
+        this._foundsAvailable += p_foundsAvailable;
     };
     Player.prototype.getFoundsAvailable = function () {
         return this._foundsAvailable;
