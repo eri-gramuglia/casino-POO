@@ -8,7 +8,7 @@ let readline=require('readline-sync');
 let information:string=fs.readFileSync('./files.txt/info.txt','utf-8');
 let clasificationText:string[]=information.split('\\');
 
-let player1:Player=new Player(36322614,'Juan','Rodriguez',15000);
+let player1:Player;
 let progressiveSlotBet= [1,2,5,10,15];
 let reelSlotBet = [5,10,15,20];
 
@@ -18,9 +18,20 @@ let progressiveSlot1:ProgressiveSlot=new ProgressiveSlot(2001,progressiveSlotBet
 let reelSlotList:ReelSlot[]=[reelSlot1];
 let progressiveSlotList:ProgressiveSlot[]=[progressiveSlot1];
 let newCasino:Casino=new Casino('Atlanta',progressiveSlotList,reelSlotList,500000);
+
+function newPlayer():void{
+    let name:string=readline.question(`Ingrese su nombre: `);
+    let surname:string=readline.question(`Ingrese su apellido: `);
+    let id:number=readline.question(`Ingrese su numero de identidad para verificar su edad: `);
+    let founds:number=readline.question(`Ingrese sus los fondos que desea utilizar:`);
+    player1=new Player(id,name,surname,founds);
+    console.log(player1);
+}
 //Informacion del casino
 export function welcome():void{
     gameInformation(0);
+    newPlayer();
+    console.log(`Bienvenido ${player1.getName()}.`);
     main();
 }
 // Funcion de inicio para el menu del casino
@@ -113,8 +124,7 @@ function subMenuReel():void{
             subMenuReel();
             break;
         case 3:
-            console.log(`Se retiró con ${player1.getFoundsAvailable()} créditos.`);
-            main();
+            console.log(`${player1.getName()} se retiró con ${player1.getFoundsAvailable()} créditos.`);
             break;
         default:
             console.log(` -- El número ingresado es incorrecto ingrese un número valido ---`);
@@ -159,8 +169,7 @@ function subMenuProgressiveSlot():void{
                 subMenuProgressiveSlot();
                 break;
             case 3:
-                console.log(`Se retiró con ${player1.getFoundsAvailable()} creditos.`);
-                main();
+                console.log(`${player1.getName()} se retiró con ${player1.getFoundsAvailable()} créditos.`);
                 break;
             default:
             console.log(` -- El número ingresado es incorrecto ingrese un número valido ---`);
@@ -238,8 +247,12 @@ function subMenuCraps():void{
     }
 } 
 function playGame(game:number,value:number):void{
+    let aux=false;
     let newFounds:number=0;
         if(player1.getFoundsAvailable()>=value){
+            aux=true
+        }
+        if(aux===true){
             switch(game){
                 case 1:
                     newFounds=reelSlot1.playReelSlot(value);

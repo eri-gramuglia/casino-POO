@@ -9,7 +9,7 @@ var fs = require("fs");
 var readline = require('readline-sync');
 var information = fs.readFileSync('./files.txt/info.txt', 'utf-8');
 var clasificationText = information.split('\\');
-var player1 = new player_1.Player(36322614, 'Juan', 'Rodriguez', 15000);
+var player1;
 var progressiveSlotBet = [1, 2, 5, 10, 15];
 var reelSlotBet = [5, 10, 15, 20];
 var reelSlot1 = new reelSlot_1.ReelSlot(1001, reelSlotBet, "Animal", 9, 20, 3, 10000);
@@ -17,9 +17,19 @@ var progressiveSlot1 = new progressiveSlot_1.ProgressiveSlot(2001, progressiveSl
 var reelSlotList = [reelSlot1];
 var progressiveSlotList = [progressiveSlot1];
 var newCasino = new casino_1.Casino('Atlanta', progressiveSlotList, reelSlotList, 500000);
+function newPlayer() {
+    var name = readline.question("Ingrese su nombre: ");
+    var surname = readline.question("Ingrese su apellido: ");
+    var id = readline.question("Ingrese su numero de identidad para verificar su edad: ");
+    var founds = readline.question("Ingrese sus los fondos que desea utilizar:");
+    player1 = new player_1.Player(id, name, surname, founds);
+    console.log(player1);
+}
 //Informacion del casino
 function welcome() {
     gameInformation(0);
+    newPlayer();
+    console.log("Bienvenido ".concat(player1.getName(), "."));
     main();
 }
 exports.welcome = welcome;
@@ -113,8 +123,7 @@ function subMenuReel() {
             subMenuReel();
             break;
         case 3:
-            console.log("Se retir\u00F3 con ".concat(player1.getFoundsAvailable(), " cr\u00E9ditos."));
-            main();
+            console.log("".concat(player1.getName(), " se retir\u00F3 con ").concat(player1.getFoundsAvailable(), " cr\u00E9ditos."));
             break;
         default:
             console.log(" -- El n\u00FAmero ingresado es incorrecto ingrese un n\u00FAmero valido ---");
@@ -159,8 +168,7 @@ function subMenuProgressiveSlot() {
             subMenuProgressiveSlot();
             break;
         case 3:
-            console.log("Se retir\u00F3 con ".concat(player1.getFoundsAvailable(), " creditos."));
-            main();
+            console.log("".concat(player1.getName(), " se retir\u00F3 con ").concat(player1.getFoundsAvailable(), " cr\u00E9ditos."));
             break;
         default:
             console.log(" -- El n\u00FAmero ingresado es incorrecto ingrese un n\u00FAmero valido ---");
@@ -238,8 +246,12 @@ function subMenuCraps() {
     }
 }
 function playGame(game, value) {
+    var aux = false;
     var newFounds = 0;
     if (player1.getFoundsAvailable() >= value) {
+        aux = true;
+    }
+    if (aux === true) {
         switch (game) {
             case 1:
                 newFounds = reelSlot1.playReelSlot(value);

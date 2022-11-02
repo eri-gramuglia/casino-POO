@@ -17,7 +17,6 @@ var __extends = (this && this.__extends) || (function () {
 exports.__esModule = true;
 exports.ProgressiveSlot = void 0;
 var slot_1 = require("./slot");
-var fs = require('fs');
 var ProgressiveSlot = /** @class */ (function (_super) {
     __extends(ProgressiveSlot, _super);
     function ProgressiveSlot(pId, pBetValue, pTheme, pSymbolsNumber, pWinProbability, pRollerNumber, pPayLine, pJackpot) {
@@ -48,6 +47,7 @@ var ProgressiveSlot = /** @class */ (function (_super) {
     };
     ProgressiveSlot.prototype.playProgressiveSlot = function (pBetValue) {
         var reward = 0;
+        var jackpot = 0;
         var aux = this.progressiveCombination();
         if (this.verifyBet(pBetValue) && this.checkRollers()) {
             for (var i = 0; i < aux.length; i++) {
@@ -55,6 +55,7 @@ var ProgressiveSlot = /** @class */ (function (_super) {
                     case -7:
                         console.log("* Felicidades acert\u00F3 una linea de 7 en la linea ".concat([i + 1], "! Gan\u00F3 ").concat(pBetValue * 500, ". *"));
                         reward += pBetValue * 500;
+                        jackpot + 1;
                         break;
                     case -1:
                         console.log("* Felicidades acert\u00F3 una linea en la linea ".concat([i + 1], "! Gan\u00F3 ").concat(pBetValue * 100, ". * "));
@@ -71,7 +72,7 @@ var ProgressiveSlot = /** @class */ (function (_super) {
                 }
             }
         }
-        if (reward === -35) {
+        if (jackpot === -35) {
             console.log("***\u00A1\u00A1\u00A1FELICIDADES GANO EL JACKPOT!!!**** ".concat(this.getJackpot()));
             reward = this.getJackpot();
             this.setJackpot(0);
