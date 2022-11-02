@@ -216,7 +216,7 @@ function rouletteMenu(option) {
     }
 }
 function subMenuRoulette() {
-    console.log('1: JUGAR \n2: COBRAR Y SALIR \n3: Ir a otra Maquina');
+    console.log('1: JUGAR \n2: COBRAR Y SALIR \n3: Volver al menú anterior');
     var gameOption = readline.questionInt();
     switch (gameOption) {
         case 1:
@@ -230,8 +230,10 @@ function subMenuRoulette() {
             break;
         case 3:
             games();
+            break;
         default:
             console.log(" -- El n\u00FAmero ingresado es incorrecto ingrese un n\u00FAmero valido ---");
+            subMenuRoulette();
     }
 }
 /* Funcionalidades de dados */

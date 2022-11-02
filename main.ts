@@ -239,6 +239,7 @@ function subMenuRoulette():void{
                 break;
             default:
                 console.log(` -- El número ingresado es incorrecto ingrese un número valido ---`);
+                subMenuRoulette();
             }
     }
 
