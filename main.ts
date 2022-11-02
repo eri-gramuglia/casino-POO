@@ -222,7 +222,7 @@ function rouletteMenu(option:number):void{
     }
 }
 function subMenuRoulette():void{
-    console.log('1: JUGAR \n2: COBRAR Y SALIR \n3: Ir a otra Maquina');
+    console.log('1: JUGAR \n2: COBRAR Y SALIR \n3: Volver al menú anterior');
     let gameOption:number=readline.questionInt();
         switch(gameOption){
             case 1:
@@ -236,8 +236,9 @@ function subMenuRoulette():void{
                 break;
             case 3:
                 games();
-           // default:
-           //     console.log(` -- El número ingresado es incorrecto ingrese un número valido ---`);
+                break;
+            default:
+                console.log(` -- El número ingresado es incorrecto ingrese un número valido ---`);
             }
     }
 
