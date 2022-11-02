@@ -105,11 +105,12 @@ var Slot = /** @class */ (function () {
         if (this.getRollerNumber() > 2 && this.getRollerNumber() <= 5) {
             aux = true;
         }
-        if (aux === true) {
+        if (aux) {
             return true;
         }
         else {
-            throw new Error("Elija la cantidad de 3 o 5 rodillos.");
+            console.log("Elija la cantidad de 3 o 5 rodillos.");
+            return false;
         }
     };
     Slot.prototype.verifyBet = function (pBetValue) {
@@ -119,11 +120,12 @@ var Slot = /** @class */ (function () {
                 aux = true;
             }
         }
-        if (aux === true) {
+        if (aux) {
             return true;
         }
         else {
-            throw Error("Ingrese una apuesta valida.");
+            console.log("Ingrese una apuesta valida.");
+            return false;
         }
     };
     return Slot;
