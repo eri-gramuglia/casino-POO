@@ -214,25 +214,26 @@ function rouletteMenu(option) {
             break;
     }
 }
-function subMenuRoulette() {
+/*function subMenuRoulette():void{
     console.log('1: JUGAR \n2: REPETIR JUGADAS \n3: COBRAR Y SALIR');
-    var gameOption = readline.questionInt();
-    switch (gameOption) {
-        case 1:
-            break;
-        case 2:
-            var times = readline.questionInt('Ingrese la cantidad de repeticiones:');
-            for (var i = 0; i < times; i++) {
-                reelSlotMenu(1);
+    let gameOption:number=readline.questionInt();
+        switch(gameOption){
+            case 1:
+                break;
+            case 2:
+                let times:number=readline.questionInt('Ingrese la cantidad de repeticiones:');
+                for(let i:number=0;i<times;i++){
+                    reelSlotMenu(1)
+                }
+                break;
+            case 3:
+                console.log(`Se retiró con ${founds} creditos.`);
+                break;
+            default:
+                console.log(` -- El número ingresado es incorrecto ingrese un número valido ---`);
             }
-            break;
-        case 3:
-            console.log("Se retir\u00F3 con ".concat(founds, " creditos."));
-            break;
-        default:
-            console.log(" -- El n\u00FAmero ingresado es incorrecto ingrese un n\u00FAmero valido ---");
     }
-}
+*/
 /* Funcionalidades de dados */
 function crapsMenu(option) {
     switch (option) {
