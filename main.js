@@ -205,7 +205,8 @@ function rouletteMenu(option) {
             var turningTurnOne = new TurningTurn_1.TurningTurn(1, newCasino, rouletteOne, playerOne, value, pleno, color, parOinpar, docena, altoObajo);
             turningTurnOne.turning();
             console.log("----------------------------------------------------------------");
-            callGame(3);
+            subMenuRoulette();
+            //callGame(3)
             //playGame(3,value);
             break;
         case 2:
@@ -214,26 +215,25 @@ function rouletteMenu(option) {
             break;
     }
 }
-/*function subMenuRoulette():void{
-    console.log('1: JUGAR \n2: REPETIR JUGADAS \n3: COBRAR Y SALIR');
-    let gameOption:number=readline.questionInt();
-        switch(gameOption){
-            case 1:
-                break;
-            case 2:
-                let times:number=readline.questionInt('Ingrese la cantidad de repeticiones:');
-                for(let i:number=0;i<times;i++){
-                    reelSlotMenu(1)
-                }
-                break;
-            case 3:
-                console.log(`Se retiró con ${founds} creditos.`);
-                break;
-            default:
-                console.log(` -- El número ingresado es incorrecto ingrese un número valido ---`);
-            }
+function subMenuRoulette() {
+    console.log('1: JUGAR \n2: COBRAR Y SALIR \n3: Ir a otra Maquina');
+    var gameOption = readline.questionInt();
+    switch (gameOption) {
+        case 1:
+            rouletteMenu(1);
+            break;
+        case 2:
+            console.log("----------------------------------------------------------------");
+            console.log("Su saldo actual es de: ".concat(playerOne.getFoundsAvailable()));
+            console.log("----------------------------------------------------------------");
+            //console.log(`Se retiró con ${founds} creditos.`);
+            break;
+        case 3:
+            games();
+        default:
+            console.log(" -- El n\u00FAmero ingresado es incorrecto ingrese un n\u00FAmero valido ---");
     }
-*/
+}
 /* Funcionalidades de dados */
 function crapsMenu(option) {
     switch (option) {
