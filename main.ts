@@ -14,7 +14,7 @@ let progressiveSlotBet= [1,2,5,10,15];
 let reelSlotBet = [5,10,15,20];
 let countTurns:number = 0;
 // paño de rulleta
-let numberRed: number[] = new Array (1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35)
+let numberRed: number[] = new Array (1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 35)
 
 // instancio player
 let playerOne: Player = new Player (1,"Daniel","Jerez",10000);
