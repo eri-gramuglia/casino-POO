@@ -3,6 +3,7 @@ import { ReelSlot } from "./class/reelSlot";
 import { Roulette } from "./class/roulette";
 import { Casino } from "./class/casino";
 import { Player } from "./class/player";
+
 import * as fs from 'fs';
 let readline=require('readline-sync');
 let information:string=fs.readFileSync('./files.txt/info.txt','utf-8');
