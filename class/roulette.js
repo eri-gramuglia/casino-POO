@@ -2,14 +2,15 @@
 exports.__esModule = true;
 exports.Roulette = void 0;
 var Roulette = /** @class */ (function () {
+    //   private _boxFound: number;
     //   private _player: Player;
-    function Roulette(p_id, p_numRed, p_numBlack, p_numRandom, p_boxFound) {
+    function Roulette(p_id, p_numRed, /*p_numBlack: Array<number>,*/ p_numRandom) {
         this._id = p_id;
         this._numRed = p_numRed;
-        this._numBlack = p_numBlack;
+        //this._numBlack = p_numBlack;
         this._numRandom = p_numRandom;
-        this._boxFound = p_boxFound;
-        //       this._player = p_player;
+        //        this._boxFound = p_boxFound;
+        //        this._player = p_player;
     }
     Roulette.prototype.setId = function (p_id) {
         this._id = p_id;
@@ -23,21 +24,21 @@ var Roulette = /** @class */ (function () {
     Roulette.prototype.getNumRed = function () {
         return this._numRed;
     };
-    Roulette.prototype.setNumWhite = function (p_numBlack) {
-        this._numBlack = p_numBlack;
-    };
-    Roulette.prototype.getNumWhite = function () {
-        return this._numBlack;
-    };
-    Roulette.prototype.setBoxFound = function (p_boxFound) {
-        this._boxFound = p_boxFound;
-    };
-    Roulette.prototype.getBoxFound = function () {
-        return this._boxFound;
-    };
-    //  public setPlayersList(p_player: Player):void {
-    //       this._player = p_player;
-    //  }
+    /*     public setNumWhite(p_numBlack:Array<number>):void {
+            this._numBlack = p_numBlack;
+        }
+        public getNumWhite():Array<number> {
+            return this._numBlack;
+        } */
+    /*    public setBoxFound(p_boxFound:number):void {
+            this._boxFound = p_boxFound;
+        }
+        public getBoxFound():number {
+            return this._boxFound;
+        }
+        public setPlayersList(p_player: Player):void {
+            this._player = p_player;
+        }*/
     Roulette.prototype.getNumRandom = function () {
         var min = Math.ceil(0);
         var max = Math.floor(36);

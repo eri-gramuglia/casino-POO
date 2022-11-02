@@ -2,7 +2,10 @@
 exports.__esModule = true;
 var progressiveSlot_1 = require("./class/progressiveSlot");
 var reelSlot_1 = require("./class/reelSlot");
+var roulette_1 = require("./class/roulette");
 var casino_1 = require("./class/casino");
+var player_1 = require("./class/player");
+var TurningTurn_1 = require("./class/TurningTurn");
 var fs = require("fs");
 var readline = require('readline-sync');
 var information = fs.readFileSync('./files.txt/info.txt', 'utf-8');
@@ -10,11 +13,18 @@ var clasificationText = information.split('\\');
 var founds = 100000;
 var progressiveSlotBet = [1, 2, 5, 10, 15];
 var reelSlotBet = [5, 10, 15, 20];
+// paño de rulleta
+var numberRed = new Array(1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35);
+// instancio player
+var playerOne = new player_1.Player(1, "Daniel", "Jerez", 10000);
+// instacio ruleta
+var rouletteOne = new roulette_1.Roulette(1, numberRed, 0);
 var reelSlot1 = new reelSlot_1.ReelSlot(1001, reelSlotBet, "Animal", 9, 20, 3, 10000);
 var progressiveSlot1 = new progressiveSlot_1.ProgressiveSlot(2001, progressiveSlotBet, "Egipcio", 25, 25, 5, 2, 500000);
+var rouletteList = [rouletteOne];
 var reelSlotList = [reelSlot1];
 var progressiveSlotList = [progressiveSlot1];
-var newCasino = new casino_1.Casino('Atlanta', progressiveSlotList, reelSlotList, 500000);
+var newCasino = new casino_1.Casino('Atlanta', progressiveSlotList, reelSlotList, rouletteList, 500000);
 //Informacion del casino
 function welcome() {
     gameInformation(0);
@@ -63,7 +73,7 @@ function callGame(option) {
         case 3:
             gameOptions();
             var rouleteOption = readline.questionInt();
-            roulleteMenu(rouleteOption);
+            rouletteMenu(rouleteOption);
             break;
         case 4:
             gameOptions();
@@ -129,7 +139,7 @@ function progressiveSlotMenu(option) {
             var value = readline.questionInt('Ingrese su apuesta ( 1 - 2 - 5 - 10 - 15 ): ');
             setSlotLines(lines);
             playGame(2, value);
-            subMenuProgressive();
+            subMenuProgressiveSlot();
             break;
         case 2:
             gameInformation(2);
@@ -140,7 +150,7 @@ function progressiveSlotMenu(option) {
 function setSlotLines(lines) {
     progressiveSlot1.setPayLine(lines);
 }
-function subMenuProgressive() {
+function subMenuProgressiveSlot() {
     console.log('1: JUGAR \n2: MULTIPLICAR JUGADAS \n3: COBRAR Y SALIR');
     var gameOption = readline.questionInt();
     switch (gameOption) {
@@ -153,7 +163,7 @@ function subMenuProgressive() {
             var value = readline.questionInt('Ingrese apuesta ( 1 - 2 - 5 - 10 - 15): ');
             replayGame(2, times, value);
             setSlotLines(lines);
-            subMenuProgressive();
+            subMenuProgressiveSlot();
             break;
         case 3:
             console.log("Se retir\u00F3 con ".concat(founds, " creditos."));
@@ -161,18 +171,42 @@ function subMenuProgressive() {
             break;
         default:
             console.log(" -- El n\u00FAmero ingresado es incorrecto ingrese un n\u00FAmero valido ---");
-            subMenuProgressive();
+            subMenuProgressiveSlot();
     }
 }
 /* Funcionalidades de ruleta */
-function roulleteMenu(option) {
+function rouletteMenu(option) {
     switch (option) {
         case 0:
             games();
             break;
         case 1:
-            var value = readline.questionInt('');
-            playGame(3, value);
+            var value = readline.questionInt('Ingrese su apuesta: ');
+            var pleno = readline.questionInt('Ingrese Numero entre 1 y 36 para PLENO: ');
+            while (pleno < 1 || pleno > 36) {
+                pleno = readline.questionInt('Ingrese Numero entre 1 y 36 para PLENO: ');
+            }
+            var color = readline.question('Ingrese Color para Jugar, o solo deje Vacio: ');
+            if (color === "") {
+                color = undefined;
+            }
+            var parOinpar = readline.question('Ingrese PAR o IMPAR, o solo deja en Blanco: ');
+            if (parOinpar === "") {
+                parOinpar = undefined;
+            }
+            var docena = readline.question('Ingrese 1ra Docena, 2da Docena o 3ra Docena, o solo deja en Blanco: ');
+            if (docena === "") {
+                docena = undefined;
+            }
+            var altoObajo = readline.question('Ingrese Numero ALTO o Numero BAJO, o solo deja en Blanco: ');
+            if (altoObajo === "") {
+                altoObajo = undefined;
+            }
+            var turningTurnOne = new TurningTurn_1.TurningTurn(1, newCasino, rouletteOne, playerOne, value, pleno, color, parOinpar, docena, altoObajo);
+            turningTurnOne.turning();
+            console.log("----------------------------------------------------------------");
+            callGame(3);
+            //playGame(3,value);
             break;
         case 2:
             gameInformation(3);
@@ -180,7 +214,7 @@ function roulleteMenu(option) {
             break;
     }
 }
-function subMenuRoullete() {
+function subMenuRoulette() {
     console.log('1: JUGAR \n2: REPETIR JUGADAS \n3: COBRAR Y SALIR');
     var gameOption = readline.questionInt();
     switch (gameOption) {
@@ -242,10 +276,10 @@ function playGame(game, value) {
         case 2:
             newFounds = progressiveSlot1.playProgressiveSlot(value);
             break;
-        /*case 3:
-            newFounds=roullete1.playRoullete(value);
+        case 3:
+            //newFounds=rouletteOne.playRoulette(value);
             break;
-        case 4:
+        /*case 4:
             newFounds=craps1.playCraps(value);
             break;*/
     }

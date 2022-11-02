@@ -3,6 +3,7 @@ import { ReelSlot } from "./class/reelSlot";
 import { Roulette } from "./class/roulette";
 import { Casino } from "./class/casino";
 import { Player } from "./class/player";
+import { TurningTurn }  from "./class/TurningTurn";
 
 import * as fs from 'fs';
 let readline=require('readline-sync');
@@ -24,7 +25,7 @@ let progressiveSlot1:ProgressiveSlot=new ProgressiveSlot(2001,progressiveSlotBet
 
 
 
-let rouletteList:Roulette[]=[rouletteOne]
+let rouletteList:Roulette[]=[rouletteOne];
 let reelSlotList:ReelSlot[]=[reelSlot1];
 let progressiveSlotList:ProgressiveSlot[]=[progressiveSlot1];
 let newCasino:Casino=new Casino('Atlanta',progressiveSlotList,reelSlotList,rouletteList,500000);
@@ -184,8 +185,34 @@ function rouletteMenu(option:number):void{
             games();
             break;
         case 1:
-            let value:number=readline.questionInt('')
-            playGame(3,value);
+            let value:number=readline.questionInt('Ingrese su apuesta: ');
+            let pleno:number=readline.questionInt('Ingrese Numero entre 1 y 36 para PLENO: ');
+            while (pleno < 1 || pleno>36) {
+                pleno=readline.questionInt('Ingrese Numero entre 1 y 36 para PLENO: ');
+            }
+
+            let color:string | undefined=readline.question('Ingrese Color para Jugar, o solo deje Vacio: ');
+            if (color===""){
+                color = undefined;
+            }
+            let parOinpar:string | undefined=readline.question('Ingrese PAR o IMPAR, o solo deja en Blanco: ');
+            if (parOinpar===""){
+                parOinpar = undefined;
+            }
+            let docena:string | undefined=readline.question('Ingrese 1ra Docena, 2da Docena o 3ra Docena, o solo deja en Blanco: ');
+            if (docena===""){
+                docena = undefined;
+            }
+            let altoObajo:string | undefined=readline.question('Ingrese Numero ALTO o Numero BAJO, o solo deja en Blanco: ');
+            if (altoObajo===""){
+                altoObajo = undefined;
+            }
+
+            let turningTurnOne: TurningTurn = new TurningTurn(1,newCasino,rouletteOne,playerOne,value,pleno,color,parOinpar,docena,altoObajo)
+            turningTurnOne.turning()
+            console.log("----------------------------------------------------------------")
+            callGame(3)
+            //playGame(3,value);
             break;
         case 2:
             gameInformation(3);
@@ -193,7 +220,7 @@ function rouletteMenu(option:number):void{
         break;
     }
 }
-function subMenuRoulette():void{
+/*function subMenuRoulette():void{
     console.log('1: JUGAR \n2: REPETIR JUGADAS \n3: COBRAR Y SALIR');
     let gameOption:number=readline.questionInt();
         switch(gameOption){
@@ -212,6 +239,8 @@ function subMenuRoulette():void{
                 console.log(` -- El número ingresado es incorrecto ingrese un número valido ---`);
             }
     }
+*/
+
 /* Funcionalidades de dados */
 function crapsMenu(option:number):void{
     switch(option){
@@ -255,10 +284,10 @@ function playGame(game:number,value:number):number{
         case 2:
             newFounds=progressiveSlot1.playProgressiveSlot(value);
             break;
-        /*case 3:
-            newFounds=roulette1.playRoulette(value);
+        case 3:
+            //newFounds=rouletteOne.playRoulette(value);
             break;
-        case 4:
+        /*case 4:
             newFounds=craps1.playCraps(value);
             break;*/
     }if(newFounds>0){
