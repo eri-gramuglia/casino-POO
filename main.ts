@@ -186,14 +186,32 @@ function rouletteMenu(option:number):void{
             break;
         case 1:
             let value:number=readline.questionInt('Ingrese su apuesta: ');
-            let pleno:number=readline.questionInt('Ingrese Numero para PLENO, o deje en blanco');
-            let color:string=readline.questionInt('Ingrese Color para Jugar, o solo deje Vacio');
-            let parOinpar:string=readline.questionInt('Ingrese PAR o IMPAR, o solo deja en Blanco');
-            let docena:string=readline.questionInt('Ingrese 1ra Docena, 2da Docena o 3ra Docena, o solo deja en Blanco');
-            let altoObajo:string=readline.questionInt('Ingrese Numero ALTO o Numero BAJO, o solo deja en Blanco');
+            let pleno:number=readline.questionInt('Ingrese Numero entre 1 y 36 para PLENO: ');
+            while (pleno < 1 || pleno>36) {
+                pleno=readline.questionInt('Ingrese Numero entre 1 y 36 para PLENO: ');
+            }
 
-            turningTurnOne:TurningTurn= new TurningTurn(1,rouletteOne,playerOne,
-                )
+            let color:string | undefined=readline.question('Ingrese Color para Jugar, o solo deje Vacio: ');
+            if (color===""){
+                color = undefined;
+            }
+            let parOinpar:string | undefined=readline.question('Ingrese PAR o IMPAR, o solo deja en Blanco: ');
+            if (parOinpar===""){
+                parOinpar = undefined;
+            }
+            let docena:string | undefined=readline.question('Ingrese 1ra Docena, 2da Docena o 3ra Docena, o solo deja en Blanco: ');
+            if (docena===""){
+                docena = undefined;
+            }
+            let altoObajo:string | undefined=readline.question('Ingrese Numero ALTO o Numero BAJO, o solo deja en Blanco: ');
+            if (altoObajo===""){
+                altoObajo = undefined;
+            }
+
+            let turningTurnOne: TurningTurn = new TurningTurn(1,newCasino,rouletteOne,playerOne,value,pleno,color,parOinpar,docena,altoObajo)
+            turningTurnOne.turning()
+            console.log("----------------------------------------------------------------")
+            callGame(3)
             //playGame(3,value);
             break;
         case 2:
@@ -202,7 +220,7 @@ function rouletteMenu(option:number):void{
         break;
     }
 }
-function subMenuRoulette():void{
+/*function subMenuRoulette():void{
     console.log('1: JUGAR \n2: REPETIR JUGADAS \n3: COBRAR Y SALIR');
     let gameOption:number=readline.questionInt();
         switch(gameOption){
@@ -221,6 +239,8 @@ function subMenuRoulette():void{
                 console.log(` -- El número ingresado es incorrecto ingrese un número valido ---`);
             }
     }
+*/
+
 /* Funcionalidades de dados */
 function crapsMenu(option:number):void{
     switch(option){
@@ -265,7 +285,7 @@ function playGame(game:number,value:number):number{
             newFounds=progressiveSlot1.playProgressiveSlot(value);
             break;
         case 3:
-            newFounds=rouletteOne.playRoulette(value);
+            //newFounds=rouletteOne.playRoulette(value);
             break;
         /*case 4:
             newFounds=craps1.playCraps(value);

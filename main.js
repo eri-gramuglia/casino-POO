@@ -5,6 +5,7 @@ var reelSlot_1 = require("./class/reelSlot");
 var roulette_1 = require("./class/roulette");
 var casino_1 = require("./class/casino");
 var player_1 = require("./class/player");
+var TurningTurn_1 = require("./class/TurningTurn");
 var fs = require("fs");
 var readline = require('readline-sync');
 var information = fs.readFileSync('./files.txt/info.txt', 'utf-8');
@@ -180,8 +181,32 @@ function rouletteMenu(option) {
             games();
             break;
         case 1:
-            var value = readline.questionInt('');
-            playGame(3, value);
+            var value = readline.questionInt('Ingrese su apuesta: ');
+            var pleno = readline.questionInt('Ingrese Numero entre 1 y 36 para PLENO: ');
+            while (pleno < 1 || pleno > 36) {
+                pleno = readline.questionInt('Ingrese Numero entre 1 y 36 para PLENO: ');
+            }
+            var color = readline.question('Ingrese Color para Jugar, o solo deje Vacio: ');
+            if (color === "") {
+                color = undefined;
+            }
+            var parOinpar = readline.question('Ingrese PAR o IMPAR, o solo deja en Blanco: ');
+            if (parOinpar === "") {
+                parOinpar = undefined;
+            }
+            var docena = readline.question('Ingrese 1ra Docena, 2da Docena o 3ra Docena, o solo deja en Blanco: ');
+            if (docena === "") {
+                docena = undefined;
+            }
+            var altoObajo = readline.question('Ingrese Numero ALTO o Numero BAJO, o solo deja en Blanco: ');
+            if (altoObajo === "") {
+                altoObajo = undefined;
+            }
+            var turningTurnOne = new TurningTurn_1.TurningTurn(1, newCasino, rouletteOne, playerOne, value, pleno, color, parOinpar, docena, altoObajo);
+            turningTurnOne.turning();
+            console.log("----------------------------------------------------------------");
+            callGame(3);
+            //playGame(3,value);
             break;
         case 2:
             gameInformation(3);
@@ -251,10 +276,10 @@ function playGame(game, value) {
         case 2:
             newFounds = progressiveSlot1.playProgressiveSlot(value);
             break;
-        /*case 3:
-            newFounds=roulette1.playRoulette(value);
+        case 3:
+            //newFounds=rouletteOne.playRoulette(value);
             break;
-        case 4:
+        /*case 4:
             newFounds=craps1.playCraps(value);
             break;*/
     }
