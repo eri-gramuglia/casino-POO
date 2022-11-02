@@ -3,6 +3,8 @@ import { ReelSlot } from "./class/reelSlot";
 import { Roulette } from "./class/roulette";
 import { Casino } from "./class/casino";
 import { Player } from "./class/player";
+import { TurningTurn }  from "./class/TurningTurn";
+
 import * as fs from 'fs';
 let readline=require('readline-sync');
 let information:string=fs.readFileSync('./files.txt/info.txt','utf-8');
@@ -183,8 +185,16 @@ function rouletteMenu(option:number):void{
             games();
             break;
         case 1:
-            let value:number=readline.questionInt('')
-            playGame(3,value);
+            let value:number=readline.questionInt('Ingrese su apuesta: ');
+            let pleno:number=readline.questionInt('Ingrese Numero para PLENO, o deje en blanco');
+            let color:string=readline.questionInt('Ingrese Color para Jugar, o solo deje Vacio');
+            let parOinpar:string=readline.questionInt('Ingrese PAR o IMPAR, o solo deja en Blanco');
+            let docena:string=readline.questionInt('Ingrese 1ra Docena, 2da Docena o 3ra Docena, o solo deja en Blanco');
+            let altoObajo:string=readline.questionInt('Ingrese Numero ALTO o Numero BAJO, o solo deja en Blanco');
+
+            turningTurnOne:TurningTurn= new TurningTurn(1,rouletteOne,playerOne,
+                )
+            //playGame(3,value);
             break;
         case 2:
             gameInformation(3);
@@ -254,10 +264,10 @@ function playGame(game:number,value:number):number{
         case 2:
             newFounds=progressiveSlot1.playProgressiveSlot(value);
             break;
-        /*case 3:
-            newFounds=roulette1.playRoulette(value);
+        case 3:
+            newFounds=rouletteOne.playRoulette(value);
             break;
-        case 4:
+        /*case 4:
             newFounds=craps1.playCraps(value);
             break;*/
     }if(newFounds>0){

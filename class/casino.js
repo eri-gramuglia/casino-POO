@@ -2,7 +2,7 @@
 exports.__esModule = true;
 exports.Casino = void 0;
 var Casino = /** @class */ (function () {
-    function Casino(pName, pProgressiveSlotList, pReelSlotList, /*pRoulleteList:Roullete[],pCrapsList:Craps[],*/ pTreasury) {
+    function Casino(pName, pProgressiveSlotList, pReelSlotList, pRoulleteList, /*pCrapsList:Craps[],*/ pTreasury) {
         this.casinoName = pName;
         this.progressiveSlotList = pProgressiveSlotList;
         this.reelSlotList = pReelSlotList;
@@ -44,20 +44,21 @@ var Casino = /** @class */ (function () {
             throw Error("No existe esta maquina en el casino");
         }
     };
-    /*public getRoullete(id:number):boolean{
-        let aux=false;
-            for(let i=0;i<this.roulleteList.length;i++){
-                if(id===this.roullete[i].getId()){
-                    aux=true;
-                }
-            } if(aux){
-                return true;
+    Casino.prototype.getRoullete = function (id) {
+        var aux = false;
+        for (var i = 0; i < this.rouletteList.length; i++) {
+            if (id === this.rouletteList[i].getId()) {
+                aux = true;
             }
-                else {
-                    throw Error(`No existe esta maquina en el casino`);
-                }
-    }
-    public getCraps(id:number):boolean{
+        }
+        if (aux) {
+            return true;
+        }
+        else {
+            throw Error("No existe esta maquina en el casino");
+        }
+    };
+    /*public getCraps(id:number):boolean{
         let aux=false;
             for(let i=0;i<this.crapsList.length;i++){
                 if(id===this.crapsList[i].getId()){

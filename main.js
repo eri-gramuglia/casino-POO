@@ -2,7 +2,9 @@
 exports.__esModule = true;
 var progressiveSlot_1 = require("./class/progressiveSlot");
 var reelSlot_1 = require("./class/reelSlot");
+var roulette_1 = require("./class/roulette");
 var casino_1 = require("./class/casino");
+var player_1 = require("./class/player");
 var fs = require("fs");
 var readline = require('readline-sync');
 var information = fs.readFileSync('./files.txt/info.txt', 'utf-8');
@@ -10,11 +12,18 @@ var clasificationText = information.split('\\');
 var founds = 100000;
 var progressiveSlotBet = [1, 2, 5, 10, 15];
 var reelSlotBet = [5, 10, 15, 20];
+// paño de rulleta
+var numberRed = new Array(1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35);
+// instancio player
+var playerOne = new player_1.Player(1, "Daniel", "Jerez", 10000);
+// instacio ruleta
+var rouletteOne = new roulette_1.Roulette(1, numberRed, 0);
 var reelSlot1 = new reelSlot_1.ReelSlot(1001, reelSlotBet, "Animal", 9, 20, 3, 10000);
 var progressiveSlot1 = new progressiveSlot_1.ProgressiveSlot(2001, progressiveSlotBet, "Egipcio", 25, 25, 5, 2, 500000);
+var rouletteList = [rouletteOne];
 var reelSlotList = [reelSlot1];
 var progressiveSlotList = [progressiveSlot1];
-var newCasino = new casino_1.Casino('Atlanta', progressiveSlotList, reelSlotList, 500000);
+var newCasino = new casino_1.Casino('Atlanta', progressiveSlotList, reelSlotList, rouletteList, 500000);
 //Informacion del casino
 function welcome() {
     gameInformation(0);
@@ -63,7 +72,7 @@ function callGame(option) {
         case 3:
             gameOptions();
             var rouleteOption = readline.questionInt();
-            roulleteMenu(rouleteOption);
+            rouletteMenu(rouleteOption);
             break;
         case 4:
             gameOptions();
@@ -129,7 +138,7 @@ function progressiveSlotMenu(option) {
             var value = readline.questionInt('Ingrese su apuesta ( 1 - 2 - 5 - 10 - 15 ): ');
             setSlotLines(lines);
             playGame(2, value);
-            subMenuProgressive();
+            subMenuProgressiveSlot();
             break;
         case 2:
             gameInformation(2);
@@ -140,7 +149,7 @@ function progressiveSlotMenu(option) {
 function setSlotLines(lines) {
     progressiveSlot1.setPayLine(lines);
 }
-function subMenuProgressive() {
+function subMenuProgressiveSlot() {
     console.log('1: JUGAR \n2: MULTIPLICAR JUGADAS \n3: COBRAR Y SALIR');
     var gameOption = readline.questionInt();
     switch (gameOption) {
@@ -153,7 +162,7 @@ function subMenuProgressive() {
             var value = readline.questionInt('Ingrese apuesta ( 1 - 2 - 5 - 10 - 15): ');
             replayGame(2, times, value);
             setSlotLines(lines);
-            subMenuProgressive();
+            subMenuProgressiveSlot();
             break;
         case 3:
             console.log("Se retir\u00F3 con ".concat(founds, " creditos."));
@@ -161,11 +170,11 @@ function subMenuProgressive() {
             break;
         default:
             console.log(" -- El n\u00FAmero ingresado es incorrecto ingrese un n\u00FAmero valido ---");
-            subMenuProgressive();
+            subMenuProgressiveSlot();
     }
 }
 /* Funcionalidades de ruleta */
-function roulleteMenu(option) {
+function rouletteMenu(option) {
     switch (option) {
         case 0:
             games();
@@ -180,7 +189,7 @@ function roulleteMenu(option) {
             break;
     }
 }
-function subMenuRoullete() {
+function subMenuRoulette() {
     console.log('1: JUGAR \n2: REPETIR JUGADAS \n3: COBRAR Y SALIR');
     var gameOption = readline.questionInt();
     switch (gameOption) {
@@ -243,7 +252,7 @@ function playGame(game, value) {
             newFounds = progressiveSlot1.playProgressiveSlot(value);
             break;
         /*case 3:
-            newFounds=roullete1.playRoullete(value);
+            newFounds=roulette1.playRoulette(value);
             break;
         case 4:
             newFounds=craps1.playCraps(value);
