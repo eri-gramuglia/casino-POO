@@ -186,7 +186,7 @@ function rouletteMenu(option:number):void{
             break;
         case 1:
             let value:number=readline.questionInt('Ingrese su apuesta: ');
-            while (value >= playerOne.getFoundsAvailable()){
+            while (value > playerOne.getFoundsAvailable()){
                 console.log("Fondos Insuficientes")
                 value=readline.questionInt('Vuelva a ingrese su apuesta: ');
             }
