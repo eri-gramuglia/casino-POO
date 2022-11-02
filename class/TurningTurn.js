@@ -162,6 +162,9 @@ var TurningTurn = /** @class */ (function () {
                     //            this._roulette.setBoxFound(this._roulette.getBoxFound()+(this.getBetValue()))
                 }
             }
+            console.log("----------------------------------------------------------------");
+            console.log("Su saldo actual es de: ".concat(this._player.getFoundsAvailable()));
+            console.log("----------------------------------------------------------------");
         }
     };
     return TurningTurn;
