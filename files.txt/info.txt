@@ -35,7 +35,32 @@
                          
 \
                                 -- RULETA --
+-En este Juego podras a prueba tu suerte, contra la CASA, en la indominable RULETA, podras Apostar a Un NUMERO, o a un COLOR, o entre Par o IMPAR,
+ o entre la 1ra 2da y 3ra qincena, o a los numero Altos o Bajos, y si te sientes con suerte puede apostar a todas las opciones.
+                                    Apuestas internas
+                                      * PLENO *
+    El jugador debe elegir uno de los 36 números de la ruleta - El pago de esta apuesta será de 35 a 1.
 
+                                * Apuesta en negro o rojo *
+   El jugador debe elegir entre los números pintados en negro o los números pintados en rojo en la ruleta
+                             El pago de esta apuesta será de 1 a 1
+
+                                *  Apuesta en par o impar *
+                  El jugador debe elegir entre los números pares o impares de la ruleta
+                             El pago de esta apuesta será de 1 a 1
+
+                      *  Apuesta en la primera, segunda o tercera docena *
+El jugador deberá elegir entre los números correspondientes a la primera (1 a 12), segunda (13 a 24) o tercera docena (25 a 36)
+                             El pago de esta apuesta será de 2 a 1.
+
+                          * Apuesta en números altos o números bajos *
+        El jugador debe elegir entre los números bajos (del 1 al 18) o los números altos (del 19 al 36)
+                             El pago de esta apuesta será de 1 a 1.
+
+Se apostara el mismo valor ingresado, para cada opcion seleccionada, es decir si su apusta es de 100 Creditos, y apusta a dos opciones por ejemplo Pleno y Color,
+su apuesta total sera de 200 creditos.
+
+                      ***** And may the odds be ever in your favor *****
 
 
 
