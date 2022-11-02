@@ -182,26 +182,31 @@ function rouletteMenu(option) {
             break;
         case 1:
             var value = readline.questionInt('Ingrese su apuesta: ');
+            while (value >= playerOne.getFoundsAvailable()) {
+                console.log("Fondos Insuficientes");
+                value = readline.questionInt('Vuelva a ingrese su apuesta: ');
+            }
             var pleno = readline.questionInt('Ingrese Numero entre 1 y 36 para PLENO: ');
             while (pleno < 1 || pleno > 36) {
-                pleno = readline.questionInt('Ingrese Numero entre 1 y 36 para PLENO: ');
+                pleno = readline.questionInt('Ingrese Numero entre 1 y 36 para PLENO (1 - 36): ');
             }
-            var color = readline.question('Ingrese Color para Jugar, o solo deje Vacio: ');
+            var color = readline.question('Ingrese Color para Jugar, o solo deje Vacio (ROJO - NEGRO): ');
             if (color === "") {
                 color = undefined;
             }
-            var parOinpar = readline.question('Ingrese PAR o IMPAR, o solo deja en Blanco: ');
+            var parOinpar = readline.question('Ingrese PAR o IMPAR, o solo deja Vacio (PAR - IMPAR - ENTER): ');
             if (parOinpar === "") {
                 parOinpar = undefined;
             }
-            var docena = readline.question('Ingrese 1ra Docena, 2da Docena o 3ra Docena, o solo deja en Blanco: ');
+            var docena = readline.question('Ingrese Docena, o solo deja Vacio (1ra Docena - 2da Docena - 3ra Docena): ');
             if (docena === "") {
                 docena = undefined;
             }
-            var altoObajo = readline.question('Ingrese Numero ALTO o Numero BAJO, o solo deja en Blanco: ');
+            var altoObajo = readline.question('Ingrese Numero ALTO o Numero BAJO, o solo deja Vacio (Numero ALTO - Numero BAJO): ');
             if (altoObajo === "") {
                 altoObajo = undefined;
             }
+            11;
             var turningTurnOne = new TurningTurn_1.TurningTurn(1, newCasino, rouletteOne, playerOne, value, pleno, color, parOinpar, docena, altoObajo);
             turningTurnOne.turning();
             console.log("----------------------------------------------------------------");
