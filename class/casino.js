@@ -2,12 +2,12 @@
 exports.__esModule = true;
 exports.Casino = void 0;
 var Casino = /** @class */ (function () {
-    function Casino(pName, pProgressiveSlotList, pReelSlotList, /*pRouletteList:Roulette[],pCrapsList:Craps[],*/ pTreasury) {
+    function Casino(pName, pProgressiveSlotList, pReelSlotList, pRoulleteList, /*pCrapsList:Craps[],*/ pTreasury) {
         this.casinoName = pName;
         this.progressiveSlotList = pProgressiveSlotList;
         this.reelSlotList = pReelSlotList;
         this.treasury = pTreasury;
-        //this.rouletteList=pRouletteList;
+        //this.roulleteList=pRoulleteList;
         //this.crapsList=pCrapsList;
     }
     Casino.prototype.getCasinoName = function () {
@@ -44,20 +44,21 @@ var Casino = /** @class */ (function () {
             throw Error("No existe esta maquina en el casino");
         }
     };
-    /*public getRoulette(id:number):boolean{
-        let aux=false;
-            for(let i=0;i<this.rouletteList.length;i++){
-                if(id===this.roulette[i].getId()){
-                    aux=true;
-                }
-            } if(aux){
-                return true;
+    Casino.prototype.getRoullete = function (id) {
+        var aux = false;
+        for (var i = 0; i < this.rouletteList.length; i++) {
+            if (id === this.rouletteList[i].getId()) {
+                aux = true;
             }
-                else {
-                    throw Error(`No existe esta maquina en el casino`);
-                }
-    }
-    public getCraps(id:number):boolean{
+        }
+        if (aux) {
+            return true;
+        }
+        else {
+            throw Error("No existe esta maquina en el casino");
+        }
+    };
+    /*public getCraps(id:number):boolean{
         let aux=false;
             for(let i=0;i<this.crapsList.length;i++){
                 if(id===this.crapsList[i].getId()){
@@ -74,7 +75,7 @@ var Casino = /** @class */ (function () {
         return this.treasury;
     };
     Casino.prototype.setTreasury = function (amount) {
-        if (amount < 0) {
+        if (amount <= 0) {
             this.treasury += amount;
         }
         else {
