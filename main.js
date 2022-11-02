@@ -230,8 +230,8 @@ function subMenuRoulette() {
             break;
         case 3:
             games();
-        default:
-            console.log(" -- El n\u00FAmero ingresado es incorrecto ingrese un n\u00FAmero valido ---");
+        // default:
+        //     console.log(` -- El número ingresado es incorrecto ingrese un número valido ---`);
     }
 }
 /* Funcionalidades de dados */
