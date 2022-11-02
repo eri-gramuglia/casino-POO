@@ -186,27 +186,31 @@ function rouletteMenu(option:number):void{
             break;
         case 1:
             let value:number=readline.questionInt('Ingrese su apuesta: ');
+            while (value >= playerOne.getFoundsAvailable()){
+                console.log("Fondos Insuficientes")
+                value=readline.questionInt('Vuelva a ingrese su apuesta: ');
+            }
             let pleno:number=readline.questionInt('Ingrese Numero entre 1 y 36 para PLENO: ');
             while (pleno < 1 || pleno>36) {
-                pleno=readline.questionInt('Ingrese Numero entre 1 y 36 para PLENO: ');
+                pleno=readline.questionInt('Ingrese Numero entre 1 y 36 para PLENO (1 - 36): ');
             }
 
-            let color:string | undefined=readline.question('Ingrese Color para Jugar, o solo deje Vacio: ');
+            let color:string | undefined=readline.question('Ingrese Color para Jugar, o solo deje Vacio (ROJO - NEGRO): ');
             if (color===""){
                 color = undefined;
             }
-            let parOinpar:string | undefined=readline.question('Ingrese PAR o IMPAR, o solo deja en Blanco: ');
+            let parOinpar:string | undefined=readline.question('Ingrese PAR o IMPAR, o solo deja Vacio (PAR - IMPAR - ENTER): ');
             if (parOinpar===""){
                 parOinpar = undefined;
             }
-            let docena:string | undefined=readline.question('Ingrese 1ra Docena, 2da Docena o 3ra Docena, o solo deja en Blanco: ');
+            let docena:string | undefined=readline.question('Ingrese Docena, o solo deja Vacio (1ra Docena - 2da Docena - 3ra Docena): ');
             if (docena===""){
                 docena = undefined;
             }
-            let altoObajo:string | undefined=readline.question('Ingrese Numero ALTO o Numero BAJO, o solo deja en Blanco: ');
+            let altoObajo:string | undefined=readline.question('Ingrese Numero ALTO o Numero BAJO, o solo deja Vacio (Numero ALTO - Numero BAJO): ');
             if (altoObajo===""){
                 altoObajo = undefined;
-            }
+            }11
 
             let turningTurnOne: TurningTurn = new TurningTurn(1,newCasino,rouletteOne,playerOne,value,pleno,color,parOinpar,docena,altoObajo)
             turningTurnOne.turning()
