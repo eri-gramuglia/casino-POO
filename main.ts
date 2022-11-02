@@ -12,6 +12,7 @@ let clasificationText:string[]=information.split('\\');
 let founds:number=100000;
 let progressiveSlotBet= [1,2,5,10,15];
 let reelSlotBet = [5,10,15,20];
+let countTurns:number = 0;
 // paño de rulleta
 let numberRed: number[] = new Array (1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35)
 
@@ -210,9 +211,8 @@ function rouletteMenu(option:number):void{
             let altoObajo:string | undefined=readline.question('Ingrese Numero ALTO o Numero BAJO, o solo deja Vacio (Numero ALTO - Numero BAJO): ');
             if (altoObajo===""){
                 altoObajo = undefined;
-            }11
-
-            let turningTurnOne: TurningTurn = new TurningTurn(1,newCasino,rouletteOne,playerOne,value,pleno,color,parOinpar,docena,altoObajo)
+            }
+            let turningTurnOne: TurningTurn = new TurningTurn(countTurns+1,newCasino,rouletteOne,playerOne,value,pleno,color,parOinpar,docena,altoObajo)
             turningTurnOne.turning()
             console.log("----------------------------------------------------------------")
             subMenuRoulette()
