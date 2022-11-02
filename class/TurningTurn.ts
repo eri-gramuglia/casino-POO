@@ -157,6 +157,9 @@ export class TurningTurn {
         //            this._roulette.setBoxFound(this._roulette.getBoxFound()+(this.getBetValue()))
                 }
             }
+            console.log ("----------------------------------------------------------------");
+            console.log (`Su saldo actual es de: ${this._player.getFoundsAvailable()}`);
+            console.log ("----------------------------------------------------------------");
         }
     }
 }
