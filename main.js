@@ -347,3 +347,4 @@ function gameInformation(index) {
     var text = clasificationText[index].toString();
     console.log(text);
 }
+

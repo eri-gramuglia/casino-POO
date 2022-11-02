@@ -34,7 +34,8 @@
                Los valores de apuestas son de 1 , 2 , 5 , 10 , 15.
                          
 \
-                                -- RULETA --
+                                    -- RULETA --
+
 -En este Juego podras a prueba tu suerte, contra la CASA, en la indominable RULETA, podras Apostar a Un NUMERO, o a un COLOR, o entre Par o IMPAR,
  o entre la 1ra 2da y 3ra qincena, o a los numero Altos o Bajos, y si te sientes con suerte puede apostar a todas las opciones.
                                     Apuestas internas
@@ -61,9 +62,6 @@ Se apostara el mismo valor ingresado, para cada opcion seleccionada, es decir si
 su apuesta total sera de 200 creditos.
 
                       ***** And may the odds be ever in your favor *****
-
-
-
 
 \
                                  -- DADOS --
