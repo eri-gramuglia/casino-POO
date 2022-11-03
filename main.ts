@@ -387,7 +387,7 @@ function playGame(game:number,value:number):void{
         } else {
         console.log(`No tiene fondos para esta apuesta`);
         }
-    playerOne.setFoundsAvailable(newFounds);
+    playerOne.setFoundsAvailable(playerOne.getFoundsAvailable()+newFounds);
     newCasino.setTreasury(newFounds);
     console.log(`Le quedan ${playerOne.getFoundsAvailable()} créditos.`);
 }

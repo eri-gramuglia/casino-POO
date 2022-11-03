@@ -389,7 +389,7 @@ function playGame(game, value) {
     else {
         console.log("No tiene fondos para esta apuesta");
     }
-    playerOne.setFoundsAvailable(newFounds);
+    playerOne.setFoundsAvailable(playerOne.getFoundsAvailable() + newFounds);
     newCasino.setTreasury(newFounds);
     console.log("Le quedan ".concat(playerOne.getFoundsAvailable(), " cr\u00E9ditos."));
 }
