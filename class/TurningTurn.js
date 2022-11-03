@@ -85,14 +85,14 @@ var TurningTurn = /** @class */ (function () {
             if (this._numSelect != -1) {
                 if (aux === this._numSelect) {
                     console.log("----------------------------------------------------------------");
-                    console.log("WINS PLENO");
+                    console.log("GANASTE por PLENO");
                     console.log("----------------------------------------------------------------");
                     this._player.setFoundsAvailable(this._player.getFoundsAvailable() + (this.getBetValue() * 35));
                     this._casino.setTreasury(this._casino.getTreasury() - this.getBetValue() * 35);
                     //            this._roulette.setBoxFound(this._roulette.getBoxFound()-(this.getBetValue()*35))
                 }
                 else {
-                    console.log("Lost PLENO");
+                    console.log("Perdiste por PLENO");
                     this._player.setFoundsAvailable(this._player.getFoundsAvailable() - (this.getBetValue()));
                     this._casino.setTreasury(this._casino.getTreasury() + this.getBetValue());
                     //            this._roulette.setBoxFound(this._roulette.getBoxFound()+(this.getBetValue()))
@@ -101,14 +101,14 @@ var TurningTurn = /** @class */ (function () {
             if (this._colorSelect != " ") {
                 if (this._colorSelect === this._roulette.getColor(aux)) {
                     console.log("----------------------------------------------------------------");
-                    console.log("WINS Color: ".concat(this._colorSelect));
+                    console.log("GANASTE por Color: ".concat(this._colorSelect));
                     console.log("----------------------------------------------------------------");
                     this._player.setFoundsAvailable(this._player.getFoundsAvailable() + (this.getBetValue() * 1));
                     this._casino.setTreasury(this._casino.getTreasury() - this.getBetValue());
                     //            this._roulette.setBoxFound(this._roulette.getBoxFound()-this.getBetValue());
                 }
                 else {
-                    console.log("Lost en Color");
+                    console.log("Perdiste por COLOR");
                     this._player.setFoundsAvailable(this._player.getFoundsAvailable() - (this.getBetValue()));
                     this._casino.setTreasury(this._casino.getTreasury() + this.getBetValue());
                     //            this._roulette.setBoxFound(this._roulette.getBoxFound()+(this.getBetValue()))
@@ -117,14 +117,14 @@ var TurningTurn = /** @class */ (function () {
             if (this._evenOroddSelect != " ") {
                 if (this._evenOroddSelect === this._roulette.getEvenOrOdd(aux)) {
                     console.log("----------------------------------------------------------------");
-                    console.log("WINS ".concat(this._evenOroddSelect));
+                    console.log("GANASTE por ".concat(this._evenOroddSelect));
                     console.log("----------------------------------------------------------------");
                     this._player.setFoundsAvailable(this._player.getFoundsAvailable() + (this.getBetValue() * 1));
                     this._casino.setTreasury(this._casino.getTreasury() - this.getBetValue());
                     //           this._roulette.setBoxFound(this._roulette.getBoxFound()-this.getBetValue());
                 }
                 else {
-                    console.log("Lost en Par o IMPAR");
+                    console.log("Perdiste por Par o IMPAR");
                     this._player.setFoundsAvailable(this._player.getFoundsAvailable() - (this.getBetValue()));
                     this._casino.setTreasury(this._casino.getTreasury() + this.getBetValue());
                     //            this._roulette.setBoxFound(this._roulette.getBoxFound()+(this.getBetValue()))
@@ -133,14 +133,14 @@ var TurningTurn = /** @class */ (function () {
             if (this._dozenSelect != " ") {
                 if (this._dozenSelect === this._roulette.getDozen(aux)) {
                     console.log("----------------------------------------------------------------");
-                    console.log("WINS ".concat(this._dozenSelect));
+                    console.log("GANASTE por ".concat(this._dozenSelect));
                     console.log("----------------------------------------------------------------");
                     this._player.setFoundsAvailable(this._player.getFoundsAvailable() + (this.getBetValue() * 2));
                     this._casino.setTreasury(this._casino.getTreasury() - (this.getBetValue() * 2));
                     //            this._roulette.setBoxFound(this._roulette.getBoxFound()-this.getBetValue());
                 }
                 else {
-                    console.log("Lost en Docena");
+                    console.log("Perdiste por Docena");
                     this._player.setFoundsAvailable(this._player.getFoundsAvailable() - (this.getBetValue()));
                     this._casino.setTreasury(this._casino.getTreasury() + this.getBetValue());
                     //            this._roulette.setBoxFound(this._roulette.getBoxFound()+(this.getBetValue()))
