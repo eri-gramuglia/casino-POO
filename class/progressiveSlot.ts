@@ -1,6 +1,4 @@
 import { Slot } from "./slot";
-import * as fs from 'fs';
-
 export class ProgressiveSlot extends Slot {
   private payLine: number;
   private jackpot: number;
