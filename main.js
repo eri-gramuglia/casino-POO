@@ -42,12 +42,12 @@ function newPlayer() {
     if (age >= 18) {
         var name_1 = readline.question("Ingrese su nombre: ");
         var surname = readline.question("Ingrese su apellido: ");
-        var founds = readline.questionInt("Ingrese sus los fondos que desea utilizar:");
+        var founds = readline.questionInt("Ingrese los fondos que desea utilizar:");
         playerOne = new player_1.Player(age, name_1, surname, founds);
         console.log(playerOne);
     }
     else {
-        throw console.error('Debe ser mayor de edad para ingresar al casino.');
+        console.log('Debe ser mayor de edad para ingresar al casino.');
     }
 }
 // Funcion de inicio para el menu del casino
@@ -314,24 +314,19 @@ function playGame(game, value) {
         switch (game) {
             case 1:
                 newFounds = reelSlotOne.playReelSlot(value);
+                writeStatictis('reelSlotStatistics', 'Hola');
                 break;
             case 2:
                 newFounds = progressiveSlotOne.playProgressiveSlot(value);
                 break;
-            /*case 3:
-                newFounds=roulette1.playRoulette(value);
-                break;
-            case 4:
-                newFounds=craps1.playCraps(value);
-        break;*/
         }
+        playerOne.setFoundsAvailable(playerOne.getFoundsAvailable() + newFounds);
+        newCasino.setTreasury(playerOne.getFoundsAvailable() + newFounds);
+        console.log("Le quedan ".concat(playerOne.getFoundsAvailable(), " cr\u00E9ditos."));
     }
     else {
         console.log("No tiene fondos para esta apuesta");
     }
-    playerOne.setFoundsAvailable(newFounds);
-    newCasino.setTreasury(newFounds);
-    console.log("Le quedan ".concat(playerOne.getFoundsAvailable(), " cr\u00E9ditos."));
 }
 function replayGame(game, times, value) {
     for (var i = 0; i < times; i++) {
@@ -347,4 +342,11 @@ function gameInformation(index) {
     var text = clasificationText[index].toString();
     console.log(text);
 }
-
+function writeStatictis(route, value) {
+    var statistic = value;
+    fs.writeFile('./files.txt/' + route + '.txt', statistic, { encoding: 'utf8' }, function (error) {
+        if (error) {
+            console.log("Error: ".concat(error));
+        }
+    });
+}

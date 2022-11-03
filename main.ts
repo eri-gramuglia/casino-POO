@@ -40,11 +40,11 @@ function newPlayer():void{
     if(age>=18){
     let name:string=readline.question(`Ingrese su nombre: `);
     let surname:string=readline.question(`Ingrese su apellido: `);
-    let founds:number=readline.questionInt(`Ingrese sus los fondos que desea utilizar:`);
+    let founds:number=readline.questionInt(`Ingrese los fondos que desea utilizar:`);
     playerOne=new Player(age,name,surname,founds);
     console.log(playerOne);
     } else {
-        throw console.error('Debe ser mayor de edad para ingresar al casino.');
+        console.log('Debe ser mayor de edad para ingresar al casino.');
     }
 }
 // Funcion de inicio para el menu del casino
@@ -312,23 +312,18 @@ function playGame(game:number,value:number):void{
             switch(game){
                 case 1:
                     newFounds=reelSlotOne.playReelSlot(value);
+                    writeStatictis('reelSlotStatistics','Hola');
                     break;
                 case 2:
                     newFounds=progressiveSlotOne.playProgressiveSlot(value);
                     break;
-                /*case 3:
-                    newFounds=roulette1.playRoulette(value);
-                    break;
-                case 4:
-                    newFounds=craps1.playCraps(value);
-            break;*/
             }
+            playerOne.setFoundsAvailable(playerOne.getFoundsAvailable()+newFounds);
+            newCasino.setTreasury(playerOne.getFoundsAvailable()+newFounds);
+            console.log(`Le quedan ${playerOne.getFoundsAvailable()} créditos.`);
         } else {
         console.log(`No tiene fondos para esta apuesta`);
         }
-    playerOne.setFoundsAvailable(newFounds);
-    newCasino.setTreasury(newFounds);
-    console.log(`Le quedan ${playerOne.getFoundsAvailable()} créditos.`);
 }
 function replayGame(game:number,times:number,value:number):void{
         for(let i:number=0;i<times;i++){
@@ -342,4 +337,12 @@ function replayGame(game:number,times:number,value:number):void{
 function gameInformation(index:number):void{
     let text:string=clasificationText[index].toString();
     console.log(text);
+}
+function writeStatictis(route:string,value:string):void{
+    let statistic:string=value;
+    fs.writeFile('./files.txt/'+route+'.txt',statistic,{encoding:'utf8'},function(error){
+    if(error){
+        console.log(`Error: ${error}`);
+    }
+    });
 }
