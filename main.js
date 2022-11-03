@@ -236,10 +236,25 @@ function rouletteMenu(option) {
                     console.log("El valor Ingresado es Invalido, no se jugara por este Item");
                     break;
             }
-            var parOinpar = readline.question('Ingrese PAR o IMPAR, o solo deje Vacio: ');
-            if (parOinpar === "") {
-                parOinpar = undefined;
+            var parOinpar = undefined;
+            var p_parOinpar = readline.questionInt('Ingrese PAR (1) o IMPAR (2) o Pasar (3): ');
+            switch (p_parOinpar) {
+                case 1:
+                    parOinpar = "PAR";
+                    break;
+                case 2:
+                    parOinpar = "IMPAR";
+                    break;
+                case 3:
+                    parOinpar = undefined;
+                    break;
+                default:
+                    console.log("El valor Ingresado es Invalido, no se jugara por este Item");
+                    break;
             }
+            //    if (parOinpar===""){
+            //        parOinpar = undefined;
+            //    }
             var docena = readline.question('Ingrese 1ra Docena, 2da Docena o 3ra Docena, o solo deje Vacio: ');
             if (docena === "") {
                 docena = undefined;

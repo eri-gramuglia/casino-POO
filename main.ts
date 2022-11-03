@@ -233,18 +233,67 @@ function rouletteMenu(option:number):void{
                     console.log("El valor Ingresado es Invalido, no se jugara por este Item")
                     break;
             }
-            let parOinpar:string | undefined=readline.question('Ingrese PAR o IMPAR, o solo deje Vacio: ');
-            if (parOinpar===""){
-                parOinpar = undefined;
+            let parOinpar:string | undefined= undefined;
+            let p_parOinpar:number=readline.questionInt ('Ingrese PAR (1) o IMPAR (2) o Pasar (3): ');
+            switch(p_parOinpar) {
+                case 1:
+                    parOinpar = "PAR";
+                    break;
+                case 2:
+                    parOinpar = "IMPAR";
+                    break;
+                case 3:
+                    parOinpar = undefined;
+                    break;
+                default:
+                    console.log("El valor Ingresado es Invalido, no se jugara por este Item")
+                    break;
             }
-            let docena:string | undefined=readline.question('Ingrese 1ra Docena, 2da Docena o 3ra Docena, o solo deje Vacio: ');
-            if (docena===""){
-                docena = undefined;
+
+        //    if (parOinpar===""){
+        //        parOinpar = undefined;
+        //    }
+            let docena :string| undefined= undefined;
+            let p_docena:number=readline.questionInt('Ingrese 1ra Docena (1), 2da Docena (2) o 3ra Docena (3), o Pasar (4): ');
+            switch (p_docena) {
+                case 1:
+                    docena = "1ra Docena";
+                    break;
+                case 2:
+                    docena = "2da Docena";
+                    break
+                case 3:
+                    docena = "3da Docena";
+                    break;
+                case 4:
+                    docena = undefined;
+                    break;
+                default:
+                    console.log("El valor Ingresado es Invalido, no se jugara por este Item")
+                    break; 
             }
-            let altoObajo:string | undefined=readline.question('Ingrese Numero ALTO o Numero BAJO, o solo deje Vacio: ');
-            if (altoObajo===""){
-                altoObajo = undefined;
+        //    if (docena===""){
+        //        docena = undefined;
+        //    }
+            let altoObajo:string | undefined=undefined;
+            let p_altoObajo:number =readline.questionInt('Apostar a Numero ALTO (1) o Numero BAJO(2), Pasar (3): ');
+            switch(p_altoObajo){
+                case 1:
+                    altoObajo = "Numero ALTO";
+                    break;
+                case 2:
+                    altoObajo = "Numero BAJO";
+                    break;
+                case 3:
+                    altoObajo = undefined;
+                    break;
+                default:
+                    console.log("El valor Ingresado es Invalido, no se jugara por este Item")
+                    break; 
             }
+        //    if (altoObajo===""){
+        //        altoObajo = undefined;
+        //    }
 
             let turningTurnOne: TurningTurn = new TurningTurn(countTurns+1,newCasino,rouletteOne,playerOne,value,pleno,color,parOinpar,docena,altoObajo)
             turningTurnOne.turning()
