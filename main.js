@@ -255,14 +255,47 @@ function rouletteMenu(option) {
             //    if (parOinpar===""){
             //        parOinpar = undefined;
             //    }
-            var docena = readline.question('Ingrese 1ra Docena, 2da Docena o 3ra Docena, o solo deje Vacio: ');
-            if (docena === "") {
-                docena = undefined;
+            var docena = undefined;
+            var p_docena = readline.questionInt('Ingrese 1ra Docena (1), 2da Docena (2) o 3ra Docena (3), o Pasar (4): ');
+            switch (p_docena) {
+                case 1:
+                    docena = "1ra Docena";
+                    break;
+                case 2:
+                    docena = "2da Docena";
+                    break;
+                case 3:
+                    docena = "3da Docena";
+                    break;
+                case 4:
+                    docena = undefined;
+                    break;
+                default:
+                    console.log("El valor Ingresado es Invalido, no se jugara por este Item");
+                    break;
             }
-            var altoObajo = readline.question('Ingrese Numero ALTO o Numero BAJO, o solo deje Vacio: ');
-            if (altoObajo === "") {
-                altoObajo = undefined;
+            //    if (docena===""){
+            //        docena = undefined;
+            //    }
+            var altoObajo = undefined;
+            var p_altoObajo = readline.questionInt('Apostar a Numero ALTO (1) o Numero BAJO(2), Pasar (3): ');
+            switch (p_altoObajo) {
+                case 1:
+                    altoObajo = "Numero ALTO";
+                    break;
+                case 2:
+                    altoObajo = "Numero BAJO";
+                    break;
+                case 3:
+                    altoObajo = undefined;
+                    break;
+                default:
+                    console.log("El valor Ingresado es Invalido, no se jugara por este Item");
+                    break;
             }
+            //    if (altoObajo===""){
+            //        altoObajo = undefined;
+            //    }
             var turningTurnOne = new TurningTurn_1.TurningTurn(countTurns + 1, newCasino, rouletteOne, playerOne, value, pleno, color, parOinpar, docena, altoObajo);
             turningTurnOne.turning();
             console.log("----------------------------------------------------------------");
