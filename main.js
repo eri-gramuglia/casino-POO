@@ -23,7 +23,7 @@ var reelSlotList = [reelSlotOne];
 var progressiveSlotList = [progressiveSlotOne];
 //Instancia ruleta
 var countTurns = 0;
-var numberRed = new Array(1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35);
+var numberRed = new Array(1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36);
 var rouletteOne = new roulette_1.Roulette(1, numberRed, 0);
 var rouletteList = [rouletteOne];
 //Instancia casino
@@ -212,27 +212,43 @@ function rouletteMenu(option) {
             break;
         case 1:
             var value = readline.questionInt('Ingrese su apuesta: ');
+            while (value > playerOne.getFoundsAvailable()) {
+                console.log("Fondos Insuficientes");
+                value = readline.questionInt('Ingrese su apuesta nuevamente: ');
+            }
             var pleno = readline.questionInt('Ingrese Numero entre 1 y 36 para PLENO: ');
             while (pleno < 1 || pleno > 36) {
                 pleno = readline.questionInt('Ingrese Numero entre 1 y 36 para PLENO: ');
             }
-            var color = readline.question('Ingrese Color para Jugar, o solo deje Vacio: ');
-            if (color === "") {
-                color = undefined;
+            var color = undefined;
+            var p_color = readline.questionInt('Ingrese Color para Jugar, Para ROJO (1), para NEGRO (2) o Pasar (3): ');
+            switch (p_color) {
+                case 1:
+                    color = "ROJO";
+                    break;
+                case 2:
+                    color = "NEGRO";
+                    break;
+                case 3:
+                    color = undefined;
+                    break;
+                default:
+                    console.log("El valor Ingresado es Invalido, no se jugara por este Item");
+                    break;
             }
-            var parOinpar = readline.question('Ingrese PAR o IMPAR, o solo deja en Blanco: ');
+            var parOinpar = readline.question('Ingrese PAR o IMPAR, o solo deje Vacio: ');
             if (parOinpar === "") {
                 parOinpar = undefined;
             }
-            var docena = readline.question('Ingrese 1ra Docena, 2da Docena o 3ra Docena, o solo deja en Blanco: ');
+            var docena = readline.question('Ingrese 1ra Docena, 2da Docena o 3ra Docena, o solo deje Vacio: ');
             if (docena === "") {
                 docena = undefined;
             }
-            var altoObajo = readline.question('Ingrese Numero ALTO o Numero BAJO, o solo deja en Blanco: ');
+            var altoObajo = readline.question('Ingrese Numero ALTO o Numero BAJO, o solo deje Vacio: ');
             if (altoObajo === "") {
                 altoObajo = undefined;
             }
-            var turningTurnOne = new TurningTurn_1.TurningTurn(1, newCasino, rouletteOne, playerOne, value, pleno, color, parOinpar, docena, altoObajo);
+            var turningTurnOne = new TurningTurn_1.TurningTurn(countTurns + 1, newCasino, rouletteOne, playerOne, value, pleno, color, parOinpar, docena, altoObajo);
             turningTurnOne.turning();
             console.log("----------------------------------------------------------------");
             subMenuRoulette();
