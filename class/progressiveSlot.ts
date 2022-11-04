@@ -41,6 +41,7 @@ pRollerNumber:number,pPayLine:number,pJackpot:number){
       return combination;
     }
   public playProgressiveSlot(pBetValue:number):number{
+    let text:string;
     let reward:number=0;
     let jackpot:number=0;
     let aux:number[]=this.progressiveCombination();
@@ -72,6 +73,12 @@ pRollerNumber:number,pPayLine:number,pJackpot:number){
           reward=this.getJackpot();
           this.setJackpot(0);
       }
+      if(reward>0){
+      text=`\n El tragamonedas ${this.id} perdió ${reward} creditos.`
+      } else {
+        text=`\n El tragamonedas ${this.id} ganó ${reward} creditos.`
+      }
+      this.writeStatictis('progressiveSlotStatistic',text);
     return reward;
   }
 }

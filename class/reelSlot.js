@@ -42,7 +42,7 @@ var ReelSlot = /** @class */ (function (_super) {
                 console.log("\u00A1\u00A1\u00A1 FELICIDADES GANO EL POZO !!! ".concat(this.well, "."));
                 reward = this.getWell();
                 break;
-            case 1:
+            case -1:
                 console.log("* Felicidades acert\u00F3 una linea! Gan\u00F3 ".concat(pBetValue * 50, ". *"));
                 reward = pBetValue * 50;
                 break;
