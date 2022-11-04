@@ -26,26 +26,24 @@ let rouletteList:Roulette[]=[rouletteOne];
 //Instancia casino
 let newCasino:Casino=new Casino('Atlanta',progressiveSlotList,reelSlotList,rouletteList,500000);
 
-
+ // Funcion para carga de jugador
+function newPlayer():void{
+    let age:number=readline.questionInt(`Ingrese su edad para verificar si es mayor: `);
+    if(age>=18){
+    let name:string=readline.question(`Ingrese su nombre: `);
+    let founds:number=readline.questionInt(`Ingrese los fondos que desea utilizar:`);
+    playerOne=new Player(age,name,'',founds);
+    console.log(playerOne);
+    } else {
+        console.log('Debe ser mayor de edad para ingresar al casino.');
+    }
+}
 //Informacion del casino
 export function welcome():void{
     gameInformation(0);
     newPlayer();
     console.log(`Bienvenido ${playerOne.getName()}.`);
     main();
-}
- // Funcion para carga de jugador
-function newPlayer():void{
-    let age:number=readline.questionInt(`Ingrese su edad para verificar si es mayor: `);
-    if(age>=18){
-    let name:string=readline.question(`Ingrese su nombre: `);
-    let surname:string=readline.question(`Ingrese su apellido: `);
-    let founds:number=readline.questionInt(`Ingrese los fondos que desea utilizar:`);
-    playerOne=new Player(age,name,surname,founds);
-    console.log(playerOne);
-    } else {
-        console.log('Debe ser mayor de edad para ingresar al casino.');
-    }
 }
 // Funcion de inicio para el menu del casino
 function main():void{
@@ -104,7 +102,7 @@ function callGame(option:number):void{
 }
 // Opciones de cada
 function gameOptions():void{
-    console.log('Elija una opción. \n 1: JUGAR \n 2: LEER INFORMACION DEL JUEGO \n 0: Volver al menú anterior');
+    console.log('Elija una opción. \n1: JUGAR \n2: LEER INFORMACION DEL JUEGO \n0: Volver al menú anterior');
 }
 /* Funcionalidades de tragamonedas tradicional */
 function reelSlotMenu(option:number):void{
@@ -126,7 +124,7 @@ function reelSlotMenu(option:number):void{
     }
 }
 function subMenuReel():void{
-    console.log('1: JUGAR \n2: MULTIPLICAR JUGADAS \n3: COBRAR Y SALIR');
+    console.log('1: JUGAR \n2: MULTIPLICAR JUGADAS \n3: CAMBIAR JUEGO \n4:SALIR');
     let gameOption:number=readline.questionInt();
     switch(gameOption){
         case 1:
@@ -141,6 +139,9 @@ function subMenuReel():void{
             subMenuReel();
             break;
         case 3:
+            games();
+            break;
+        case 4:
             console.log(`${playerOne.getName()} se retiró con ${playerOne.getFoundsAvailable()} créditos.`);
             break;
         default:
@@ -175,7 +176,7 @@ function setSlotLines(lines:number):void{
     progressiveSlotOne.setPayLine(lines);
 }
 function subMenuProgressiveSlot():void{
-    console.log('1: JUGAR \n2: MULTIPLICAR JUGADAS \n3: COBRAR Y SALIR');
+    console.log('1: JUGAR \n2: MULTIPLICAR JUGADAS \n3: CAMBIAR JUEGO \n4:SALIR');
     let gameOption:number=readline.questionInt();
         switch(gameOption){
             case 1:
@@ -194,6 +195,9 @@ function subMenuProgressiveSlot():void{
                 subMenuProgressiveSlot();
                 break;
             case 3:
+                games();
+                break;
+            case 4:
                 console.log(`${playerOne.getName()} se retiró con ${playerOne.getFoundsAvailable()} créditos.`);
                 break;
             default:
@@ -248,7 +252,7 @@ function rouletteMenu(option:number):void{
     }
 }
 function subMenuRoulette():void{
-    console.log('1: JUGAR \n2: COBRAR Y SALIR \n3: Volver al menú anterior');
+    console.log('1: JUGAR \n2: MULTIPLICAR JUGADAS \n3: CAMBIAR JUEGO \n4:SALIR');
     let gameOption:number=readline.questionInt();
         switch(gameOption){
             case 1:
@@ -286,17 +290,17 @@ function crapsMenu(option:number):void{
     }
 }
 function subMenuCraps():void{
-    console.log('Elija una opción');
-    console.log('1: JUGAR OTRA VEZ');
-    console.log('2: COBRAR Y SALIR');
+    console.log('1: JUGAR \n2: CAMBIAR JUEGO \n3:SALIR');
     let gameOption:number=readline.questionInt();
     switch(gameOption){
         case 1:
             crapsMenu(1);
             break;
         case 2:
-            console.log(`Se retiró con ${playerOne.getFoundsAvailable()} créditos.`);
+            games();
             break;
+        case 3:
+            console.log(`Se retiró con ${playerOne.getFoundsAvailable()} créditos.`);
         default:
             console.log(` -- El número ingresado es incorrecto ingrese un número valido ---`);
             subMenuCraps();
@@ -312,7 +316,6 @@ function playGame(game:number,value:number):void{
             switch(game){
                 case 1:
                     newFounds=reelSlotOne.playReelSlot(value);
-                    writeStatictis('reelSlotStatistics','Hola');
                     break;
                 case 2:
                     newFounds=progressiveSlotOne.playProgressiveSlot(value);
@@ -326,23 +329,15 @@ function playGame(game:number,value:number):void{
         }
 }
 function replayGame(game:number,times:number,value:number):void{
+    if(playerOne.getFoundsAvailable()>=times*value){
         for(let i:number=0;i<times;i++){
-            if(playerOne.getFoundsAvailable()>=times*value){
-                playGame(game,value);
-            } else {
-                console.log(`No tiene fondos para esta apuesta.`);
-            }
-        }
+            playGame(game,value);
+        } 
+    }  else {
+    console.log(`No tiene fondos para esta apuesta.`);
+    }
 }
 function gameInformation(index:number):void{
     let text:string=clasificationText[index].toString();
     console.log(text);
-}
-function writeStatictis(route:string,value:string):void{
-    let statistic:string=value;
-    fs.writeFile('./files.txt/'+route+'.txt',statistic,{encoding:'utf8'},function(error){
-    if(error){
-        console.log(`Error: ${error}`);
-    }
-    });
 }

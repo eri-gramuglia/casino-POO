@@ -28,6 +28,19 @@ var rouletteOne = new roulette_1.Roulette(1, numberRed, 0);
 var rouletteList = [rouletteOne];
 //Instancia casino
 var newCasino = new casino_1.Casino('Atlanta', progressiveSlotList, reelSlotList, rouletteList, 500000);
+// Funcion para carga de jugador
+function newPlayer() {
+    var age = readline.questionInt("Ingrese su edad para verificar si es mayor: ");
+    if (age >= 18) {
+        var name_1 = readline.question("Ingrese su nombre: ");
+        var founds = readline.questionInt("Ingrese los fondos que desea utilizar:");
+        playerOne = new player_1.Player(age, name_1, '', founds);
+        console.log(playerOne);
+    }
+    else {
+        console.log('Debe ser mayor de edad para ingresar al casino.');
+    }
+}
 //Informacion del casino
 function welcome() {
     gameInformation(0);
@@ -36,20 +49,6 @@ function welcome() {
     main();
 }
 exports.welcome = welcome;
-// Funcion para carga de jugador
-function newPlayer() {
-    var age = readline.questionInt("Ingrese su edad para verificar si es mayor: ");
-    if (age >= 18) {
-        var name_1 = readline.question("Ingrese su nombre: ");
-        var surname = readline.question("Ingrese su apellido: ");
-        var founds = readline.questionInt("Ingrese los fondos que desea utilizar:");
-        playerOne = new player_1.Player(age, name_1, surname, founds);
-        console.log(playerOne);
-    }
-    else {
-        console.log('Debe ser mayor de edad para ingresar al casino.');
-    }
-}
 // Funcion de inicio para el menu del casino
 function main() {
     console.log('Oprima 1 para empezar a jugar.');
@@ -314,7 +313,6 @@ function playGame(game, value) {
         switch (game) {
             case 1:
                 newFounds = reelSlotOne.playReelSlot(value);
-                writeStatictis('reelSlotStatistics', 'Hola');
                 break;
             case 2:
                 newFounds = progressiveSlotOne.playProgressiveSlot(value);
@@ -329,24 +327,16 @@ function playGame(game, value) {
     }
 }
 function replayGame(game, times, value) {
-    for (var i = 0; i < times; i++) {
-        if (playerOne.getFoundsAvailable() >= times * value) {
+    if (playerOne.getFoundsAvailable() >= times * value) {
+        for (var i = 0; i < times; i++) {
             playGame(game, value);
         }
-        else {
-            console.log("No tiene fondos para esta apuesta.");
-        }
+    }
+    else {
+        console.log("No tiene fondos para esta apuesta.");
     }
 }
 function gameInformation(index) {
     var text = clasificationText[index].toString();
     console.log(text);
-}
-function writeStatictis(route, value) {
-    var statistic = value;
-    fs.writeFile('./files.txt/' + route + '.txt', statistic, { encoding: 'utf8' }, function (error) {
-        if (error) {
-            console.log("Error: ".concat(error));
-        }
-    });
 }
