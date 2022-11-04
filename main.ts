@@ -4,6 +4,7 @@ import { Roulette } from "./class/roulette";
 import { Casino } from "./class/casino";
 import { Player } from "./class/player";
 import { TurningTurn }  from "./class/TurningTurn";
+import { Craps } from "./class/craps";
 //Modulos
 import * as fs from 'fs';
 let readline=require('readline-sync');
@@ -23,6 +24,8 @@ let countTurns:number = 0;
 let numberRed: number[] = new Array (1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36);
 let rouletteOne : Roulette = new Roulette(1,numberRed,0);
 let rouletteList:Roulette[]=[rouletteOne];
+//Instancia dados
+let craps1: Craps = new Craps(); 
 //Instancia casino
 let newCasino:Casino=new Casino('Atlanta',progressiveSlotList,reelSlotList,rouletteList,500000);
 
@@ -336,8 +339,9 @@ function crapsMenu(option:number):void{
             games();
             break;
         case 1:
-            let value:number=readline.questionInt('')
-            playGame(4,value);
+            let value:number=readline.questionInt('Ingrese su apuesta')
+            
+            playGame(3,value);
             subMenuCraps();
             break;
         case 2:
@@ -379,10 +383,10 @@ function playGame(game:number,value:number):void{
                     break;
                 /*case 3:
                     newFounds=roulette1.playRoulette(value);
-                    break;
-                case 4:
-                    newFounds=craps1.playCraps(value);
-            break;*/
+                    break;*/
+                case 3:
+                    newFounds=craps1.obtenerPremio(value);
+            break;
             }
         } else {
         console.log(`No tiene fondos para esta apuesta`);

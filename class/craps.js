@@ -2,29 +2,14 @@
 exports.__esModule = true;
 exports.Craps = void 0;
 var Craps = /** @class */ (function () {
-    function Craps(pApuesta) {
-        this.apuesta = pApuesta;
+    function Craps() {
     }
-    Craps.prototype.getCredito = function () {
-        return this.apuesta;
-    };
-    Craps.prototype.setCredito = function (pApuesta) {
-        this.apuesta = pApuesta;
-    };
     Craps.prototype.tirarDados = function () {
         var dado = 0;
         for (var i = 0; i < 6; i++) {
-            dado = Math.floor(Math.random() * 6 + 1);
+            dado = Math.floor(Math.random() * 6) + 1;
         }
         return dado;
-    };
-    Craps.prototype.restarCredito = function (pApuesta) {
-        pApuesta = this.apuesta * 0.95;
-        return pApuesta;
-    };
-    Craps.prototype.sumarCredito = function (pApuesta) {
-        pApuesta = this.apuesta * 2;
-        return pApuesta;
     };
     Craps.prototype.comprobarResultado = function () {
         // let ganaCredito = this.sumarCredito(this.apuesta);
@@ -48,16 +33,23 @@ var Craps = /** @class */ (function () {
             console.log("El resultado es: ", "Primer Dado: ", pDado1, " ", "Segundo Dado: ", pDado2);
             console.log(" Ud. vuelve a tirar el dado!"); //el jugador vuelve a tirar hasta ganar o perder;
         }
-        console.log(aux);
+        //console.log(aux);
         return aux;
+    };
+    Craps.prototype.obtenerPremio = function (apuesta) {
+        var aux = this.comprobarResultado();
+        var premio = 0;
+        if (aux === -1) {
+            premio = apuesta * 2;
+        }
+        else if (aux === 1) {
+            premio -= apuesta;
+        }
+        else {
+            premio = 0;
+        }
+        return premio;
     };
     return Craps;
 }());
 exports.Craps = Craps;
-var juego1 = new Craps(140);
-console.log("-------------------------------------------------");
-console.log("Ud. Ingresó ", juego1.getCredito(), " créditos");
-console.log("-------------------------------------------------");
-juego1.comprobarResultado();
-console.log("-------------------------------------------------");
-juego1.comprobarResultado();

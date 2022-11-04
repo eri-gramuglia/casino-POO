@@ -3,7 +3,7 @@ export class Craps {
     public tirarDados():number{
         let dado=0;
         for(let i=0;i<6;i++){
-            dado=Math.floor(Math.random() * 6 + 1);
+            dado=Math.floor(Math.random() * 6) + 1;
         }
         return dado;
     }
@@ -34,7 +34,18 @@ export class Craps {
         //console.log(aux);
         return aux;
     }
-
+    public obtenerPremio(apuesta:number):number{
+        let aux : number = this.comprobarResultado();
+        let premio : number = 0;
+        if (aux === -1){
+            premio = apuesta * 2;
+        } else if (aux ===1){
+            premio -= apuesta; 
+        } else {
+            premio = 0;
+        } 
+        return premio;
+    } 
 }
     
  

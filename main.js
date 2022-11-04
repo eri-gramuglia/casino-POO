@@ -7,6 +7,7 @@ var roulette_1 = require("./class/roulette");
 var casino_1 = require("./class/casino");
 var player_1 = require("./class/player");
 var TurningTurn_1 = require("./class/TurningTurn");
+var craps_1 = require("./class/craps");
 //Modulos
 var fs = require("fs");
 var readline = require('readline-sync');
@@ -26,6 +27,8 @@ var countTurns = 0;
 var numberRed = new Array(1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36);
 var rouletteOne = new roulette_1.Roulette(1, numberRed, 0);
 var rouletteList = [rouletteOne];
+//Instancia dados
+var craps1 = new craps_1.Craps();
 //Instancia casino
 var newCasino = new casino_1.Casino('Atlanta', progressiveSlotList, reelSlotList, rouletteList, 500000);
 //Informacion del casino
@@ -337,8 +340,8 @@ function crapsMenu(option) {
             games();
             break;
         case 1:
-            var value = readline.questionInt('');
-            playGame(4, value);
+            var value = readline.questionInt('Ingrese su apuesta');
+            playGame(3, value);
             subMenuCraps();
             break;
         case 2:
@@ -380,10 +383,10 @@ function playGame(game, value) {
                 break;
             /*case 3:
                 newFounds=roulette1.playRoulette(value);
+                break;*/
+            case 3:
+                newFounds = craps1.obtenerPremio(value);
                 break;
-            case 4:
-                newFounds=craps1.playCraps(value);
-        break;*/
         }
     }
     else {
