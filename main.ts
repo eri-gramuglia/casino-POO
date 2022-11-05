@@ -3,7 +3,8 @@ import { ReelSlot } from "./class/reelSlot";
 import { Roulette } from "./class/roulette";
 import { Casino } from "./class/casino";
 import { Player } from "./class/player";
-import { TurningTurn }  from "./class/TurningTurn";
+//import { TurningTurn }  from "./class/TurningTurn";
+import { Craps } from "./class/craps";
 //Modulos
 import * as fs from 'fs';
 let readline=require('readline-sync');
@@ -23,6 +24,8 @@ let countTurns:number = 0;
 let numberRed: number[] = new Array (1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35);
 let rouletteOne : Roulette = new Roulette(1,numberRed,0);
 let rouletteList:Roulette[]=[rouletteOne];
+//Instancia dados
+let craps1: Craps = new Craps(); 
 //Instancia casino
 let newCasino:Casino=new Casino('Atlanta',progressiveSlotList,reelSlotList,rouletteList,500000);
 
@@ -124,7 +127,7 @@ function reelSlotMenu(option:number):void{
     }
 }
 function subMenuReel():void{
-    console.log('1: JUGAR \n2: MULTIPLICAR JUGADAS \n3: CAMBIAR JUEGO \n4:SALIR');
+    console.log('1: JUGAR \n2: MULTIPLICAR JUGADAS \n3: CAMBIAR JUEGO \n4: SALIR');
     let gameOption:number=readline.questionInt();
     switch(gameOption){
         case 1:
@@ -176,7 +179,7 @@ function setSlotLines(lines:number):void{
     progressiveSlotOne.setPayLine(lines);
 }
 function subMenuProgressiveSlot():void{
-    console.log('1: JUGAR \n2: MULTIPLICAR JUGADAS \n3: CAMBIAR JUEGO \n4:SALIR');
+    console.log('1: JUGAR \n2: MULTIPLICAR JUGADAS \n3: CAMBIAR JUEGO \n4: SALIR');
     let gameOption:number=readline.questionInt();
         switch(gameOption){
             case 1:
@@ -238,7 +241,7 @@ function rouletteMenu(option:number):void{
             if (altoObajo===""){
                 altoObajo = undefined;
             }
-            let turningTurnOne: TurningTurn = new TurningTurn(countTurns+1,newCasino,rouletteOne,playerOne,value,pleno,color,parOinpar,docena,altoObajo)
+            /*let turningTurnOne: TurningTurn = new TurningTurn(countTurns+1,newCasino,rouletteOne,playerOne,value,pleno,color,parOinpar,docena,altoObajo)
             turningTurnOne.turning()
             console.log("----------------------------------------------------------------")
             subMenuRoulette()
@@ -248,11 +251,11 @@ function rouletteMenu(option:number):void{
         case 2:
             gameInformation(3);
             callGame(3);
-        break;
+        break;*/
     }
 }
 function subMenuRoulette():void{
-    console.log('1: JUGAR \n2: MULTIPLICAR JUGADAS \n3: CAMBIAR JUEGO \n4:SALIR');
+    console.log('1: JUGAR \n2: MULTIPLICAR JUGADAS \n3: CAMBIAR JUEGO \n4: SALIR');
     let gameOption:number=readline.questionInt();
         switch(gameOption){
             case 1:
@@ -279,8 +282,8 @@ function crapsMenu(option:number):void{
             games();
             break;
         case 1:
-            let value:number=readline.questionInt('')
-            playGame(4,value);
+            let value:number=readline.questionInt('Ingrese su apuesta: ')
+            playGame(3,value);
             subMenuCraps();
             break;
         case 2:
@@ -290,7 +293,7 @@ function crapsMenu(option:number):void{
     }
 }
 function subMenuCraps():void{
-    console.log('1: JUGAR \n2: CAMBIAR JUEGO \n3:SALIR');
+    console.log('1: JUGAR \n2: CAMBIAR JUEGO \n3: SALIR');
     let gameOption:number=readline.questionInt();
     switch(gameOption){
         case 1:
@@ -319,6 +322,9 @@ function playGame(game:number,value:number):void{
                     break;
                 case 2:
                     newFounds=progressiveSlotOne.playProgressiveSlot(value);
+                    break;
+                case 3:
+                    newFounds=craps1.obtenerPremio(value);
                     break;
             }
             playerOne.setFoundsAvailable(playerOne.getFoundsAvailable()+newFounds);
