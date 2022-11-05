@@ -128,7 +128,7 @@ var Slot = /** @class */ (function () {
     };
     Slot.prototype.writeStatictis = function (route, value) {
         var statistic = value;
-        fs.writeFile('./files.txt/' + route + '.txt', statistic, { encoding: 'utf8' }, function (error) {
+        fs.appendFile('./files.txt/' + route + '.txt', statistic, { encoding: 'utf8' }, function (error) {
             if (error) {
                 console.log("Error: ".concat(error));
             }

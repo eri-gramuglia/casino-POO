@@ -38,11 +38,11 @@ export class ReelSlot extends Slot {
           reward+=aux * pBetValue;
         } 
         if(reward>0){
-          text=`\n El tragamonedas ${this.id} perdió ${reward} creditos.`
+          text=`\nEl tragamonedas ${this.id} perdió ${reward} creditos.`
           } else {
-            text=`\n El tragamonedas ${this.id} ganó ${reward} creditos.`
+            text=`\nEl tragamonedas ${this.id} ganó ${-reward} creditos.`
           }
-          this.writeStatictis('progressiveSlotStatistic',text);
+          this.writeStatictis('reelSlotStatistics',text);
     return reward;
   } 
 } 

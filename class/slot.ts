@@ -129,7 +129,7 @@ pRollerNumber:number){
   } 
   public writeStatictis(route:string,value:string):void{
     let statistic:string=value;
-    fs.writeFile('./files.txt/'+route+'.txt',statistic,{encoding:'utf8'},function(error){
+    fs.appendFile('./files.txt/'+route+'.txt',statistic,{encoding:'utf8'},function(error){
     if(error){
         console.log(`Error: ${error}`);
     }

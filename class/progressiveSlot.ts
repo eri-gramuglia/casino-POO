@@ -74,9 +74,9 @@ pRollerNumber:number,pPayLine:number,pJackpot:number){
           this.setJackpot(0);
       }
       if(reward>0){
-      text=`\n El tragamonedas ${this.id} perdió ${reward} creditos.`
+      text=`\nEl tragamonedas ${this.id} perdió ${reward} creditos.`
       } else {
-        text=`\n El tragamonedas ${this.id} ganó ${reward} creditos.`
+        text=`\nEl tragamonedas ${this.id} ganó ${-reward} creditos.`
       }
       this.writeStatictis('progressiveSlotStatistic',text);
     return reward;

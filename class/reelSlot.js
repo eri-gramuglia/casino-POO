@@ -32,6 +32,7 @@ var ReelSlot = /** @class */ (function (_super) {
         this.well = newWell;
     };
     ReelSlot.prototype.playReelSlot = function (pBetValue) {
+        var text;
         var aux = 0;
         var reward = 0;
         if (this.verifyBet(pBetValue) && this.checkRollers()) {
@@ -54,6 +55,13 @@ var ReelSlot = /** @class */ (function (_super) {
                 console.log("- Gan\u00F3 ".concat(aux * pBetValue, " cr\u00E9ditos. -"));
                 reward += aux * pBetValue;
         }
+        if (reward > 0) {
+            text = "\nEl tragamonedas ".concat(this.id, " perdi\u00F3 ").concat(reward, " creditos.");
+        }
+        else {
+            text = "\nEl tragamonedas ".concat(this.id, " gan\u00F3 ").concat(-reward, " creditos.");
+        }
+        this.writeStatictis('reelSlotStatistics', text);
         return reward;
     };
     return ReelSlot;

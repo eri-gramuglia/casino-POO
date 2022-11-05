@@ -92,10 +92,10 @@ var ProgressiveSlot = /** @class */ (function (_super) {
             this.setJackpot(0);
         }
         if (reward > 0) {
-            text = "\n El tragamonedas ".concat(this.id, " perdi\u00F3 ").concat(reward, " creditos.");
+            text = "\nEl tragamonedas ".concat(this.id, " perdi\u00F3 ").concat(reward, " creditos.");
         }
         else {
-            text = "\n El tragamonedas ".concat(this.id, " gan\u00F3 ").concat(reward, " creditos.");
+            text = "\nEl tragamonedas ".concat(this.id, " gan\u00F3 ").concat(-reward, " creditos.");
         }
         this.writeStatictis('progressiveSlotStatistic', text);
         return reward;
