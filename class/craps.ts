@@ -1,5 +1,11 @@
 export class Craps {
-   
+    private id:number;
+    public constructor(pId:number){
+        this.id=pId;
+    }
+    public getId():number{
+        return this.id;
+    }
     public tirarDados():number{
         let dado=0;
         for(let i=0;i<6;i++){

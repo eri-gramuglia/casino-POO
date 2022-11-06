@@ -25,10 +25,10 @@ let numberRed: number[] = new Array (1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 
 let rouletteOne : Roulette = new Roulette(1,numberRed,0);
 let rouletteList:Roulette[]=[rouletteOne];
 //Instancia dados
-let craps1: Craps = new Craps(); 
+let craps1: Craps = new Craps(4001); 
+let crapsList:Craps[]=[craps1];
 //Instancia casino
-let newCasino:Casino=new Casino('Atlanta',progressiveSlotList,reelSlotList,rouletteList,500000);
-
+let newCasino:Casino=new Casino('Atlanta',progressiveSlotList,reelSlotList,rouletteList,crapsList,500000);
  // Funcion para carga de jugador
 function newPlayer():void{
     let age:number=readline.questionInt(`Ingrese su edad para verificar si es mayor: `);
