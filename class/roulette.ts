@@ -1,95 +1,133 @@
-import { Player } from "./player"
 export class Roulette {
     private _id: number;
-    private _numRed: Array <number>;
- //   private _numBlack: Array <number>;
-    private _numRandom: number;
- //   private _boxFound: number;
- //   private _player: Player;
+    private _numberSelected: number;
+    private _betOption: Array<string>;
+    private _betValue: Array<number>;
 
-    constructor(p_id: number, p_numRed: Array<number>, /*p_numBlack: Array<number>,*/p_numRandom: number,/*p_boxFound:number*/) {
+
+    constructor(p_id: number, p_numberSelect: number, p_betValue: Array<number>, p_betOption: Array<string>) {
         this._id = p_id;
-        this._numRed= p_numRed;
-        //this._numBlack = p_numBlack;
-        this._numRandom = p_numRandom;
-//        this._boxFound = p_boxFound;
-//        this._player = p_player;
+        this._numberSelected = p_numberSelect;
+        this._betValue = p_betValue;
+        this._betOption = p_betOption;
+
     }
 
-    public setId(p_id:number):void {
+    public setId(p_id: number): void {
         this._id = p_id;
     }
-    public getId():number {
+    public getId(): number {
         return this._id;
     }
-    public setNumRed   (p_numRed:Array<number>):void {
-        this._numRed= p_numRed 
-;
+    public setNumSelected(p_numSelect: number): void {
+        this._numberSelected = p_numSelect;
     }
-    public getNumRed   ():Array<number> {
-        return this._numRed
-;
+    public getNumSelected(): number {
+        return this._numberSelected;
     }
-/*     public setNumWhite(p_numBlack:Array<number>):void {
-        this._numBlack = p_numBlack;
+    public setBetValue(p_betValue: Array<number>): void {
+        this._betValue = p_betValue;
     }
-    public getNumWhite():Array<number> {
-        return this._numBlack;
-    } */
-/*    public setBoxFound(p_boxFound:number):void {
-        this._boxFound = p_boxFound;
+    public getBetValue():  Array<number> {
+        return this._betValue;
     }
-    public getBoxFound():number {
-        return this._boxFound;
+    public setBetOption(p_betOption: Array<string>) {
+        this._betOption = p_betOption;
     }
-    public setPlayersList(p_player: Player):void {
-        this._player = p_player;
-    }*/
-    public getNumRandom():number {
-        let min: number = Math.ceil(0);
-        let max: number = Math.floor(36);
-        this._numRandom = Math.floor(Math.random() * (max - min + 1) + min);
-        return this._numRandom;
+    public getBetOption() {
+        return this._betOption;
     }
-    public getColor(p_number: number): string {
-        //let aux: string = " ";
-        //console.log (this._numRed.length)
-        if (p_number === 0){
-            return "VERDE";
-        }else {
-            for (let i:number = 0; i <= this._numRed.length; i++) {
-                if (p_number === this._numRed[i]) {
-                    return "ROJO";
-                }
-            }
-            return "NEGRO";
-        }
-    }
-    public getEvenOrOdd (p_number:number):string {
-        if (p_number%2 === 0){
+
+    public getEvenOrOdd(p_number: number): string {
+        if (p_number % 2 === 0) {
             return "PAR"
-        }else{
+        } else {
             return "IMPAR"
         }
     }
-    public getDozen (p_number:number):string {
-        if (p_number <= 12){
+    public getColor(p_number: number): string {
+        let auxColor: string;
+        if (p_number === 0) {
+            return auxColor = "VERDE";
+        } else if (p_number <= 9 && p_number % 2 !== 0) {
+            return auxColor = "ROJO";
+        } else if (p_number <= 18 && p_number % 2 === 0 && p_number !== 10) {
+            return auxColor = "ROJO";
+        } else if (p_number <= 27 && p_number % 2 !== 0) {
+            return auxColor = "ROJO";
+        } else if (p_number % 2 === 0 && p_number !== 28) {
+            return auxColor = "ROJO";
+        }
+        return auxColor = "NEGRO";
+    }
+
+    public getDozen(p_number: number): string {
+        if (p_number <= 12) {
             return "1ra Docena";
-        }else if (p_number >= 25) {
+        } else if (p_number >= 25) {
             return "3ra Docena";
-        }else{
+        } else {
             return "2da Docena";
         }
     }
-    public getHighOrLow (p_number: number):string{
-        if (p_number >= 19){
+    public getHighOrLow(p_number: number): string {
+        if (p_number >= 19) {
             return "Numero ALTO"
         } else {
             return "Numero BAJO"
         }
     }
-}
+    public toTurn(): Array<number> {
+        let min: number = Math.ceil(0);
+        let max: number = Math.floor(36);
+        let numRandom: number = Math.floor(Math.random() * (max - min + 1) + min);
+        let optionResult: Array<string> = ["number", this.getColor(numRandom), this.getEvenOrOdd(numRandom), this.getDozen(numRandom), this.getHighOrLow(numRandom)];
 
+        console.log ("----------------------------------------------------------------");
+        console.log (`Girando...y Sale: ${numRandom} el ${this.getColor(numRandom)}`); 
+        console.log ("----------------------------------------------------------------");
+
+        if (numRandom === 0) {
+            for (let i = 0; i < this._betValue.length; i++) {
+                this._betValue[i] = -this._betValue[i]
+            }
+            console.log("La Casa GANA la MESA");
+        } else {
+            if (numRandom === this._numberSelected) {
+                console.log("----------------------------------------------------------------");
+                console.log("GANASTE el PLENO, tu Apusta se Multiplica x35")
+                console.log("----------------------------------------------------------------");
+                this._betValue[0] += this._betValue[0] * 35;
+            } else if (this._numberSelected !== -1) {
+                console.log("----------------------------------------------------------------");
+                console.log("perdiste lo apostado para PLENO");
+                console.log("----------------------------------------------------------------");
+                this._betValue[0] = -this._betValue[0]
+            }
+            for (var i = 1; i < this._betValue.length; i++) {
+                if (this._betValue[i] !== 0) {
+                    if (this._betOption[i] === optionResult[i]) {
+                        console.log("----------------------------------------------------------------");
+                        console.log(`GANASTE lo Aposta a: ${this._betOption[i]}`)
+                        console.log("----------------------------------------------------------------");
+                        if (i === 3) {
+                            this._betValue[i] += this._betValue[i] * 2;
+                        } else {
+                            this._betValue[i] += this._betValue[i];
+                        }
+                    } else {
+                        console.log("----------------------------------------------------------------");
+                        console.log(`Perdiste lo Aposta a: ${this._betOption[i]}`);
+                        console.log("----------------------------------------------------------------");
+                        this._betValue[i] = -this._betValue[i]
+                    }
+                }
+            }
+        }
+
+        return this._betValue;
+    }
+}
 
 /* 
 
@@ -112,4 +150,3 @@ console.log (rouletteOne.getEvenOrOdd(28))
 console.log (rouletteOne.getNumRandom())
 
 console.log (rouletteOne.getHighOrLow(20)) */
-
