@@ -301,7 +301,7 @@ function rouletteMenu(option) {
                     docena = "1ra Docena";
                     betOptionLis[3] = docena;
                     betValueList[3] = readline.questionInt("Ingrese su apuesta para ".concat(docena, ": "));
-                    while (betValueList[3] > auxFounds - betValueList[0] - betValueList[1] - betValueList[2]) {
+                    while (betValueList[3] > auxFounds) {
                         console.log("Fondos Insuficientes");
                         betValueList[3] = readline.questionInt('Ingrese su apuesta nuevamente: ');
                     }
