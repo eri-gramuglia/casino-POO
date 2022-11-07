@@ -20,9 +20,10 @@ let progressiveSlotOne:ProgressiveSlot=new ProgressiveSlot(2001,progressiveSlotB
 let reelSlotList:ReelSlot[]=[reelSlotOne];
 let progressiveSlotList:ProgressiveSlot[]=[progressiveSlotOne];
 //Instancia ruleta
-let countTurns:number = 0;
-let numberRed: number[] = new Array (1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35);
-let rouletteOne : Roulette = new Roulette(1,numberRed,0);
+//Instancia ruleta
+let betOptionOne :Array<string> =[];
+let betValueOne :Array<number> =[];
+let rouletteOne : Roulette = new Roulette (1,0,betValueOne,betOptionOne);
 let rouletteList:Roulette[]=[rouletteOne];
 //Instancia dados
 let craps1: Craps = new Craps(4001); 
@@ -211,39 +212,169 @@ function subMenuProgressiveSlot():void{
 }
 /* Funcionalidades de ruleta */
 function rouletteMenu(option:number):void{
+    let betValueList : Array<number> = [];
+    let betOptionLis : Array<string> = [];
     switch(option){
         case 0:
             games();
             break;
         case 1:
-            let value:number=readline.questionInt('Ingrese su apuesta: ');
-            while (value > playerOne.getFoundsAvailable()){
-                console.log("Fondos Insuficientes")
-                value=readline.questionInt('Vuelva a ingrese su apuesta: ');
+            let auxFounds: number = playerOne.getFoundsAvailable();
+            betValueList[0]=readline.questionInt('Ingrese su apuesta a un Numero: ');
+            while (betValueList[0] > auxFounds){
+                console.log ("Fondos Insuficientes")
+                betValueList[0]=readline.questionInt('Ingrese su apuesta nuevamente: ');
             }
             let pleno:number=readline.questionInt('Ingrese Numero entre 1 y 36 para PLENO: ');
             while (pleno < 1 || pleno>36) {
-                pleno=readline.questionInt('Ingrese Numero entre 1 y 36 para PLENO (1 - 36): ');
+                pleno=readline.questionInt('Ingrese Numero entre 1 y 36 para PLENO: ');
+            }
+            auxFounds = auxFounds - betValueList[0]
+            let color:string;
+            let p_color: number = readline.questionInt('Ingrese Color para Jugar, Para ROJO (1), para NEGRO (2) o Pasar (3): ');
+            if (p_color )
+            switch(p_color) {
+                case 1:
+                    color = "ROJO"
+                    betOptionLis[1]=color;
+                    betValueList[1]=readline.questionInt(`Ingrese su apuesta a color ${color}: ` );
+                    while (betValueList[1] > auxFounds){
+                        console.log ("Fondos Insuficientes")
+                        betValueList[1]=readline.questionInt('Ingrese su apuesta nuevamente: ');
+                    }
+                    break;
+                case 2:
+                    color = "NEGRO";
+                    betOptionLis[1]=color;
+                    betValueList[1]=readline.questionInt(`Ingrese su apuesta a color ${color}: ` );
+                    while (betValueList[1] > auxFounds - betValueList[0]){
+                        console.log ("Fondos Insuficientes")
+                        betValueList[1]=readline.questionInt('Ingrese su apuesta nuevamente: ');
+                    }
+                    break;
+                case 3:
+                    color = "";
+                    betValueList[1] = 0
+                    break;
+                default:
+                    console.log("El valor Ingresado es Invalido, no se jugara por este Item")
+                    break;
+            }
+            auxFounds = auxFounds - betValueList[1]
+            let parOinpar:string;
+            let p_parOinpar:number=readline.questionInt ('Ingrese PAR (1) o IMPAR (2) o Pasar (3): ');
+            switch(p_parOinpar) {
+                case 1:
+                    parOinpar = "PAR";
+                    betOptionLis[2]=parOinpar;
+                    betValueList[2]=readline.questionInt(`Ingrese su apuesta para ${parOinpar}: ` );
+                    while (betValueList[2] > auxFounds){
+                        console.log ("Fondos Insuficientes")
+                        betValueList[1]=readline.questionInt('Ingrese su apuesta nuevamente: ');
+                    }
+                    break;
+                case 2:
+                    parOinpar = "IMPAR";
+                    betOptionLis[2]=parOinpar;
+                    betValueList[2]=readline.questionInt(`Ingrese su apuesta para ${parOinpar}: ` );
+                    while (betValueList[2] > auxFounds){
+                        console.log ("Fondos Insuficientes")
+                        betValueList[2]=readline.questionInt('Ingrese su apuesta nuevamente: ');
+                    }
+                    break;
+                case 3:
+                    parOinpar = "";
+                    betValueList[2] = 0
+                    break;
+                default:
+                    console.log("El valor Ingresado es Invalido, no se jugara por este Item")
+                    break;
+            }
+            auxFounds = auxFounds - betValueList[2]
+            let docena :string;
+            let p_docena:number=readline.questionInt('Ingrese 1ra Docena (1), 2da Docena (2) o 3ra Docena (3), o Pasar (4): ');
+            switch (p_docena) {
+                case 1:
+                    docena = "1ra Docena";
+                    betOptionLis[3]=docena;
+                    betValueList[3]=readline.questionInt(`Ingrese su apuesta para ${docena}: ` );
+                    while (betValueList[3] > auxFounds){
+                        console.log ("Fondos Insuficientes")
+                        betValueList[3]=readline.questionInt('Ingrese su apuesta nuevamente: ');
+                    }
+                    break;
+                case 2:
+                    docena = "2da Docena";
+                    betOptionLis[3]=docena;
+                    betValueList[3]=readline.questionInt(`Ingrese su apuesta para ${docena}: ` );
+                    while (betValueList[3] > auxFounds){
+                        console.log ("Fondos Insuficientes")
+                        betValueList[3]=readline.questionInt('Ingrese su apuesta nuevamente: ');
+                    }
+                    break
+                case 3:
+                    docena = "3da Docena";
+                    betOptionLis[3]=docena;
+                    betValueList[3]=readline.questionInt(`Ingrese su apuesta para ${docena}: ` );
+                    while (betValueList[3] > auxFounds){
+                        console.log ("Fondos Insuficientes")
+                        betValueList[3]=readline.questionInt('Ingrese su apuesta nuevamente: ');
+                    }
+                    break;
+                case 4:
+                    docena = "";
+                    betValueList[3] = 0
+                    break;
+                default:
+                    console.log("El valor Ingresado es Invalido, no se jugara por este Item")
+                    break; 
+            }
+            auxFounds = auxFounds - betValueList[3]
+            let altoObajo:string
+            let p_altoObajo:number =readline.questionInt('Apostar a Numero ALTO (1) o Numero BAJO(2), Pasar (3): ');
+            switch(p_altoObajo){
+                case 1:
+                    altoObajo = "Numero ALTO";
+                    betOptionLis[4]=altoObajo;
+                    betValueList[4]=readline.questionInt(`Ingrese su apuesta para ${altoObajo}: ` );
+                    while (betValueList[3] > auxFounds ){
+                        console.log ("Fondos Insuficientes")
+                        betValueList[4]=readline.questionInt('Ingrese su apuesta nuevamente: ');
+                    }
+                    break;
+                case 2:
+                    altoObajo = "Numero BAJO";
+                    betOptionLis[4]=altoObajo;
+                    betValueList[4]=readline.questionInt(`Ingrese su apuesta para ${altoObajo}: ` );
+                    while (betValueList[3] > auxFounds ){
+                        console.log ("Fondos Insuficientes")
+                        betValueList[4]=readline.questionInt('Ingrese su apuesta nuevamente: ');
+                    }
+                    break;
+                case 3:
+                    altoObajo = "";
+                    break;
+                default:
+                    console.log("El valor Ingresado es Invalido, no se jugara por este Item")
+                    break; 
             }
 
-            let color:string | undefined=readline.question('Ingrese Color para Jugar, o solo deje Vacio (ROJO - NEGRO): ');
-            if (color===""){
-                color = undefined;
+            rouletteOne.setBetOption(betOptionLis);
+            rouletteOne.setBetValue(betValueList);
+            let betResoult: Array <number> = rouletteOne.toTurn()
+            let betResulteFinal: number = 0
+            for (let i = 0; i < betResoult.length; i++) {
+                betResulteFinal = betResulteFinal + betResoult[i];
+                //console.log(betResulteFinal)
             }
-            let parOinpar:string | undefined=readline.question('Ingrese PAR o IMPAR, o solo deja Vacio (PAR - IMPAR - ENTER): ');
-            if (parOinpar===""){
-                parOinpar = undefined;
-            }
-            let docena:string | undefined=readline.question('Ingrese Docena, o solo deja Vacio (1ra Docena - 2da Docena - 3ra Docena): ');
-            if (docena===""){
-                docena = undefined;
-            }
-            let altoObajo:string | undefined=readline.question('Ingrese Numero ALTO o Numero BAJO, o solo deja Vacio (Numero ALTO - Numero BAJO): ');
-            if (altoObajo===""){
-                altoObajo = undefined;
-            }
-            /*let turningTurnOne: TurningTurn = new TurningTurn(countTurns+1,newCasino,rouletteOne,playerOne,value,pleno,color,parOinpar,docena,altoObajo)
-            turningTurnOne.turning()
+            playerOne.setFoundsAvailable(playerOne.getFoundsAvailable()+betResulteFinal)
+
+            console.log ("----------------------------------------------------------------");
+            console.log (`Su saldo actual es de: ${playerOne.getFoundsAvailable()}`);
+            console.log ("----------------------------------------------------------------");
+
+            // let rouletteOne: Roulette = new Roulette();(countTurns+1,newCasino,rouletteOne,playerOne,value,pleno,color,parOinpar,docena,altoObajo)
+            // turningTurnOne.turning()
             console.log("----------------------------------------------------------------")
             subMenuRoulette()
             //callGame(3)
@@ -252,11 +383,11 @@ function rouletteMenu(option:number):void{
         case 2:
             gameInformation(3);
             callGame(3);
-        break;*/
+        break;
     }
 }
 function subMenuRoulette():void{
-    console.log('1: JUGAR \n2: MULTIPLICAR JUGADAS \n3: CAMBIAR JUEGO \n4: SALIR');
+    console.log('1: JUGAR \n2: COBRAR Y SALIR \n3: Volver al menú anterior');
     let gameOption:number=readline.questionInt();
         switch(gameOption){
             case 1:
@@ -275,7 +406,7 @@ function subMenuRoulette():void{
                 console.log(` -- El número ingresado es incorrecto ingrese un número valido ---`);
                 subMenuRoulette();
             }
-}
+    }
 /* Funcionalidades de dados */
 function crapsMenu(option:number):void{
     switch(option){
