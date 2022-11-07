@@ -3,7 +3,6 @@ import { ReelSlot } from "./class/reelSlot";
 import { Roulette } from "./class/roulette";
 import { Casino } from "./class/casino";
 import { Player } from "./class/player";
-//import { TurningTurn }  from "./class/TurningTurn";
 import { Craps } from "./class/craps";
 //Modulos
 import * as fs from 'fs';
@@ -20,13 +19,12 @@ let progressiveSlotOne:ProgressiveSlot=new ProgressiveSlot(2001,progressiveSlotB
 let reelSlotList:ReelSlot[]=[reelSlotOne];
 let progressiveSlotList:ProgressiveSlot[]=[progressiveSlotOne];
 //Instancia ruleta
-//Instancia ruleta
 let betOptionOne :Array<string> =[];
 let betValueOne :Array<number> =[];
 let rouletteOne : Roulette = new Roulette (1,0,betValueOne,betOptionOne);
 let rouletteList:Roulette[]=[rouletteOne];
 //Instancia dados
-let craps1: Craps = new Craps(4001); 
+let craps1:Craps=new Craps(4001); 
 let crapsList:Craps[]=[craps1];
 //Instancia casino
 let casinoBox=Number(fs.readFileSync('./files.txt/casinoBox.txt','utf-8'));
