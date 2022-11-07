@@ -127,7 +127,7 @@ pRollerNumber:number){
         return false;
       }
   } 
-  public writeStatictis(route:string,value:string):void{
+  protected writeStatictis(route:string,value:string):void{
     let statistic:string=value;
     fs.appendFile('./files.txt/'+route+'.txt',statistic,{encoding:'utf8'},function(error){
     if(error){
