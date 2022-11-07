@@ -360,7 +360,7 @@ function rouletteMenu(option) {
             var betResulteFinal = 0;
             for (var i = 0; i < betResoult.length; i++) {
                 betResulteFinal = betResulteFinal + betResoult[i];
-                console.log(betResulteFinal);
+                //console.log(betResulteFinal)
             }
             playerOne.setFoundsAvailable(playerOne.getFoundsAvailable() + betResulteFinal);
             console.log("----------------------------------------------------------------");
