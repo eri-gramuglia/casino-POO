@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 export class Roulette {
     private _id: number;
     private _numberSelected: number;
@@ -77,7 +78,14 @@ export class Roulette {
             return "Numero BAJO"
         }
     }
-    public toTurn(): Array<number> {
+    private imprimirEstadisticas(valor:string):void{
+        fs.appendFile('./files.txt/rouletteEstadisticas.txt',valor,{encoding:'utf8'},function(error){
+        if(error){
+            console.log(`Error: ${error}`);
+        }
+        });
+    }
+    public toTurn(): number {
         let min: number = Math.ceil(0);
         let max: number = Math.floor(36);
         let numRandom: number = Math.floor(Math.random() * (max - min + 1) + min);
@@ -124,29 +132,18 @@ export class Roulette {
                 }
             }
         }
-
-        return this._betValue;
+        let betResult: number = 0
+        for (let i = 0; i < this._betValue.length; i++) {
+            betResult = betResult + this._betValue[i];
+        }
+        let estadistica :string;
+        if (betResult > 0) {
+            estadistica = `\nLa Ruleta entregó ${betResult} créditos. `
+            this.imprimirEstadisticas(estadistica);
+        } else if (betResult < 0) {
+            estadistica = `\nLa Ruleta ganó ${betResult*-1} créditos. `
+            this.imprimirEstadisticas(estadistica);
+        }
+        return betResult;
     }
 }
-
-/* 
-
-// instance player test and roulette test
-
-let playerOne: Player = new Player (1,"Daniel","Jerez",10000);
-//console.log (playerOne);
-
-let red: number[] = new Array (1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37)
-let black: number[] = new Array (2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38)
-let rouletteOne : Roulette = new Roulette(1,red,black,2,500000,playerOne)
-
-
-// test Methods
-
-console.log (rouletteOne.getColor(1))
-
-console.log (rouletteOne.getEvenOrOdd(28))
-
-console.log (rouletteOne.getNumRandom())
-
-console.log (rouletteOne.getHighOrLow(20)) */

@@ -359,20 +359,14 @@ function rouletteMenu(option:number):void{
 
             rouletteOne.setBetOption(betOptionLis);
             rouletteOne.setBetValue(betValueList);
-            let betResoult: Array <number> = rouletteOne.toTurn()
-            let betResulteFinal: number = 0
-            for (let i = 0; i < betResoult.length; i++) {
-                betResulteFinal = betResulteFinal + betResoult[i];
-                //console.log(betResulteFinal)
-            }
-            playerOne.setFoundsAvailable(playerOne.getFoundsAvailable()+betResulteFinal)
+            let betResultFinal: number = rouletteOne.toTurn()
+            
+            playerOne.setFoundsAvailable(playerOne.getFoundsAvailable()+betResultFinal)
+            newCasino.setTreasury(betResultFinal)
 
             console.log ("----------------------------------------------------------------");
             console.log (`Su saldo actual es de: ${playerOne.getFoundsAvailable()}`);
             console.log ("----------------------------------------------------------------");
-
-            // let rouletteOne: Roulette = new Roulette();(countTurns+1,newCasino,rouletteOne,playerOne,value,pleno,color,parOinpar,docena,altoObajo)
-            // turningTurnOne.turning()
             console.log("----------------------------------------------------------------")
             subMenuRoulette()
             //callGame(3)

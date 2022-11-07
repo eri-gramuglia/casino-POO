@@ -363,18 +363,12 @@ function rouletteMenu(option) {
             }
             rouletteOne.setBetOption(betOptionLis);
             rouletteOne.setBetValue(betValueList);
-            var betResoult = rouletteOne.toTurn();
-            var betResulteFinal = 0;
-            for (var i = 0; i < betResoult.length; i++) {
-                betResulteFinal = betResulteFinal + betResoult[i];
-                //console.log(betResulteFinal)
-            }
-            playerOne.setFoundsAvailable(playerOne.getFoundsAvailable() + betResulteFinal);
+            var betResultFinal = rouletteOne.toTurn();
+            playerOne.setFoundsAvailable(playerOne.getFoundsAvailable() + betResultFinal);
+            newCasino.setTreasury(betResultFinal);
             console.log("----------------------------------------------------------------");
             console.log("Su saldo actual es de: ".concat(playerOne.getFoundsAvailable()));
             console.log("----------------------------------------------------------------");
-            // let rouletteOne: Roulette = new Roulette();(countTurns+1,newCasino,rouletteOne,playerOne,value,pleno,color,parOinpar,docena,altoObajo)
-            // turningTurnOne.turning()
             console.log("----------------------------------------------------------------");
             subMenuRoulette();
             //callGame(3)

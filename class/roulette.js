@@ -1,6 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.Roulette = void 0;
+var fs = require("fs");
 var Roulette = /** @class */ (function () {
     function Roulette(p_id, p_numberSelect, p_betValue, p_betOption) {
         this._id = p_id;
@@ -78,6 +79,13 @@ var Roulette = /** @class */ (function () {
             return "Numero BAJO";
         }
     };
+    Roulette.prototype.imprimirEstadisticas = function (valor) {
+        fs.appendFile('./files.txt/rouletteEstadisticas.txt', valor, { encoding: 'utf8' }, function (error) {
+            if (error) {
+                console.log("Error: ".concat(error));
+            }
+        });
+    };
     Roulette.prototype.toTurn = function () {
         var min = Math.ceil(0);
         var max = Math.floor(36);
@@ -127,29 +135,21 @@ var Roulette = /** @class */ (function () {
                 }
             }
         }
-        return this._betValue;
+        var betResult = 0;
+        for (var i_2 = 0; i_2 < this._betValue.length; i_2++) {
+            betResult = betResult + this._betValue[i_2];
+        }
+        var estadistica;
+        if (betResult > 0) {
+            estadistica = "\nLa Ruleta entreg\u00F3 ".concat(betResult, " cr\u00E9ditos. ");
+            this.imprimirEstadisticas(estadistica);
+        }
+        else if (betResult < 0) {
+            estadistica = "\nLa Ruleta gan\u00F3 ".concat(betResult * -1, " cr\u00E9ditos. ");
+            this.imprimirEstadisticas(estadistica);
+        }
+        return betResult;
     };
     return Roulette;
 }());
 exports.Roulette = Roulette;
-/*
-
-// instance player test and roulette test
-
-let playerOne: Player = new Player (1,"Daniel","Jerez",10000);
-//console.log (playerOne);
-
-let red: number[] = new Array (1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37)
-let black: number[] = new Array (2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38)
-let rouletteOne : Roulette = new Roulette(1,red,black,2,500000,playerOne)
-
-
-// test Methods
-
-console.log (rouletteOne.getColor(1))
-
-console.log (rouletteOne.getEvenOrOdd(28))
-
-console.log (rouletteOne.getNumRandom())
-
-console.log (rouletteOne.getHighOrLow(20)) */
