@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 export class Slot {
   protected id: number;
   protected betValue: number[];
@@ -32,9 +33,6 @@ pRollerNumber:number){
   }
   protected getRollerNumber():number{
     return this.rollerNumber;
-  }
-  protected setRollerNumber(pNumber:number):void{
-    this.rollerNumber=pNumber;
   }
   private setSymbolsNumber(pNumber:number):void{
     this.symbolsNumber=pNumber;
@@ -129,5 +127,13 @@ pRollerNumber:number){
         return false;
       }
   } 
+  protected writeStatictis(route:string,value:string):void{
+    let statistic:string=value;
+    fs.appendFile('./files.txt/'+route+'.txt',statistic,{encoding:'utf8'},function(error){
+    if(error){
+        console.log(`Error: ${error}`);
+    }
+    });
+  }
 }
 

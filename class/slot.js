@@ -1,6 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.Slot = void 0;
+var fs = require("fs");
 var Slot = /** @class */ (function () {
     function Slot(pId, pBetValue, pTheme, pSymbolsNumber, pWinProbability, pRollerNumber) {
         this.id = pId;
@@ -27,9 +28,6 @@ var Slot = /** @class */ (function () {
     };
     Slot.prototype.getRollerNumber = function () {
         return this.rollerNumber;
-    };
-    Slot.prototype.setRollerNumber = function (pNumber) {
-        this.rollerNumber = pNumber;
     };
     Slot.prototype.setSymbolsNumber = function (pNumber) {
         this.symbolsNumber = pNumber;
@@ -127,6 +125,14 @@ var Slot = /** @class */ (function () {
             console.log("Ingrese una apuesta valida.");
             return false;
         }
+    };
+    Slot.prototype.writeStatictis = function (route, value) {
+        var statistic = value;
+        fs.appendFile('./files.txt/' + route + '.txt', statistic, { encoding: 'utf8' }, function (error) {
+            if (error) {
+                console.log("Error: ".concat(error));
+            }
+        });
     };
     return Slot;
 }());

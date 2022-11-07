@@ -14,6 +14,7 @@ export class ReelSlot extends Slot {
     this.well=newWell;
   }
   public playReelSlot(pBetValue:number):number{
+    let text:string;
     let aux:number=0;
     let reward:number=0;
       if(this.verifyBet(pBetValue) && this.checkRollers()){
@@ -24,7 +25,7 @@ export class ReelSlot extends Slot {
             console.log(`¡¡¡ FELICIDADES GANO EL POZO !!! ${this.well}.`);
             reward=this.getWell();
             break;
-          case 1:
+          case -1:
             console.log(`* Felicidades acertó una linea! Ganó ${pBetValue*50}. *`);
             reward=pBetValue * 50;
             break;
@@ -36,6 +37,12 @@ export class ReelSlot extends Slot {
           console.log(`- Ganó ${aux * pBetValue} créditos. -`);
           reward+=aux * pBetValue;
         } 
+        if(reward>0){
+          text=`\nEl tragamonedas ${this.id} perdió ${reward} creditos.`
+          } else {
+            text=`\nEl tragamonedas ${this.id} ganó ${-reward} creditos.`
+          }
+          this.writeStatictis('reelSlotStatistics',text);
     return reward;
   } 
 } 

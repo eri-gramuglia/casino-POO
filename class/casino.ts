@@ -1,21 +1,23 @@
+import * as fs from 'fs';
 import { ReelSlot } from './reelSlot';
 import { ProgressiveSlot } from "./progressiveSlot";
 import { Roulette } from './roulette';
+import { Craps } from './craps';
 export class Casino {
     private casinoName:string;
     private progressiveSlotList:ProgressiveSlot[];
     private reelSlotList:ReelSlot[];
     private rouletteList:Roulette[];
-    //private crapsList:Craps[];
+    private crapsList:Craps[];
     private treasury:number;
 
-    public constructor(pName:string,pProgressiveSlotList:ProgressiveSlot[],pReelSlotList:ReelSlot[],pRoulleteList:Roulette[],/*pCrapsList:Craps[],*/pTreasury:number){
+    public constructor(pName:string,pProgressiveSlotList:ProgressiveSlot[],pReelSlotList:ReelSlot[],pRouletteList:Roulette[],pCrapsList:Craps[],pTreasury:number){
         this.casinoName=pName;
         this.progressiveSlotList=pProgressiveSlotList;
         this.reelSlotList=pReelSlotList;
         this.treasury=pTreasury;
-        //this.roulleteList=pRoulleteList;
-        //this.crapsList=pCrapsList;
+        this.rouletteList=pRouletteList;
+        this.crapsList=pCrapsList;
         
     }
     public getCasinoName():string{
@@ -63,8 +65,7 @@ export class Casino {
                     throw Error(`No existe esta maquina en el casino`);
                 } 
     }
-    
-    /*public getCraps(id:number):boolean{
+    public getCraps(id:number):boolean{
         let aux=false;
             for(let i=0;i<this.crapsList.length;i++){
                 if(id===this.crapsList[i].getId()){
@@ -76,16 +77,22 @@ export class Casino {
                 else {
                     throw Error(`No existe esta maquina en el casino`);
                 } 
-    } */
+    }
     public getTreasury():number{
         return this.treasury;
     }
     public setTreasury(amount:number):void{
+        let founds:number;
         if(amount<=0){
-            this.treasury+=amount;
+            founds=this.treasury-=amount;
         } else {
-            this.treasury-=amount;
+            founds=this.treasury+=(-amount);
         }
+        fs.writeFile('./files.txt/casinoBox.txt',String(founds),{encoding:'utf8'},function(error){
+        if(error){
+            console.log(`Error: ${error}`);
+        }
+        });
     }
 }
 

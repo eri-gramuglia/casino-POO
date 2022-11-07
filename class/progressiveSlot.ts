@@ -1,6 +1,4 @@
 import { Slot } from "./slot";
-import * as fs from 'fs';
-
 export class ProgressiveSlot extends Slot {
   private payLine: number;
   private jackpot: number;
@@ -43,6 +41,7 @@ pRollerNumber:number,pPayLine:number,pJackpot:number){
       return combination;
     }
   public playProgressiveSlot(pBetValue:number):number{
+    let text:string;
     let reward:number=0;
     let jackpot:number=0;
     let aux:number[]=this.progressiveCombination();
@@ -74,6 +73,12 @@ pRollerNumber:number,pPayLine:number,pJackpot:number){
           reward=this.getJackpot();
           this.setJackpot(0);
       }
+      if(reward>0){
+      text=`\nEl tragamonedas ${this.id} perdió ${reward} creditos.`
+      } else {
+        text=`\nEl tragamonedas ${this.id} ganó ${-reward} creditos.`
+      }
+      this.writeStatictis('progressiveSlotStatistic',text);
     return reward;
   }
 }

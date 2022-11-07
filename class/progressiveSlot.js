@@ -59,6 +59,7 @@ var ProgressiveSlot = /** @class */ (function (_super) {
         return combination;
     };
     ProgressiveSlot.prototype.playProgressiveSlot = function (pBetValue) {
+        var text;
         var reward = 0;
         var jackpot = 0;
         var aux = this.progressiveCombination();
@@ -90,6 +91,13 @@ var ProgressiveSlot = /** @class */ (function (_super) {
             reward = this.getJackpot();
             this.setJackpot(0);
         }
+        if (reward > 0) {
+            text = "\nEl tragamonedas ".concat(this.id, " perdi\u00F3 ").concat(reward, " creditos.");
+        }
+        else {
+            text = "\nEl tragamonedas ".concat(this.id, " gan\u00F3 ").concat(-reward, " creditos.");
+        }
+        this.writeStatictis('progressiveSlotStatistic', text);
         return reward;
     };
     return ProgressiveSlot;

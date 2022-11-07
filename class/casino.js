@@ -1,14 +1,15 @@
 "use strict";
 exports.__esModule = true;
 exports.Casino = void 0;
+var fs = require("fs");
 var Casino = /** @class */ (function () {
-    function Casino(pName, pProgressiveSlotList, pReelSlotList, pRoulleteList, /*pCrapsList:Craps[],*/ pTreasury) {
+    function Casino(pName, pProgressiveSlotList, pReelSlotList, pRouletteList, pCrapsList, pTreasury) {
         this.casinoName = pName;
         this.progressiveSlotList = pProgressiveSlotList;
         this.reelSlotList = pReelSlotList;
         this.treasury = pTreasury;
-        //this.roulleteList=pRoulleteList;
-        //this.crapsList=pCrapsList;
+        this.rouletteList = pRouletteList;
+        this.crapsList = pCrapsList;
     }
     Casino.prototype.getCasinoName = function () {
         return this.casinoName;
@@ -58,29 +59,36 @@ var Casino = /** @class */ (function () {
             throw Error("No existe esta maquina en el casino");
         }
     };
-    /*public getCraps(id:number):boolean{
-        let aux=false;
-            for(let i=0;i<this.crapsList.length;i++){
-                if(id===this.crapsList[i].getId()){
-                    aux=true;
-                }
-            } if(aux){
-                return true;
+    Casino.prototype.getCraps = function (id) {
+        var aux = false;
+        for (var i = 0; i < this.crapsList.length; i++) {
+            if (id === this.crapsList[i].getId()) {
+                aux = true;
             }
-                else {
-                    throw Error(`No existe esta maquina en el casino`);
-                }
-    } */
+        }
+        if (aux) {
+            return true;
+        }
+        else {
+            throw Error("No existe esta maquina en el casino");
+        }
+    };
     Casino.prototype.getTreasury = function () {
         return this.treasury;
     };
     Casino.prototype.setTreasury = function (amount) {
+        var founds;
         if (amount <= 0) {
-            this.treasury += amount;
+            founds = this.treasury -= amount;
         }
         else {
-            this.treasury -= amount;
+            founds = this.treasury += (-amount);
         }
+        fs.writeFile('./files.txt/casinoBox.txt', String(founds), { encoding: 'utf8' }, function (error) {
+            if (error) {
+                console.log("Error: ".concat(error));
+            }
+        });
     };
     return Casino;
 }());

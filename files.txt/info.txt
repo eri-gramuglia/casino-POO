@@ -64,6 +64,7 @@ su apuesta total sera de 200 creditos.
                       ***** And may the odds be ever in your favor *****
 
 \
+
                                                         -- DADOS --
                                  
                     
@@ -74,8 +75,6 @@ su apuesta total sera de 200 creditos.
                                En los casos que la suma dé como resultado 4,5,6,9 o 10, 
                       el jugador vuelve a tirar los dados sin restar ni sumar creditos al saldo.
                        En el caso que el saldo del jugador sea 0, el mismo a perdido el juego.             
-                                 
-                                 
                                  
                                  
                                  
