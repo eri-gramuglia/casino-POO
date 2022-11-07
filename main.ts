@@ -358,7 +358,7 @@ function rouletteMenu(option:number):void{
             let betResulteFinal: number = 0
             for (let i = 0; i < betResoult.length; i++) {
                 betResulteFinal = betResulteFinal + betResoult[i];
-                console.log(betResulteFinal)
+                //console.log(betResulteFinal)
             }
             playerOne.setFoundsAvailable(playerOne.getFoundsAvailable()+betResulteFinal)
 
