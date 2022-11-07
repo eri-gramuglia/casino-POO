@@ -1,9 +1,14 @@
 "use strict";
 exports.__esModule = true;
 exports.Craps = void 0;
+var fs = require("fs");
 var Craps = /** @class */ (function () {
-    function Craps() {
+    function Craps(pId) {
+        this.id = pId;
     }
+    Craps.prototype.getId = function () {
+        return this.id;
+    };
     Craps.prototype.tirarDados = function () {
         var dado = 0;
         for (var i = 0; i < 6; i++) {
@@ -32,6 +37,7 @@ var Craps = /** @class */ (function () {
         return aux;
     };
     Craps.prototype.obtenerPremio = function (apuesta) {
+        var estadistica;
         var aux = this.comprobarResultado();
         var premio = 0;
         if (aux === -1) {
@@ -39,13 +45,28 @@ var Craps = /** @class */ (function () {
             premio = apuesta * 2;
         }
         else if (aux === 1) {
-            console.log("Pierde la apuesta.");
+            console.log("Perdi\u00F3 ".concat(apuesta, " cr\u00E9ditos."));
             premio -= apuesta;
         }
         else {
             premio = 0;
         }
+        if (premio > 0) {
+            estadistica = "\nLa mesa de dados entreg\u00F3 ".concat(premio, " cr\u00E9ditos. ");
+            this.imprimirEstadisticas(estadistica);
+        }
+        else if (premio < 0) {
+            estadistica = "\nLa mesa de dados gan\u00F3 ".concat(apuesta, " cr\u00E9ditos. ");
+            this.imprimirEstadisticas(estadistica);
+        }
         return premio;
+    };
+    Craps.prototype.imprimirEstadisticas = function (valor) {
+        fs.appendFile('./files.txt/crapsStatistics.txt', valor, { encoding: 'utf8' }, function (error) {
+            if (error) {
+                console.log("Error: ".concat(error));
+            }
+        });
     };
     return Craps;
 }());
