@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import { ReelSlot } from './reelSlot';
 import { ProgressiveSlot } from "./progressiveSlot";
 import { Roulette } from './roulette';
@@ -81,11 +82,17 @@ export class Casino {
         return this.treasury;
     }
     public setTreasury(amount:number):void{
+        let founds:number;
         if(amount<=0){
-            this.treasury+=amount;
+            founds=this.treasury-=amount;
         } else {
-            this.treasury-=amount;
+            founds=this.treasury+=(-amount);
         }
+        fs.writeFile('./files.txt/casinoBox.txt',String(founds),{encoding:'utf8'},function(error){
+        if(error){
+            console.log(`Error: ${error}`);
+        }
+        });
     }
 }
 
