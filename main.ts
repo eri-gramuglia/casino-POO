@@ -28,7 +28,8 @@ let rouletteList:Roulette[]=[rouletteOne];
 let craps1: Craps = new Craps(4001); 
 let crapsList:Craps[]=[craps1];
 //Instancia casino
-let newCasino:Casino=new Casino('Atlanta',progressiveSlotList,reelSlotList,rouletteList,crapsList,500000);
+let casinoBox=Number(fs.readFileSync('./files.txt/casinoBox.txt','utf-8'));
+let newCasino:Casino=new Casino('Atlanta',progressiveSlotList,reelSlotList,rouletteList,crapsList,casinoBox);
  // Funcion para carga de jugador
 function newPlayer():void{
     let age:number=readline.questionInt(`Ingrese su edad para verificar si es mayor: `);
@@ -274,7 +275,7 @@ function subMenuRoulette():void{
                 console.log(` -- El número ingresado es incorrecto ingrese un número valido ---`);
                 subMenuRoulette();
             }
-    }
+}
 /* Funcionalidades de dados */
 function crapsMenu(option:number):void{
     switch(option){
@@ -303,7 +304,8 @@ function subMenuCraps():void{
             games();
             break;
         case 3:
-            console.log(`Se retiró con ${playerOne.getFoundsAvailable()} créditos.`);
+            console.log(`${playerOne.getName()} se retiró con ${playerOne.getFoundsAvailable()} créditos.`);
+            break;
         default:
             console.log(` -- El número ingresado es incorrecto ingrese un número valido ---`);
             subMenuCraps();
@@ -328,7 +330,7 @@ function playGame(game:number,value:number):void{
                     break;
             }
             playerOne.setFoundsAvailable(playerOne.getFoundsAvailable()+newFounds);
-            newCasino.setTreasury(playerOne.getFoundsAvailable()+newFounds);
+            newCasino.setTreasury(newFounds);
             console.log(`Le quedan ${playerOne.getFoundsAvailable()} créditos.`);
         } else {
         console.log(`No tiene fondos para esta apuesta`);

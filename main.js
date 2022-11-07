@@ -28,9 +28,11 @@ var numberRed = new Array(1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29,
 var rouletteOne = new roulette_1.Roulette(1, numberRed, 0);
 var rouletteList = [rouletteOne];
 //Instancia dados
-var craps1 = new craps_1.Craps();
+var craps1 = new craps_1.Craps(4001);
+var crapsList = [craps1];
 //Instancia casino
-var newCasino = new casino_1.Casino('Atlanta', progressiveSlotList, reelSlotList, rouletteList, 500000);
+var casinoBox = Number(fs.readFileSync('./files.txt/casinoBox.txt', 'utf-8'));
+var newCasino = new casino_1.Casino('Atlanta', progressiveSlotList, reelSlotList, rouletteList, crapsList, casinoBox);
 // Funcion para carga de jugador
 function newPlayer() {
     var age = readline.questionInt("Ingrese su edad para verificar si es mayor: ");
@@ -306,7 +308,8 @@ function subMenuCraps() {
             games();
             break;
         case 3:
-            console.log("Se retir\u00F3 con ".concat(playerOne.getFoundsAvailable(), " cr\u00E9ditos."));
+            console.log("".concat(playerOne.getName(), " se retir\u00F3 con ").concat(playerOne.getFoundsAvailable(), " cr\u00E9ditos."));
+            break;
         default:
             console.log(" -- El n\u00FAmero ingresado es incorrecto ingrese un n\u00FAmero valido ---");
             subMenuCraps();
@@ -331,7 +334,7 @@ function playGame(game, value) {
                 break;
         }
         playerOne.setFoundsAvailable(playerOne.getFoundsAvailable() + newFounds);
-        newCasino.setTreasury(playerOne.getFoundsAvailable() + newFounds);
+        newCasino.setTreasury(newFounds);
         console.log("Le quedan ".concat(playerOne.getFoundsAvailable(), " cr\u00E9ditos."));
     }
     else {
