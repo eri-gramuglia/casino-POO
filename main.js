@@ -6,7 +6,6 @@ var reelSlot_1 = require("./class/reelSlot");
 var roulette_1 = require("./class/roulette");
 var casino_1 = require("./class/casino");
 var player_1 = require("./class/player");
-//import { TurningTurn }  from "./class/TurningTurn";
 var craps_1 = require("./class/craps");
 //Modulos
 var fs = require("fs");
@@ -22,7 +21,6 @@ var reelSlotOne = new reelSlot_1.ReelSlot(1001, reelSlotBet, "Animal", 9, 20, 3,
 var progressiveSlotOne = new progressiveSlot_1.ProgressiveSlot(2001, progressiveSlotBet, "Egipcio", 25, 25, 5, 2, 500000);
 var reelSlotList = [reelSlotOne];
 var progressiveSlotList = [progressiveSlotOne];
-//Instancia ruleta
 //Instancia ruleta
 var betOptionOne = [];
 var betValueOne = [];
@@ -303,7 +301,7 @@ function rouletteMenu(option) {
                     docena = "1ra Docena";
                     betOptionLis[3] = docena;
                     betValueList[3] = readline.questionInt("Ingrese su apuesta para ".concat(docena, ": "));
-                    while (betValueList[3] > auxFounds) {
+                    while (betValueList[3] > auxFounds - betValueList[0] - betValueList[1] - betValueList[2]) {
                         console.log("Fondos Insuficientes");
                         betValueList[3] = readline.questionInt('Ingrese su apuesta nuevamente: ');
                     }
