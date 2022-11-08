@@ -42,8 +42,8 @@ a las 23:59
 
 # Ejecucion:
 Para ejecutar la app, solo se debe clonar el repositorio y ejecutar con node el archivo play.js:
-		git clone 
+		 
 
-
+		git clone https://github.com/eri-gramuglia/casino-POO.git
 		node play.js 
 	
