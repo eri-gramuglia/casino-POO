@@ -1,4 +1,4 @@
-# casino-POO
+# Casino-POO
 Trabajo Práctico Grupal Evaluatorio- Fecha de entrega 9 de noviembre 2022
 
 Casino
@@ -33,14 +33,14 @@ programa y los diagramas de clases correspondientes
 • Se debe realizar en grupos de MAXIMO 3 integrantes
 (pueden hacerlo de manera individual)
 
-La fecha límite de entrega es el MIERCOLES 9 de noviembre
+ *** La fecha límite de entrega es el MIERCOLES 9 de noviembre
 a las 23:59
 
 ------------------------------------------------------------------------------------------------------------------------
 ![POO - UML Trabajo Grupal-UML - FINAL](https://user-images.githubusercontent.com/104039810/200551488-b6eaea64-cfd8-4a3d-ae8d-89e15025c988.png)
 ------------------------------------------------------------------------------------------------------------------------
 
-Ejecucion:
+### Ejecucion:
 
 node play.js
 
