@@ -44,7 +44,5 @@ a las 23:59
 Para ejecutar la app, solo se debe clonar el repositorio y ejecutar con node el archivo play.js:
 
 
-
-
-	node play.js .
+node play.js 
 	
