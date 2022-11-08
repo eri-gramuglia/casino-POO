@@ -85,7 +85,7 @@ pRollerNumber:number,pPayLine:number){
         text=`\nEl tragamonedas ${this.id} ganó ${-reward} creditos.`
       }
       this.writeStatictis('progressiveSlotStatistic',text);
-      console.log(`** Jackpot acumulado ${this.jackpot} **`);
+      console.log(`** Jackpot acumulado $${this.jackpot} **`);
     return reward;
   }
 }
