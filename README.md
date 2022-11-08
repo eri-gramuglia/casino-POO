@@ -46,3 +46,11 @@ Para ejecutar la app, solo se debe clonar el repositorio y ejecutar con node el 
 		git clone https://github.com/eri-gramuglia/casino-POO.git
 		node play.js 
 	
+
+
+# Documentación:
+
+[CASINO POO - Atlanta_v1.pdf](https://github.com/eri-gramuglia/casino-POO/files/9962872/CASINO.POO.-.Atlanta_v1.pdf)
+
+
+
