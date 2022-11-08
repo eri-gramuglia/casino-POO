@@ -39,7 +39,7 @@ programa y los diagramas de clases correspondientes
 ![POO - UML Trabajo Grupal-UML - FINAL](https://user-images.githubusercontent.com/104039810/200551488-b6eaea64-cfd8-4a3d-ae8d-89e15025c988.png)
 ------------------------------------------------------------------------------------------------------------------------
 
-# Ejecucion:
+# Ejecución:
 Para ejecutar la app, solo se debe clonar el repositorio y ejecutar con node el archivo play.js:
 		 
 
