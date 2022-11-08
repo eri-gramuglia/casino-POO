@@ -46,3 +46,7 @@ Para ejecutar la app, solo se debe clonar el repositorio y ejecutar con node el 
 [node play.js]
 
 
+The most simple set of commands will be:
+
+	cmake .
+	make
