@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.welcome = void 0;
+exports.newPlayer = void 0;
 var progressiveSlot_1 = require("./class/progressiveSlot");
 var reelSlot_1 = require("./class/reelSlot");
 var roulette_1 = require("./class/roulette");
@@ -35,24 +35,22 @@ var newCasino = new casino_1.Casino('Atlanta', progressiveSlotList, reelSlotList
 // Funcion para carga de jugador
 function newPlayer() {
     var age = readline.questionInt("Ingrese su edad para verificar si es mayor: ");
-    if (age >= 18) {
+    playerOne = new player_1.Player(age, '', '', 0);
+    if (playerOne.verifyAge()) {
         var name_1 = readline.question("Ingrese su nombre: ");
         var founds = readline.questionInt("Ingrese los fondos que desea utilizar:");
-        playerOne = new player_1.Player(age, name_1, '', founds);
-        console.log(playerOne);
-    }
-    else {
-        console.log('Debe ser mayor de edad para ingresar al casino.');
+        playerOne.setName(name_1);
+        playerOne.setFoundsAvailable(founds);
+        welcome();
     }
 }
+exports.newPlayer = newPlayer;
 //Informacion del casino
 function welcome() {
     gameInformation(0);
-    newPlayer();
-    console.log("Bienvenido ".concat(playerOne.getName(), "."));
+    console.log("Bienvenido ".concat(playerOne.getName(), ", sus fondos disponibles son ").concat(playerOne.getFoundsAvailable(), " cr\u00E9ditos."));
     main();
 }
-exports.welcome = welcome;
 // Funcion de inicio para el menu del casino
 function main() {
     console.log('Oprima 1 para empezar a jugar.');

@@ -1,3 +1,3 @@
-import { welcome } from "./main";
+import { newPlayer } from "./main";
 
-welcome();
+newPlayer();
