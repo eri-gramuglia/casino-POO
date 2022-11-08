@@ -58,8 +58,7 @@ El jugador deberá elegir entre los números correspondientes a la primera (1 a 
         El jugador debe elegir entre los números bajos (del 1 al 18) o los números altos (del 19 al 36)
                              El pago de esta apuesta será de 1 a 1.
 
-Se apostara el mismo valor ingresado, para cada opcion seleccionada, es decir si su apuesta es de 100 Creditos, y apusta a dos opciones por ejemplo Pleno y Color,
-su apuesta total sera de 200 creditos.
+
 
                       ***** And may the odds be ever in your favor *****
 
