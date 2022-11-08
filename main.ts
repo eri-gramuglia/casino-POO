@@ -30,24 +30,23 @@ let crapsList:Craps[]=[craps1];
 let casinoBox=Number(fs.readFileSync('./files.txt/casinoBox.txt','utf-8'));
 let newCasino:Casino=new Casino('Atlanta',progressiveSlotList,reelSlotList,rouletteList,crapsList,casinoBox);
  // Funcion para carga de jugador
-function newPlayer():void{
+export function newPlayer():void{
     let age:number=readline.questionInt(`Ingrese su edad para verificar si es mayor: `);
-    if(age>=18){
+    playerOne=new Player(age,'','',0);
+    if(playerOne.verifyAge()){
     let name:string=readline.question(`Ingrese su nombre: `);
     let founds:number=readline.questionInt(`Ingrese los fondos que desea utilizar:`);
-    playerOne=new Player(age,name,'',founds);
-    console.log(playerOne);
-    } else {
-        console.log('Debe ser mayor de edad para ingresar al casino.');
+    playerOne.setName(name);
+    playerOne.setFoundsAvailable(founds);
+    welcome();
     }
 }
 //Informacion del casino
-export function welcome():void{
+    function welcome():void{
     gameInformation(0);
-    newPlayer();
-    console.log(`Bienvenido ${playerOne.getName()}.`);
+    console.log(`Bienvenido ${playerOne.getName()}, sus fondos disponibles son ${playerOne.getFoundsAvailable()} créditos.`);
     main();
-}
+    }
 // Funcion de inicio para el menu del casino
 function main():void{
     console.log('Oprima 1 para empezar a jugar.');

@@ -35,6 +35,14 @@ export class Player {
     public getFoundsAvailable(): number {
         return this._foundsAvailable;
     }
+    public verifyAge():boolean{
+        let aux=false;
+        if(this.getAge()>=18){
+            aux=true;
+        } else {
+            console.log('Debe ser mayor de edad para ingresar al casino.');
+        } return aux;
+    } 
 }
 
 // instance player Test

@@ -32,6 +32,16 @@ var Player = /** @class */ (function () {
     Player.prototype.getFoundsAvailable = function () {
         return this._foundsAvailable;
     };
+    Player.prototype.verifyAge = function () {
+        var aux = false;
+        if (this.getAge() >= 18) {
+            aux = true;
+        }
+        else {
+            console.log('Debe ser mayor de edad para ingresar al casino.');
+        }
+        return aux;
+    };
     return Player;
 }());
 exports.Player = Player;
