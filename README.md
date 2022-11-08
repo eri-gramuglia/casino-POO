@@ -41,12 +41,10 @@ a las 23:59
 ------------------------------------------------------------------------------------------------------------------------
 
 # Ejecucion:
-Para ejecutar la app, solo se debe clonar el repositorio y ejecutar con node el archivo play.js
-
-[node play.js]
+Para ejecutar la app, solo se debe clonar el repositorio y ejecutar con node el archivo play.js:
 
 
-The most simple set of commands will be:
 
-	cmake .
-	make
+
+	node play.js .
+	
