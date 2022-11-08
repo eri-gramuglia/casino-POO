@@ -6,7 +6,7 @@ Casino
 Generar un programa en cual se puedan realizar
 apuestas dentro de un casino.
 
-Requerimientos
+## Requerimientos
 
 • Tiene un juego tragamonedas que tiene distintas variantes
 siempre cumpliendo una misma funcionalidad, que dependen
@@ -33,15 +33,16 @@ programa y los diagramas de clases correspondientes
 • Se debe realizar en grupos de MAXIMO 3 integrantes
 (pueden hacerlo de manera individual)
 
- *** La fecha límite de entrega es el MIERCOLES 9 de noviembre
+ ### La fecha límite de entrega es el MIERCOLES 9 de noviembre
 a las 23:59
 
 ------------------------------------------------------------------------------------------------------------------------
 ![POO - UML Trabajo Grupal-UML - FINAL](https://user-images.githubusercontent.com/104039810/200551488-b6eaea64-cfd8-4a3d-ae8d-89e15025c988.png)
 ------------------------------------------------------------------------------------------------------------------------
 
-### Ejecucion:
+# Ejecucion:
+Para ejecutar la app, solo se debe clonar el repositorio y ejecutar con node el archivo play.js
 
-node play.js
+[node play.js]
 
 
