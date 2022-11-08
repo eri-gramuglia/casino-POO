@@ -32,6 +32,7 @@ desarrollar en un branch específico llamado casino-poo.
 programa y los diagramas de clases correspondientes
 • Se debe realizar en grupos de MAXIMO 3 integrantes
 (pueden hacerlo de manera individual)
+
 La fecha límite de entrega es el MIERCOLES 9 de noviembre
 a las 23:59
 
