@@ -1,13 +1,14 @@
 import { Slot } from "./slot";
+import * as fs from 'fs';
 export class ProgressiveSlot extends Slot {
   private payLine: number;
   private jackpot: number;
 
   public constructor(pId:number,pBetValue:number[],pTheme:string,pSymbolsNumber:number,pWinProbability:number,
-pRollerNumber:number,pPayLine:number,pJackpot:number){
+pRollerNumber:number,pPayLine:number){
     super(pId,pBetValue,pTheme,pSymbolsNumber,pWinProbability,pRollerNumber);
     this.payLine = pPayLine;
-    this.jackpot = pJackpot;
+    this.jackpot = Number(fs.readFileSync('./files.txt/jackpotSlot.txt'));
   }
   public getPayLine():number{
     return this.payLine;
@@ -19,7 +20,12 @@ pRollerNumber:number,pPayLine:number,pJackpot:number){
     this.payLine=newPayLine;
   }
   public setJackpot(newJackpot:number):void{
-    this.jackpot+=newJackpot;
+    let founds=this.jackpot+=newJackpot;
+    fs.writeFile('./files.txt/jackpotSlot.txt',String(founds),{encoding:'utf8'},function(error){
+      if(error){
+        console.log(`Error: ${error}`);
+      }
+    });
   }
   public verifyLines(lines:number):boolean{
     let aux=false;
@@ -39,7 +45,7 @@ pRollerNumber:number,pPayLine:number,pJackpot:number){
         combination.push(aux[i]=this.getReward());
       } 
       return combination;
-    }
+  }
   public playProgressiveSlot(pBetValue:number):number{
     let text:string;
     let reward:number=0;
@@ -79,6 +85,7 @@ pRollerNumber:number,pPayLine:number,pJackpot:number){
         text=`\nEl tragamonedas ${this.id} ganó ${-reward} creditos.`
       }
       this.writeStatictis('progressiveSlotStatistic',text);
+      console.log(this.jackpot);
     return reward;
   }
 }

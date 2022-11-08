@@ -17,12 +17,13 @@ var __extends = (this && this.__extends) || (function () {
 exports.__esModule = true;
 exports.ProgressiveSlot = void 0;
 var slot_1 = require("./slot");
+var fs = require("fs");
 var ProgressiveSlot = /** @class */ (function (_super) {
     __extends(ProgressiveSlot, _super);
-    function ProgressiveSlot(pId, pBetValue, pTheme, pSymbolsNumber, pWinProbability, pRollerNumber, pPayLine, pJackpot) {
+    function ProgressiveSlot(pId, pBetValue, pTheme, pSymbolsNumber, pWinProbability, pRollerNumber, pPayLine) {
         var _this = _super.call(this, pId, pBetValue, pTheme, pSymbolsNumber, pWinProbability, pRollerNumber) || this;
         _this.payLine = pPayLine;
-        _this.jackpot = pJackpot;
+        _this.jackpot = Number(fs.readFileSync('./files.txt/jackpotSlot.txt'));
         return _this;
     }
     ProgressiveSlot.prototype.getPayLine = function () {
@@ -35,7 +36,12 @@ var ProgressiveSlot = /** @class */ (function (_super) {
         this.payLine = newPayLine;
     };
     ProgressiveSlot.prototype.setJackpot = function (newJackpot) {
-        this.jackpot += newJackpot;
+        var founds = this.jackpot += newJackpot;
+        fs.writeFile('./files.txt/jackpotSlot.txt', String(founds), { encoding: 'utf8' }, function (error) {
+            if (error) {
+                console.log("Error: ".concat(error));
+            }
+        });
     };
     ProgressiveSlot.prototype.verifyLines = function (lines) {
         var aux = false;
@@ -98,6 +104,7 @@ var ProgressiveSlot = /** @class */ (function (_super) {
             text = "\nEl tragamonedas ".concat(this.id, " gan\u00F3 ").concat(-reward, " creditos.");
         }
         this.writeStatictis('progressiveSlotStatistic', text);
+        console.log(this.jackpot);
         return reward;
     };
     return ProgressiveSlot;
