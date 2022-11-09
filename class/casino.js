@@ -45,7 +45,7 @@ var Casino = /** @class */ (function () {
                     throw Error(`No existe esta maquina en el casino`);
                 }
     }
-   /*  public getRoullete(id:number):boolean{
+    /*  public getRoullete(id:number):boolean{
         let aux=false;
             for(let i=0;i<this.rouletteList.length;i++){
                 if(id===this.rouletteList[i].getId()){

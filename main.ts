@@ -4,7 +4,6 @@ import { Roulette } from "./class/roulette";
 import { Casino } from "./class/casino";
 import { Player } from "./class/player";
 import { Craps } from "./class/craps";
-
 //Modulos
 import * as fs from 'fs';
 let readline=require('readline-sync');
@@ -12,7 +11,6 @@ let information:string=fs.readFileSync('./files.txt/info.txt','utf-8');
 let clasificationText:string[]=information.split('\\');
 //Instancia Jugador
 let playerOne: Player= new Player(0,"name","lastName",1000);
-
 //Instancias tragamonedas
 let progressiveSlotBet= [1,2,5,10,15];
 let reelSlotBet = [5,10,15,20];
@@ -26,12 +24,9 @@ let rouletteOne : Roulette = new Roulette (1,0,betValueOne,betOptionOne);
 //Instancia dados
 let craps1:Craps=new Craps(4001); 
 //let crapsList:Craps[]=[craps1];
-
 //Instancia casino
 let casinoBox=Number(fs.readFileSync('./files.txt/casinoBox.txt','utf-8'));
 let newCasino:Casino=new Casino('Atlanta',progressiveSlotOne,reelSlotOne,rouletteOne,playerOne,craps1,casinoBox);
-
-
  // Funcion para carga de jugador
 export function newPlayer():void{
     let age:number=readline.questionInt(`Ingrese su edad para verificar si es mayor: `);
