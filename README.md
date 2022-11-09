@@ -36,7 +36,9 @@ programa y los diagramas de clases correspondientes
  ### La fecha límite de entrega es el MIERCOLES 9 de noviembre a las 23:59
 
 ------------------------------------------------------------------------------------------------------------------------
-![POO - UML Trabajo Grupal-UML - FINAL](https://user-images.githubusercontent.com/104039810/200551488-b6eaea64-cfd8-4a3d-ae8d-89e15025c988.png)
+
+![POO - UML Trabajo Grupal-UML - FINAL drawio](https://user-images.githubusercontent.com/104039810/200924156-4c5a28de-a3a5-40a3-b546-cf6bf617e044.png)
+
 ------------------------------------------------------------------------------------------------------------------------
 
 # Ejecución:
