@@ -85,7 +85,6 @@ var Casino = /** @class */ (function () {
         console.log("----------------------------------------------------------------");
         console.log("Su saldo actual es de: ".concat(this.player.getFoundsAvailable()));
         console.log("----------------------------------------------------------------");
-        console.log("----------------------------------------------------------------");
     };
     Casino.prototype.playCraps = function (betCraps) {
         var founds = this.crapsEnable.obtenerPremio(betCraps);

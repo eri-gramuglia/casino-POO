@@ -104,6 +104,7 @@ export class Casino {
         this.player.setFoundsAvailable(newFounds);
         this.setTreasury(founds);
     }
+    
     public getTreasury():number{
         return this.treasury;
     }
