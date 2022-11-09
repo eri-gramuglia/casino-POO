@@ -27,11 +27,11 @@ let rouletteOne : Roulette = new Roulette (1,0,betValueOne,betOptionOne);
 //let rouletteEnable:Roulette[]=[rouletteOne];
 //Instancia dados
 let craps1:Craps=new Craps(4001); 
-let crapsList:Craps[]=[craps1];
+//let crapsList:Craps[]=[craps1];
 
 //Instancia casino
 let casinoBox=Number(fs.readFileSync('./files.txt/casinoBox.txt','utf-8'));
-let newCasino:Casino=new Casino('Atlanta',progressiveSlotList,reelSlotList,rouletteOne,playerOne,crapsList,casinoBox);
+let newCasino:Casino=new Casino('Atlanta',progressiveSlotList,reelSlotList,rouletteOne,playerOne,craps1,casinoBox);
 
 
  // Funcion para carga de jugador
@@ -460,7 +460,8 @@ function playGame(game:number,value:number):void{
                     newFounds=progressiveSlotOne.playProgressiveSlot(value);
                     break;
                 case 3:
-                    newFounds=craps1.obtenerPremio(value);
+                    //newFounds=craps1.obtenerPremio(value);
+                    newCasino.playCraps(value);
                     break;
             }
             playerOne.setFoundsAvailable(playerOne.getFoundsAvailable()+newFounds);

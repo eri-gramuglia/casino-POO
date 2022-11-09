@@ -28,10 +28,10 @@ var rouletteOne = new roulette_1.Roulette(1, 0, betValueOne, betOptionOne);
 //let rouletteEnable:Roulette[]=[rouletteOne];
 //Instancia dados
 var craps1 = new craps_1.Craps(4001);
-var crapsList = [craps1];
+//let crapsList:Craps[]=[craps1];
 //Instancia casino
 var casinoBox = Number(fs.readFileSync('./files.txt/casinoBox.txt', 'utf-8'));
-var newCasino = new casino_1.Casino('Atlanta', progressiveSlotList, reelSlotList, rouletteOne, playerOne, crapsList, casinoBox);
+var newCasino = new casino_1.Casino('Atlanta', progressiveSlotList, reelSlotList, rouletteOne, playerOne, craps1, casinoBox);
 // Funcion para carga de jugador
 function newPlayer() {
     var age = readline.questionInt("Ingrese su edad para verificar si es mayor: ");
@@ -222,7 +222,7 @@ function rouletteMenu(option) {
             break;
         case 1:
             var auxFounds = playerOne.getFoundsAvailable();
-            betValueList[0] = readline.questionInt('¿Cuantos creditos apostara a un PLENO?: ');
+            betValueList[0] = readline.questionInt('Cuantos creditos apostara a un PLENO?: ');
             while (betValueList[0] > auxFounds) {
                 console.log("Fondos Insuficientes");
                 betValueList[0] = readline.questionInt('Ingrese su apuesta nuevamente: ');
@@ -239,7 +239,7 @@ function rouletteMenu(option) {
                     case 1:
                         color = "ROJO";
                         betOptionLis[1] = color;
-                        betValueList[1] = readline.questionInt("\u00BFCuantos Credtos apostar a ".concat(color, "?: "));
+                        betValueList[1] = readline.questionInt("Cuantos Credtos apostar a ".concat(color, "?: "));
                         while (betValueList[1] > auxFounds) {
                             console.log("Fondos Insuficientes");
                             betValueList[1] = readline.questionInt('Ingrese su apuesta nuevamente: ');
@@ -248,7 +248,7 @@ function rouletteMenu(option) {
                     case 2:
                         color = "NEGRO";
                         betOptionLis[1] = color;
-                        betValueList[1] = readline.questionInt("\u00BFCuantos Credtos apostar a ".concat(color, "?: "));
+                        betValueList[1] = readline.questionInt("Cuantos Credtos apostar a ".concat(color, "?: "));
                         while (betValueList[1] > auxFounds - betValueList[0]) {
                             console.log("Fondos Insuficientes");
                             betValueList[1] = readline.questionInt('Ingrese su apuesta nuevamente: ');
@@ -269,7 +269,7 @@ function rouletteMenu(option) {
                 case 1:
                     parOinpar = "PAR";
                     betOptionLis[2] = parOinpar;
-                    betValueList[2] = readline.questionInt("\u00BFCuantos Credtos apostar a  ".concat(parOinpar, "?: "));
+                    betValueList[2] = readline.questionInt("Cuantos Credtos apostar a  ".concat(parOinpar, "?: "));
                     while (betValueList[2] > auxFounds) {
                         console.log("Fondos Insuficientes");
                         betValueList[1] = readline.questionInt('Ingrese su apuesta nuevamente: ');
@@ -278,7 +278,7 @@ function rouletteMenu(option) {
                 case 2:
                     parOinpar = "IMPAR";
                     betOptionLis[2] = parOinpar;
-                    betValueList[2] = readline.questionInt("\u00BFCuantos Credtos apostar a  ".concat(parOinpar, "?: "));
+                    betValueList[2] = readline.questionInt("Cuantos Credtos apostar a  ".concat(parOinpar, "?: "));
                     while (betValueList[2] > auxFounds) {
                         console.log("Fondos Insuficientes");
                         betValueList[2] = readline.questionInt('Ingrese su apuesta nuevamente: ');
@@ -299,7 +299,7 @@ function rouletteMenu(option) {
                 case 1:
                     docena = "1ra Docena";
                     betOptionLis[3] = docena;
-                    betValueList[3] = readline.questionInt("\u00BFCuantos Credtos apostar a ".concat(docena, "?: "));
+                    betValueList[3] = readline.questionInt("Cuantos Credtos apostar a ".concat(docena, "?: "));
                     while (betValueList[3] > auxFounds) {
                         console.log("Fondos Insuficientes");
                         betValueList[3] = readline.questionInt('Ingrese su apuesta nuevamente: ');
@@ -308,7 +308,7 @@ function rouletteMenu(option) {
                 case 2:
                     docena = "2da Docena";
                     betOptionLis[3] = docena;
-                    betValueList[3] = readline.questionInt("\u00BFCuantos Credtos apostar a ".concat(docena, "?: "));
+                    betValueList[3] = readline.questionInt("Cuantos Credtos apostar a ".concat(docena, "?: "));
                     while (betValueList[3] > auxFounds) {
                         console.log("Fondos Insuficientes");
                         betValueList[3] = readline.questionInt('Ingrese su apuesta nuevamente: ');
@@ -317,7 +317,7 @@ function rouletteMenu(option) {
                 case 3:
                     docena = "3da Docena";
                     betOptionLis[3] = docena;
-                    betValueList[3] = readline.questionInt("\u00BFCuantos Credtos apostar a ".concat(docena, "?:  "));
+                    betValueList[3] = readline.questionInt("Cuantos Credtos apostar a ".concat(docena, "?:  "));
                     while (betValueList[3] > auxFounds) {
                         console.log("Fondos Insuficientes");
                         betValueList[3] = readline.questionInt('Ingrese su apuesta nuevamente: ');
@@ -452,7 +452,8 @@ function playGame(game, value) {
                 newFounds = progressiveSlotOne.playProgressiveSlot(value);
                 break;
             case 3:
-                newFounds = craps1.obtenerPremio(value);
+                //newFounds=craps1.obtenerPremio(value);
+                newCasino.playCraps(value);
                 break;
         }
         playerOne.setFoundsAvailable(playerOne.getFoundsAvailable() + newFounds);

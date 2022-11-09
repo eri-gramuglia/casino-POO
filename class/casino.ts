@@ -10,17 +10,17 @@ export class Casino {
     private reelSlotList:ReelSlot[];
     private rouletteEnable:Roulette;
     private player:Player;
-    private crapsList:Craps[];
+    private crapsEnable:Craps;
     private treasury:number;
 
-    public constructor(pName:string,pProgressiveSlotList:ProgressiveSlot[],pReelSlotList:ReelSlot[],pRouletteEnable:Roulette, pPlayer:Player,pCrapsList:Craps[],pTreasury:number){
+    public constructor(pName:string,pProgressiveSlotList:ProgressiveSlot[],pReelSlotList:ReelSlot[],pRouletteEnable:Roulette, pPlayer:Player,pCrapsEnable:Craps,pTreasury:number){
         this.casinoName=pName;
         this.progressiveSlotList=pProgressiveSlotList;
         this.reelSlotList=pReelSlotList;
         this.treasury=pTreasury;
         this.rouletteEnable=pRouletteEnable;
         this.player=pPlayer;
-        this.crapsList=pCrapsList;
+        this.crapsEnable=pCrapsEnable;
         
     }
     public getCasinoName():string{
@@ -68,7 +68,7 @@ export class Casino {
                     throw Error(`No existe esta maquina en el casino`);
                 } 
     } */
-    public getCraps(id:number):boolean{
+/*     public getCraps(id:number):boolean{
         let aux=false;
             for(let i=0;i<this.crapsList.length;i++){
                 if(id===this.crapsList[i].getId()){
@@ -80,7 +80,7 @@ export class Casino {
                 else {
                     throw Error(`No existe esta maquina en el casino`);
                 } 
-    }
+    } */
     public setPlayer(p_player: Player): void {
         this.player = p_player;
 
@@ -92,12 +92,17 @@ export class Casino {
         let betResultFinal: number = this.rouletteEnable.toTurn();
         let newFounds: number = this.player.getFoundsAvailable() + betResultFinal;
         this.player.setFoundsAvailable(newFounds);
-
         this.setTreasury(betResultFinal)
+
         console.log ("----------------------------------------------------------------");
         console.log (`Su saldo actual es de: ${this.player.getFoundsAvailable()}`);
         console.log ("----------------------------------------------------------------");
-        console.log("----------------------------------------------------------------")
+    }
+    public playCraps(betCraps:number){
+        let founds:number=this.crapsEnable.obtenerPremio(betCraps);
+        let newFounds: number = this.player.getFoundsAvailable() + founds;
+        this.player.setFoundsAvailable(newFounds);
+        this.setTreasury(founds);
     }
     public getTreasury():number{
         return this.treasury;
