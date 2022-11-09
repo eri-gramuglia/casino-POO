@@ -52,7 +52,8 @@ Para ejecutar la app, solo se debe clonar el repositorio y ejecutar con node el 
 
 # Documentación:
 
-[CASINO POO - Atlanta_v1.pdf](https://github.com/eri-gramuglia/casino-POO/files/9962872/CASINO.POO.-.Atlanta_v1.pdf)
+[CASINO POO - Atlanta_v1.pdf](https://github.com/eri-gramuglia/casino-POO/files/9975063/CASINO.POO.-.Atlanta_v1.pdf)
+
 
 
 
