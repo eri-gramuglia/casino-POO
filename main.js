@@ -358,25 +358,26 @@ function rouletteMenu(option) {
                     console.log("El valor Ingresado es Invalido, no se jugara por este Item");
                     break;
             }
-            newCasino.playRoulette(betValueList, betOptionLis);
-            /*          rouletteOne.setBetOption(betOptionLis);
-                        rouletteOne.setBetValue(betValueList);
-                        let betResultFinal: number = rouletteOne.toTurn()
-                        
-                        playerOne.setFoundsAvailable(playerOne.getFoundsAvailable()+betResultFinal)
-                        newCasino.setTreasury(betResultFinal) */
-            /*          console.log ("----------------------------------------------------------------");
-                        console.log (`Su saldo actual es de: ${playerOne.getFoundsAvailable()}`);
-                        console.log ("----------------------------------------------------------------");
-                        console.log("----------------------------------------------------------------") */
-            subMenuRoulette();
+            newCasino.playRoulette(betValueList,betOptionLis);
+/*          rouletteOne.setBetOption(betOptionLis);
+            rouletteOne.setBetValue(betValueList);
+            let betResultFinal: number = rouletteOne.toTurn()
+            
+            playerOne.setFoundsAvailable(playerOne.getFoundsAvailable()+betResultFinal)
+            newCasino.setTreasury(betResultFinal) */
+
+/*          console.log ("----------------------------------------------------------------");
+            console.log (`Su saldo actual es de: ${playerOne.getFoundsAvailable()}`);
+            console.log ("----------------------------------------------------------------");
+            console.log("----------------------------------------------------------------") */
+            subMenuRoulette()
             //callGame(3)
             //playGame(3,value);
             break;
         case 2:
             gameInformation(3);
             callGame(3);
-            break;
+        break;
     }
 }
 function subMenuRoulette() {

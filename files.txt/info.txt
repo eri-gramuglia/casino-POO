@@ -58,8 +58,7 @@ El jugador deberá elegir entre los números correspondientes a la primera (1 a 
         El jugador debe elegir entre los números bajos (del 1 al 18) o los números altos (del 19 al 36)
                              El pago de esta apuesta será de 1 a 1.
 
-Se apostara el mismo valor ingresado, para cada opcion seleccionada, es decir si su apuesta es de 100 Creditos, y apusta a dos opciones por ejemplo Pleno y Color,
-su apuesta total sera de 200 creditos.
+
 
                       ***** And may the odds be ever in your favor *****
 
@@ -69,12 +68,11 @@ su apuesta total sera de 200 creditos.
                                  
                     
                                              *El jugador debe tirar dos dados*
-                     de la suma de ambos, si da como resultado 7 u 11, el jugador gana el doble de los creditos ingresados
-                                     o en su defecto, el doble del saldo de créditos.
-    Si la suma da como resultado 2,3 o 12, el jugador pierde la partida y se le resta al apuesta el 0.5 de la apuesta o el saldo.
+                     de la suma de ambos, si da como resultado 7 u 11, el jugador gana el doble de la apuesta ingresada.
+    Si la suma da como resultado 2,3 o 12, el jugador pierde la apuesta.
                                En los casos que la suma dé como resultado 4,5,6,9 o 10, 
-                      el jugador vuelve a tirar los dados sin restar ni sumar creditos al saldo.
-                       En el caso que el saldo del jugador sea 0, el mismo a perdido el juego.             
+                      el jugador puede volver a tirar los dados si lo desea.
+                                
                                  
                                  
                                  
