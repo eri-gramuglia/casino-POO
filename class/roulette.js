@@ -128,7 +128,7 @@ var Roulette = /** @class */ (function () {
                     }
                     else {
                         console.log("----------------------------------------------------------------");
-                        console.log("Perdiste lo Aposta a: ".concat(this._betOption[i]));
+                        console.log("Perdiste lo Apostado a: ".concat(this._betOption[i]));
                         console.log("----------------------------------------------------------------");
                         this._betValue[i] = -this._betValue[i];
                     }

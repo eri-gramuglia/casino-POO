@@ -104,7 +104,7 @@ var ProgressiveSlot = /** @class */ (function (_super) {
             text = "\nEl tragamonedas ".concat(this.id, " gan\u00F3 ").concat(-reward, " creditos.");
         }
         this.writeStatictis('progressiveSlotStatistic', text);
-        console.log(this.jackpot);
+        console.log("** Jackpot acumulado $".concat(this.jackpot, " **"));
         return reward;
     };
     return ProgressiveSlot;
