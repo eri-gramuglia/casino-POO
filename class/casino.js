@@ -3,12 +3,13 @@ exports.__esModule = true;
 exports.Casino = void 0;
 var fs = require("fs");
 var Casino = /** @class */ (function () {
-    function Casino(pName, pProgressiveSlotList, pReelSlotList, pRouletteList, pCrapsList, pTreasury) {
+    function Casino(pName, pProgressiveSlotList, pReelSlotList, pRouletteEnable, pPlayer, pCrapsList, pTreasury) {
         this.casinoName = pName;
         this.progressiveSlotList = pProgressiveSlotList;
         this.reelSlotList = pReelSlotList;
         this.treasury = pTreasury;
-        this.rouletteList = pRouletteList;
+        this.rouletteEnable = pRouletteEnable;
+        this.player = pPlayer;
         this.crapsList = pCrapsList;
     }
     Casino.prototype.getCasinoName = function () {
@@ -45,20 +46,19 @@ var Casino = /** @class */ (function () {
             throw Error("No existe esta maquina en el casino");
         }
     };
-    Casino.prototype.getRoullete = function (id) {
-        var aux = false;
-        for (var i = 0; i < this.rouletteList.length; i++) {
-            if (id === this.rouletteList[i].getId()) {
-                aux = true;
-            }
-        }
-        if (aux) {
-            return true;
-        }
-        else {
-            throw Error("No existe esta maquina en el casino");
-        }
-    };
+    /*  public getRoullete(id:number):boolean{
+         let aux=false;
+             for(let i=0;i<this.rouletteList.length;i++){
+                 if(id===this.rouletteList[i].getId()){
+                     aux=true;
+                 }
+             } if(aux){
+                 return true;
+             }
+                 else {
+                     throw Error(`No existe esta maquina en el casino`);
+                 }
+     } */
     Casino.prototype.getCraps = function (id) {
         var aux = false;
         for (var i = 0; i < this.crapsList.length; i++) {
@@ -72,6 +72,23 @@ var Casino = /** @class */ (function () {
         else {
             throw Error("No existe esta maquina en el casino");
         }
+    };
+    Casino.prototype.setPlayer = function (p_player) {
+        this.player = p_player;
+    };
+    Casino.prototype.playRoulette = function (bet, opt) {
+        this.rouletteEnable.setBetOption(opt);
+        this.rouletteEnable.setBetValue(bet);
+        var betResultFinal = this.rouletteEnable.toTurn();
+        console.log(this.player.getFoundsAvailable());
+        var newFounds = this.player.getFoundsAvailable() + betResultFinal;
+        console.log(newFounds);
+        this.player.setFoundsAvailable(newFounds);
+        this.setTreasury(betResultFinal);
+        console.log("----------------------------------------------------------------");
+        console.log("Su saldo actual es de: ".concat(this.player.getFoundsAvailable()));
+        console.log("----------------------------------------------------------------");
+        console.log("----------------------------------------------------------------");
     };
     Casino.prototype.getTreasury = function () {
         return this.treasury;
