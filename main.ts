@@ -236,6 +236,9 @@ function rouletteMenu(option:number):void{
                     betValueList[1]=readline.questionInt(`Cuantos Credtos apostar a ${color}?: ` );
                     while (betValueList[1] > auxFounds){
                         console.log ("Fondos Insuficientes")
+                        if (auxFounds <= 0){
+                            break
+                        }
                         betValueList[1]=readline.questionInt('Ingrese su apuesta nuevamente: ');
                     }
                     break;
@@ -245,6 +248,9 @@ function rouletteMenu(option:number):void{
                     betValueList[1]=readline.questionInt(`Cuantos Credtos apostar a ${color}?: ` );
                     while (betValueList[1] > auxFounds - betValueList[0]){
                         console.log ("Fondos Insuficientes")
+                        if (auxFounds <= 0){
+                            break
+                        }
                         betValueList[1]=readline.questionInt('Ingrese su apuesta nuevamente: ');
                     }
                     break;
@@ -266,6 +272,9 @@ function rouletteMenu(option:number):void{
                     betValueList[2]=readline.questionInt(`Cuantos Credtos apostar a  ${parOinpar}?: ` );
                     while (betValueList[2] > auxFounds){
                         console.log ("Fondos Insuficientes")
+                        if (auxFounds <= 0){
+                            break
+                        }
                         betValueList[1]=readline.questionInt('Ingrese su apuesta nuevamente: ');
                     }
                     break;
@@ -275,6 +284,9 @@ function rouletteMenu(option:number):void{
                     betValueList[2]=readline.questionInt(`Cuantos Credtos apostar a  ${parOinpar}?: ` );
                     while (betValueList[2] > auxFounds){
                         console.log ("Fondos Insuficientes")
+                        if (auxFounds <= 0){
+                            break
+                        }
                         betValueList[2]=readline.questionInt('Ingrese su apuesta nuevamente: ');
                     }
                     break;
@@ -296,6 +308,9 @@ function rouletteMenu(option:number):void{
                     betValueList[3]=readline.questionInt(`Cuantos Credtos apostar a ${docena}?: ` );
                     while (betValueList[3] > auxFounds){
                         console.log ("Fondos Insuficientes")
+                        if (auxFounds <= 0){
+                            break
+                        }
                         betValueList[3]=readline.questionInt('Ingrese su apuesta nuevamente: ');
                     }
                     break;
@@ -305,6 +320,9 @@ function rouletteMenu(option:number):void{
                     betValueList[3]=readline.questionInt(`Cuantos Credtos apostar a ${docena}?: ` );
                     while (betValueList[3] > auxFounds){
                         console.log ("Fondos Insuficientes")
+                        if (auxFounds <= 0){
+                            break
+                        }
                         betValueList[3]=readline.questionInt('Ingrese su apuesta nuevamente: ');
                     }
                     break
@@ -314,6 +332,9 @@ function rouletteMenu(option:number):void{
                     betValueList[3]=readline.questionInt(`Cuantos Credtos apostar a ${docena}?:  ` );
                     while (betValueList[3] > auxFounds){
                         console.log ("Fondos Insuficientes")
+                        if (auxFounds <= 0){
+                            break
+                        }
                         betValueList[3]=readline.questionInt('Ingrese su apuesta nuevamente: ');
                     }
                     break;
@@ -335,6 +356,9 @@ function rouletteMenu(option:number):void{
                     betValueList[4]=readline.questionInt(`¿Cuantos Credtos apostar a ${altoObajo}?: ` );
                     while (betValueList[3] > auxFounds ){
                         console.log ("Fondos Insuficientes")
+                        if (auxFounds <= 0){
+                            break
+                        }
                         betValueList[4]=readline.questionInt('Ingrese su apuesta nuevamente: ');
                     }
                     break;
@@ -344,6 +368,9 @@ function rouletteMenu(option:number):void{
                     betValueList[4]=readline.questionInt(`¿Cuantos Credtos apostar a ${altoObajo}?: ` );
                     while (betValueList[3] > auxFounds ){
                         console.log ("Fondos Insuficientes")
+                        if (auxFounds <= 0){
+                            break
+                        }
                         betValueList[4]=readline.questionInt('Ingrese su apuesta nuevamente: ');
                     }
                     break;

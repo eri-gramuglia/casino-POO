@@ -240,6 +240,9 @@ function rouletteMenu(option) {
                         betValueList[1] = readline.questionInt("Cuantos Credtos apostar a ".concat(color, "?: "));
                         while (betValueList[1] > auxFounds) {
                             console.log("Fondos Insuficientes");
+                            if (auxFounds <= 0) {
+                                break;
+                            }
                             betValueList[1] = readline.questionInt('Ingrese su apuesta nuevamente: ');
                         }
                         break;
@@ -249,6 +252,9 @@ function rouletteMenu(option) {
                         betValueList[1] = readline.questionInt("Cuantos Credtos apostar a ".concat(color, "?: "));
                         while (betValueList[1] > auxFounds - betValueList[0]) {
                             console.log("Fondos Insuficientes");
+                            if (auxFounds <= 0) {
+                                break;
+                            }
                             betValueList[1] = readline.questionInt('Ingrese su apuesta nuevamente: ');
                         }
                         break;
@@ -270,6 +276,9 @@ function rouletteMenu(option) {
                     betValueList[2] = readline.questionInt("Cuantos Credtos apostar a  ".concat(parOinpar, "?: "));
                     while (betValueList[2] > auxFounds) {
                         console.log("Fondos Insuficientes");
+                        if (auxFounds <= 0) {
+                            break;
+                        }
                         betValueList[1] = readline.questionInt('Ingrese su apuesta nuevamente: ');
                     }
                     break;
@@ -279,6 +288,9 @@ function rouletteMenu(option) {
                     betValueList[2] = readline.questionInt("Cuantos Credtos apostar a  ".concat(parOinpar, "?: "));
                     while (betValueList[2] > auxFounds) {
                         console.log("Fondos Insuficientes");
+                        if (auxFounds <= 0) {
+                            break;
+                        }
                         betValueList[2] = readline.questionInt('Ingrese su apuesta nuevamente: ');
                     }
                     break;
@@ -300,6 +312,9 @@ function rouletteMenu(option) {
                     betValueList[3] = readline.questionInt("Cuantos Credtos apostar a ".concat(docena, "?: "));
                     while (betValueList[3] > auxFounds) {
                         console.log("Fondos Insuficientes");
+                        if (auxFounds <= 0) {
+                            break;
+                        }
                         betValueList[3] = readline.questionInt('Ingrese su apuesta nuevamente: ');
                     }
                     break;
@@ -309,6 +324,9 @@ function rouletteMenu(option) {
                     betValueList[3] = readline.questionInt("Cuantos Credtos apostar a ".concat(docena, "?: "));
                     while (betValueList[3] > auxFounds) {
                         console.log("Fondos Insuficientes");
+                        if (auxFounds <= 0) {
+                            break;
+                        }
                         betValueList[3] = readline.questionInt('Ingrese su apuesta nuevamente: ');
                     }
                     break;
@@ -318,6 +336,9 @@ function rouletteMenu(option) {
                     betValueList[3] = readline.questionInt("Cuantos Credtos apostar a ".concat(docena, "?:  "));
                     while (betValueList[3] > auxFounds) {
                         console.log("Fondos Insuficientes");
+                        if (auxFounds <= 0) {
+                            break;
+                        }
                         betValueList[3] = readline.questionInt('Ingrese su apuesta nuevamente: ');
                     }
                     break;
@@ -339,6 +360,9 @@ function rouletteMenu(option) {
                     betValueList[4] = readline.questionInt("\u00BFCuantos Credtos apostar a ".concat(altoObajo, "?: "));
                     while (betValueList[3] > auxFounds) {
                         console.log("Fondos Insuficientes");
+                        if (auxFounds <= 0) {
+                            break;
+                        }
                         betValueList[4] = readline.questionInt('Ingrese su apuesta nuevamente: ');
                     }
                     break;
@@ -348,6 +372,9 @@ function rouletteMenu(option) {
                     betValueList[4] = readline.questionInt("\u00BFCuantos Credtos apostar a ".concat(altoObajo, "?: "));
                     while (betValueList[3] > auxFounds) {
                         console.log("Fondos Insuficientes");
+                        if (auxFounds <= 0) {
+                            break;
+                        }
                         betValueList[4] = readline.questionInt('Ingrese su apuesta nuevamente: ');
                     }
                     break;
@@ -358,26 +385,25 @@ function rouletteMenu(option) {
                     console.log("El valor Ingresado es Invalido, no se jugara por este Item");
                     break;
             }
-            newCasino.playRoulette(betValueList,betOptionLis);
-/*          rouletteOne.setBetOption(betOptionLis);
-            rouletteOne.setBetValue(betValueList);
-            let betResultFinal: number = rouletteOne.toTurn()
-            
-            playerOne.setFoundsAvailable(playerOne.getFoundsAvailable()+betResultFinal)
-            newCasino.setTreasury(betResultFinal) */
-
-/*          console.log ("----------------------------------------------------------------");
-            console.log (`Su saldo actual es de: ${playerOne.getFoundsAvailable()}`);
-            console.log ("----------------------------------------------------------------");
-            console.log("----------------------------------------------------------------") */
-            subMenuRoulette()
+            newCasino.playRoulette(betValueList, betOptionLis);
+            /*          rouletteOne.setBetOption(betOptionLis);
+                        rouletteOne.setBetValue(betValueList);
+                        let betResultFinal: number = rouletteOne.toTurn()
+                        
+                        playerOne.setFoundsAvailable(playerOne.getFoundsAvailable()+betResultFinal)
+                        newCasino.setTreasury(betResultFinal) */
+            /*          console.log ("----------------------------------------------------------------");
+                        console.log (`Su saldo actual es de: ${playerOne.getFoundsAvailable()}`);
+                        console.log ("----------------------------------------------------------------");
+                        console.log("----------------------------------------------------------------") */
+            subMenuRoulette();
             //callGame(3)
             //playGame(3,value);
             break;
         case 2:
             gameInformation(3);
             callGame(3);
-        break;
+            break;
     }
 }
 function subMenuRoulette() {
